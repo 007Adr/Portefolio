@@ -6,34 +6,47 @@
   <title>Présentation — Groupe Paredes Orapi</title>
   <link rel="stylesheet" href="../../../css/style.css">
   <style>
-    .back-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.83rem; font-weight: 600; color: var(--muted);
-      text-decoration: none; margin-bottom: 2rem; transition: color 0.18s;
-    }
-    .back-link:hover { color: var(--accent); }
-
     .breadcrumb {
       display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap;
     }
     .breadcrumb a { color: var(--light); text-decoration: none; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb span { color: var(--accent); font-weight: 600; }
 
+    /* ─── PAGE HERO ─── */
     .page-hero {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
-      display: flex; align-items: center; gap: 1.5rem;
+      border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
+      display: grid; grid-template-columns: 300px 1fr;
     }
     .page-hero-logo {
-      width: 80px; height: 80px; flex-shrink: 0;
-      border-radius: 12px; border: 1px solid var(--border);
-      overflow: hidden;
+      overflow: hidden; border-right: 1px solid var(--border);
     }
-    .page-hero-logo img { width: 100%; height: 100%; object-fit: cover; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
-    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .page-hero-logo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .page-hero-info {
+      padding: 1.75rem 2rem;
+      display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;
+    }
+    .page-hero-eyebrow {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .page-hero-title {
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.25; color: var(--text);
+    }
+    .page-hero-sub { color: var(--muted); font-size: 0.84rem; margin-top: 0.25rem; }
+
+    /* ─── SECTIONS ─── */
+    .part-title {
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: 1.5rem; color: var(--text);
+      margin: 3rem 0 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--accent-mid);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
 
     .content-block {
       background: white; border: 1px solid var(--border);
@@ -45,21 +58,105 @@
     }
     .content-block-title::before {
       content: ''; display: block; width: 3px; height: 18px;
-      background: var(--accent); border-radius: 2px;
+      background: var(--accent); border-radius: 2px; flex-shrink: 0;
     }
-    .content-text {
-      color: var(--muted); font-size: 0.9rem; line-height: 1.85;
+    .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
+    .content-text p + p { margin-top: 0.75rem; }
+
+    /* ─── CHIFFRES CLÉS image ─── */
+    .chiffres-img {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); margin-top: 1.25rem;
+    }
+    .chiffres-img img { width: 100%; height: auto; display: block; }
+
+    /* ─── VIDEO ─── */
+    .video-wrapper {
+      position: relative; padding-bottom: 56.25%; height: 0;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); margin-top: 1.25rem;
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: none;
     }
 
-    .info-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem; margin-top: 0.5rem;
+    /* ─── INFO KEYS ─── */
+    .info-keys {
+      background: var(--accent-light); border: 1px solid var(--accent-mid);
+      border-radius: 14px; padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
     }
-    .info-item {
-      background: var(--bg); border-radius: 10px; padding: 1rem 1.1rem;
+    .info-keys-title {
+      font-weight: 700; font-size: 0.88rem; margin-bottom: 0.85rem;
+      display: flex; align-items: center; gap: 0.5rem;
     }
-    .info-item-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 0.3rem; }
-    .info-item-value { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+    .info-keys ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .info-keys li {
+      font-size: 0.87rem; color: var(--muted); line-height: 1.6;
+      padding-left: 1.1rem; position: relative;
+    }
+    .info-keys li::before {
+      content: '·'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+    .info-keys li strong { color: var(--text); }
+    .info-keys li ul { margin-top: 0.3rem; padding-left: 1rem; }
+    .info-keys li ul li { font-size: 0.83rem; }
+
+    /* ─── USINE ─── */
+    .usine-block {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 1.25rem;
+    }
+    .usine-split {
+      display: grid; grid-template-columns: 1fr 340px; gap: 0;
+    }
+    .usine-content { padding: 1.75rem 2rem; }
+    .usine-img {
+      overflow: hidden; border-left: 1px solid var(--border);
+    }
+    .usine-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .usine-title {
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: 1.05rem; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .usine-title::before {
+      content: ''; display: block; width: 3px; height: 18px;
+      background: var(--accent); border-radius: 2px;
+    }
+
+    .usine-sections { display: flex; flex-direction: column; gap: 1rem; }
+    .usine-section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem;
+    }
+    .usine-text { color: var(--muted); font-size: 0.87rem; line-height: 1.75; }
+    .usine-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .usine-list li {
+      font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative;
+    }
+    .usine-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+    /* ─── NAV BOTTOM ─── */
+    .nav-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.83rem; font-weight: 600; color: var(--muted);
+      text-decoration: none; transition: color 0.18s;
+    }
+    .nav-btn:hover { color: var(--accent); }
+
+    @media (max-width: 860px) {
+      .page-hero { grid-template-columns: 1fr; }
+      .page-hero-logo { height: 180px; border-right: none; border-bottom: 1px solid var(--border); }
+      .usine-split { grid-template-columns: 1fr; }
+      .usine-img { height: 220px; border-left: none; border-top: 1px solid var(--border); }
+    }
   </style>
 </head>
 <body>
@@ -85,72 +182,209 @@
     <div class="section">
 
       <div class="breadcrumb">
-        <a href="../../stages.html">Stages</a> › <a href="../stage1.html">Paredes Orapi</a> › <span>Présentation</span>
+        <a href="../../stages.html">Stages</a> ›
+        <a href="../stage1.html">Paredes Orapi</a> ›
+        <span>Présentation</span>
       </div>
 
+      <!-- ══ HERO ══ -->
       <div class="page-hero">
         <div class="page-hero-logo">
-          <img src="../../../images/logo-paredes.png" alt="Paredes Orapi">
+          <img src="../../../images/logo-paredes.png" alt="Groupe Paredes Orapi">
         </div>
-        <div>
-          <div class="page-hero-title">Présentation — Groupe Paredes Orapi</div>
-          <div class="page-hero-sub">Stage 1 · [Période]</div>
-        </div>
-      </div>
-
-      <!-- Infos clés -->
-      <div class="content-block">
-        <div class="content-block-title">Informations clés</div>
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-item-label">Secteur</div>
-            <div class="info-item-value">Hygiène & Maintenance industrielle</div>
-          </div>
-          <div class="info-item">
-            <div class="info-item-label">Forme juridique</div>
-            <div class="info-item-value">[ex : SAS, SA, Groupe]</div>
-          </div>
-          <div class="info-item">
-            <div class="info-item-label">Effectifs</div>
-            <div class="info-item-value">[ex : +1 000 employés]</div>
-          </div>
-          <div class="info-item">
-            <div class="info-item-label">Siège</div>
-            <div class="info-item-value">[Ville du siège social]</div>
-          </div>
-          <div class="info-item">
-            <div class="info-item-label">Implantation</div>
-            <div class="info-item-value">[ex : France, Europe]</div>
-          </div>
-          <div class="info-item">
-            <div class="info-item-label">Certification</div>
-            <div class="info-item-value">EcoVadis Platinum — Top 1%</div>
-          </div>
+        <div class="page-hero-info">
+          <div class="page-hero-eyebrow">Présentation — Stage 1</div>
+          <div class="page-hero-title">Groupe Paredes Orapi : n°1 de l'hygiène et de la protection professionnelles en France</div>
+          <div class="page-hero-sub">Secteur : Hygiène & Maintenance industrielle · [Période du stage]</div>
         </div>
       </div>
 
-      <!-- Présentation générale -->
+      <!-- ══ CONTEXTE GROUPE ══ -->
       <div class="content-block">
-        <div class="content-block-title">Présentation générale</div>
-        <p class="content-text">
-          [Décris ici le groupe Paredes Orapi en détail : son histoire, sa création, son évolution. Qui sont leurs clients ? Quels types de produits ou services proposent-ils ? Dans quels secteurs interviennent-ils ? (hôtellerie, industrie, santé, collectivités…)]
-        </p>
+        <div class="content-block-title">Contexte de l'entreprise</div>
+        <div class="content-text">
+          <p>Le Groupe Paredes Orapi est né de l'alliance entre deux leaders de l'hygiène : Paredes, acteur majeur en France et en Italie dans l'hygiène et la protection professionnelles, et Orapi, expert en solutions de nettoyage et de désinfection, et aussi en produits de maintenance.</p>
+          <p>Depuis l'OPA (Offre Publique d'Achat) finalisée en mars 2024, le Groupe, avec un chiffre d'affaires de 443 millions d'euros, s'impose comme le n°1 intégré du marché français et un acteur clé en Europe, générant 350 millions d'euros de chiffre d'affaires pour l'activité Hygiène en France.</p>
+          <p>Le groupe compte 1 500 salariés, dont 1 200 en France (y compris les DROM-COM) et 300 localisés dans 9 pays étrangers (Italie, Royaume-Uni, Espagne, Pays-Bas, Pologne, Émirats Arabes Unis, Singapour, Malaisie et Canada).</p>
+        </div>
       </div>
 
-      <!-- Organisation -->
-      <div class="content-block">
-        <div class="content-block-title">Organisation & structure</div>
-        <p class="content-text">
-          [Décris l'organisation interne de l'entreprise : les différents services, la hiérarchie, l'équipe dans laquelle tu as évolué pendant ton stage. Tu peux ajouter un organigramme si tu en as un.]
-        </p>
+      <!-- Vidéo groupe -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/ubLri_1UJUk?start=10" allowfullscreen loading="lazy" title="Présentation Groupe Paredes Orapi"></iframe>
       </div>
 
-      <!-- Contexte du stage -->
+      <!-- Chiffres clés -->
+      <div class="chiffres-img">
+        <img src="../../../images/paredes-chiffres.png" alt="Chiffres clés Groupe Paredes Orapi">
+      </div>
+
+      <!-- ══ GPO - PAREDES ══ -->
+      <div class="part-title">🏷 GPO — PAREDES</div>
+
       <div class="content-block">
-        <div class="content-block-title">Contexte de mon stage</div>
-        <p class="content-text">
-          [Explique pourquoi tu as choisi cette entreprise, comment tu as obtenu ce stage, dans quel service tu étais intégré, avec qui tu travaillais et quel était ton rôle général au sein de l'équipe.]
-        </p>
+        <div class="content-block-title">Leur histoire</div>
+        <div class="content-text">
+          <p>Fondée en 1942 à Villeurbanne, Paredes est une entreprise familiale devenue un leader du marché de l'hygiène et de la protection professionnelles en France et en Italie.</p>
+          <p>Avant le rachat d'ORAPI en 2024, le groupe comptait environ 650 collaborateurs et travaillait avec plus de 25 000 clients actifs. En 2023, il a réalisé un chiffre d'affaires de 217 millions d'euros.</p>
+          <p>Depuis plus de 80 ans, Paredes se distingue par sa capacité à innover et à faire évoluer les pratiques dans le domaine de l'hygiène. L'entreprise a été la première sur le marché français à proposer la bobine d'essuyage en remplacement du chiffon, à breveter un distributeur d'essuie-mains à découpe automatique, et à faire certifier un service d'accompagnement client visant à garantir une hygiène optimale des locaux.</p>
+        </div>
+      </div>
+
+      <div class="info-keys">
+        <div class="info-keys-title">🗂️ Informations clés — Paredes</div>
+        <ul>
+          <li><strong>Marché :</strong> France et Italie principalement</li>
+          <li><strong>Secteurs clients :</strong> Santé, collectivités, industrie, tertiaire</li>
+          <li><strong>Activité principale :</strong>
+            <ul>
+              <li>Distribution de produits d'hygiène professionnelle</li>
+              <li>Fourniture d'EPI (équipements de protection individuelle)</li>
+              <li>Accompagnement et conseil en hygiène</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Vidéo Paredes -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/JZ1M1NsBbAM?start=22" allowfullscreen loading="lazy" title="Présentation Paredes"></iframe>
+      </div>
+
+      <!-- Usine Paredes -->
+      <div class="usine-block">
+        <div class="usine-split">
+          <div class="usine-content">
+            <div class="usine-title">🏭 Paredes FAB — Genas (69)</div>
+            <div class="usine-sections">
+
+              <div>
+                <div class="usine-section-label">Localisation</div>
+                <div class="usine-text">Implanté à Genas, en région Auvergne–Rhône‑Alpes, sur le même territoire que le siège et la plateforme logistique du groupe Paredes ORAPI.</div>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Fonction principale</div>
+                <ul class="usine-list">
+                  <li>Site de production de ouate et atelier en salle propre de 600 m² dédié à la production de savons</li>
+                  <li>Business unit « RENEW » avec projets d'amélioration continue des processus, de la qualité et d'optimisation logistique</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Postes & missions</div>
+                <ul class="usine-list">
+                  <li>Ingénieurs process, techniciens et opérateurs pour piloter les flux industriels</li>
+                  <li>Accueil de stagiaires ingénieurs sur l'amélioration des processus, indicateurs de performance, gestion des non-conformités</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Dimension technologique</div>
+                <div class="usine-text">Site moderne orienté industrie 4.0 : digitalisation des processus, suivi qualité, automatisation partielle et intégration dans la chaîne logistique du groupe.</div>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Engagement RSE</div>
+                <ul class="usine-list">
+                  <li>Recyclage et économie circulaire via la réhabilitation des distributeurs</li>
+                  <li>Insertion professionnelle avec des partenariats locaux (journée EPIDE avec jeunes apprentis)</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="usine-img">
+            <img src="../../../images/paredes-usine-aerienne.png" alt="Usine Paredes FAB — vue aérienne Genas">
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ GPO - ORAPI ══ -->
+      <div class="part-title">🏷 GPO — ORAPI</div>
+
+      <div class="content-block">
+        <div class="content-block-title">Leur histoire</div>
+        <div class="content-text">
+          <p>Fondée en 1968 à Lyon, ORAPI est une entreprise française spécialisée dans les solutions d'hygiène, de désinfection et de maintenance industrielle. Au fil des décennies, elle s'est imposée comme un acteur incontournable en France et à l'international.</p>
+          <p>Avant son rachat par le groupe Paredes en 2024, ORAPI comptait environ 1 000 collaborateurs répartis dans plus de 10 pays et servait une clientèle variée dans les secteurs de la santé, de l'industrie, de la restauration et des collectivités. En 2023, son chiffre d'affaires s'élevait à 250 millions d'euros.</p>
+          <p>Depuis plus de 50 ans, ORAPI mise sur la recherche et le développement pour concevoir des produits innovants et écoresponsables. L'entreprise a notamment été pionnière dans la formulation de solutions d'hygiène à faible impact environnemental et dans l'intégration du digital pour optimiser la gestion des protocoles de nettoyage.</p>
+        </div>
+      </div>
+
+      <div class="info-keys">
+        <div class="info-keys-title">🗂️ Informations clés — Orapi</div>
+        <ul>
+          <li><strong>Marché :</strong> France et international (présence dans plus de 10 pays)</li>
+          <li><strong>Secteurs clients :</strong> Santé, collectivités, industrie, restauration, transport, tertiaire</li>
+          <li><strong>Activité principale :</strong>
+            <ul>
+              <li>Formulation, fabrication et distribution de produits d'hygiène et maintenance</li>
+              <li>Fourniture de solutions professionnelles de désinfection</li>
+              <li>Accompagnement technique, conseil et digitalisation des protocoles</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Vidéo Orapi -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/jeOUwPYS6A0" allowfullscreen loading="lazy" title="Présentation ORAPI"></iframe>
+      </div>
+
+      <!-- Usine Orapi -->
+      <div class="usine-block">
+        <div class="usine-split">
+          <div class="usine-content">
+            <div class="usine-title">🏭 ORAPI FAB — Saint-Vulbas (01)</div>
+            <div class="usine-sections">
+
+              <div>
+                <div class="usine-section-label">Fonction principale</div>
+                <div class="usine-text">Site de formulation, fabrication et conditionnement de produits d'hygiène, de désinfection et de maintenance industrielle. Capacité de 25 000 tonnes/an et stockage de plus de 200 000 palettes. Intègre un centre R&D dédié aux solutions innovantes et écoresponsables.</div>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Postes & missions</div>
+                <ul class="usine-list">
+                  <li>Ingénieurs chimistes, techniciens qualité, opérateurs de production, responsables logistiques</li>
+                  <li>Conformité réglementaire (REACH, SEVESO), contrôle qualité, pilotage des lignes automatisées</li>
+                  <li>Stagiaires ingénieurs sur sécurité, efficacité industrielle, traçabilité produit</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Dimension technologique</div>
+                <ul class="usine-list">
+                  <li>Digitalisation complète des processus de production</li>
+                  <li>Automatisation partielle des lignes</li>
+                  <li>Suivi en temps réel : traçabilité, sécurité, performance</li>
+                  <li>Intégration logistique avec les plateformes clients et l'ERP du groupe</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="usine-section-label">Engagement RSE</div>
+                <ul class="usine-list">
+                  <li>Formulation de produits écoresponsables</li>
+                  <li>Réduction des emballages et maîtrise des rejets industriels</li>
+                  <li>Valorisation des déchets via circuits de recyclage</li>
+                  <li>Insertion professionnelle et formation continue des équipes</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="usine-img" style="display: grid; grid-template-rows: 1fr 1fr;">
+            <img src="../../../images/orapi-production.png" alt="Production ORAPI FAB" style="object-fit: cover; width: 100%; height: 100%; border-bottom: 1px solid var(--border);">
+            <img src="../../../images/orapi-batiment.png" alt="Bâtiment ORAPI FAB" style="object-fit: cover; width: 100%; height: 100%;">
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-bottom">
+        <a class="nav-btn" href="../stage1.html">← Retour au stage</a>
+        <a class="nav-btn" href="mission1.html">SP1 — Migration Windows 11 →</a>
       </div>
 
     </div>

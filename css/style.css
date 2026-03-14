@@ -110,6 +110,9 @@ nav {
 .dropdown-menu a:hover { background: var(--accent-light) !important; color: var(--accent) !important; }
 .dropdown-menu a.active { background: var(--accent-light) !important; color: var(--accent) !important; font-weight: 600 !important; }
 
+/* ─── FIX IMAGES ─── */
+img { display: block; }
+
 /* ─── PAGE WRAPPER ─── */
 .page-content {
   padding-top: 62px;
