@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 2 — SIA BDE INSA Lyon</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.83rem; font-weight: 600; color: var(--muted);
+      text-decoration: none; margin-bottom: 2rem;
+      transition: color 0.18s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .company-header {
+      background: white; border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden; margin-bottom: 2.5rem;
+    }
+    .company-banner {
+      height: 200px; background: #1e1e1e;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2.5rem;
+    }
+    .company-banner img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    .company-info {
+      padding: 1.75rem 2rem;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .company-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem; }
+    .company-meta { margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .company-meta-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.84rem; color: var(--muted); }
+    .stage-badge {
+      background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a;
+      padding: 0.35rem 1rem; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 700; white-space: nowrap; flex-shrink: 0;
+    }
+
+    .desc-block {
+      background: var(--accent-light); border: 1px solid var(--accent-mid);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      color: var(--muted); font-size: 0.9rem; line-height: 1.8;
+    }
+
+    .missions-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .mission-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem; transition: all 0.18s;
+    }
+    .mission-card:hover { border-color: var(--accent-mid); box-shadow: 0 4px 14px rgba(29,78,216,0.08); }
+    .mission-icon {
+      width: 36px; height: 36px; background: var(--accent-light); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; margin-bottom: 0.8rem;
+    }
+    .mission-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.35rem; }
+    .mission-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
+
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .photo-slot {
+      aspect-ratio: 4/3;
+      background: var(--bg); border: 2px dashed var(--border2);
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem; color: var(--light); font-size: 0.8rem;
+      transition: all 0.18s;
+    }
+    .photo-slot:hover { border-color: var(--accent-mid); background: var(--accent-light); }
+    .photo-slot-icon { font-size: 1.8rem; }
+
+    .rapport-row {
+      background: white; border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1.25rem;
+    }
+    .rapport-icon {
+      width: 46px; height: 46px; background: var(--accent-light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .rapport-info { flex: 1; }
+    .rapport-title { font-weight: 600; font-size: 0.9rem; }
+    .rapport-sub { color: var(--muted); font-size: 0.8rem; margin-top: 0.1rem; }
+    .rapport-dl {
+      background: var(--accent); color: white; padding: 0.5rem 1.1rem;
+      border-radius: 8px; text-decoration: none; font-size: 0.82rem; font-weight: 600;
+      transition: all 0.18s; flex-shrink: 0;
+    }
+    .rapport-dl:hover { background: #1a45c0; }
+
+    @media (max-width: 860px) {
+      .company-info { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../index.html" class="nav-logo">[Prénom <span>Nom</span>]</a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../about.html">À propos</a></li>
+      <li><a href="../ateliers.html">Ateliers Pro</a></li>
+      <li class="nav-dropdown">
+        <a href="../stages.html">Stages</a>
+        <div class="dropdown-menu">
+          <a href="stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+          <a href="stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
+        </div>
+      </li>
+      <li><a href="../veille.html">Veille techno</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <div class="section">
+
+      <a class="back-link" href="../stages.html">← Retour aux stages</a>
+
+      <div class="company-header">
+        <div class="company-banner">
+          <img src="../../images/logo-sia.png" alt="SIA BDE INSA Lyon">
+        </div>
+        <div class="company-info">
+          <div>
+            <div class="company-name">SIA BDE INSA Lyon</div>
+            <div class="company-meta">
+              <div class="company-meta-row">📅 [Durée · ex : 6 semaines · Mai–Juin 2025]</div>
+              <div class="company-meta-row">📍 Lyon, Auvergne-Rhône-Alpes</div>
+              <div class="company-meta-row">🏷 Secteur : Association étudiante</div>
+              <div class="company-meta-row">👥 [Nombre de membres / bénévoles]</div>
+            </div>
+          </div>
+          <div class="stage-badge">✓ Stage terminé</div>
+        </div>
+      </div>
+
+      <div class="subsection-title">Présentation de l'association</div>
+      <div class="desc-block">
+        [Décris le SIA BDE INSA Lyon en quelques phrases : c'est une association étudiante de l'INSA de Lyon. Explique son rôle, ses activités, son fonctionnement. Ajoute ce que tu as observé et ce qui t'a amené à y effectuer ton stage.]
+      </div>
+
+      <div class="subsection-title">Missions réalisées</div>
+      <div class="missions-grid">
+        <div class="mission-card">
+          <div class="mission-icon">🌐</div>
+          <div class="mission-title">Mission 1 — [Titre]</div>
+          <div class="mission-desc">[Ce que tu as fait, comment, avec quels outils ou technologies.]</div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">🗄</div>
+          <div class="mission-title">Mission 2 — [Titre]</div>
+          <div class="mission-desc">[Description de la mission 2.]</div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">🔍</div>
+          <div class="mission-title">Mission 3 — [Titre]</div>
+          <div class="mission-desc">[Description de la mission 3.]</div>
+        </div>
+      </div>
+
+      <div class="subsection-title">Photos & captures</div>
+      <div class="photos-grid">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📷</div>
+          <span>Ajouter une photo</span>
+        </div>
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📷</div>
+          <span>Ajouter une photo</span>
+        </div>
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📷</div>
+          <span>Ajouter une photo</span>
+        </div>
+      </div>
+
+      <div class="subsection-title">Rapport de stage</div>
+      <div class="rapport-row">
+        <div class="rapport-icon">📄</div>
+        <div class="rapport-info">
+          <div class="rapport-title">Rapport de stage — SIA BDE INSA Lyon</div>
+          <div class="rapport-sub">[Période] · [Durée]</div>
+        </div>
+        <a href="#" class="rapport-dl">⬇ Télécharger</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Portfolio de <strong>[Prénom Nom]</strong> &nbsp;·&nbsp; BTS Informatique &nbsp;·&nbsp; [Ton école] &nbsp;·&nbsp; [Année]
+  </footer>
+
+  <script src="../../js/nav.js"></script>
+</body>
+</html>
