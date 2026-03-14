@@ -57,7 +57,7 @@ nav {
 .nav-links a.active { color: var(--accent); background: var(--accent-light); font-weight: 600; }
 
 /* ─── DROPDOWN ─── */
-.nav-dropdown { position: relative; }
+.nav-dropdown { position: relative; list-style: none; }
 
 .nav-dropdown > a {
   display: flex; align-items: center; gap: 0.3rem;
@@ -68,17 +68,35 @@ nav {
 .nav-dropdown:hover > a::after { transform: rotate(180deg); }
 
 .dropdown-menu {
-  display: none;
-  position: absolute; top: calc(100% + 8px); left: 0;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute; top: calc(100% + 4px); left: 0;
   background: white;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0.4rem;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   z-index: 200;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
 }
-.nav-dropdown:hover .dropdown-menu { display: block; }
+
+/* pont invisible pour combler le gap entre le lien et le menu */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  height: 8px;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .dropdown-menu a {
   display: flex; align-items: center; gap: 0.5rem;

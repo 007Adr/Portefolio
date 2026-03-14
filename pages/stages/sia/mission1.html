@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission 1 — SIA BDE INSA Lyon</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+    }
+    .breadcrumb a { color: var(--light); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--accent); font-weight: 600; }
+
+    .page-hero {
+      background: white; border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .page-hero-icon {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: var(--accent-light); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
+    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+
+    .content-block {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem;
+    }
+    .content-block-title {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .content-block-title::before {
+      content: ''; display: block; width: 3px; height: 18px;
+      background: var(--accent); border-radius: 2px;
+    }
+    .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+    /* Zone photos */
+    .photos-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+    }
+    .photo-slot {
+      aspect-ratio: 4/3; background: var(--bg); border: 2px dashed var(--border2);
+      border-radius: 12px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem; color: var(--light); font-size: 0.8rem; transition: all 0.18s;
+    }
+    .photo-slot:hover { border-color: var(--accent-mid); background: var(--accent-light); }
+    .photo-slot .icon { font-size: 1.8rem; }
+    .photo-real { aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; }
+    .photo-real img { width: 100%; height: 100%; object-fit: cover; }
+
+    .nav-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.83rem; font-weight: 600; color: var(--muted);
+      text-decoration: none; transition: color 0.18s;
+    }
+    .nav-btn:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../../index.html" class="nav-logo">[Prénom <span>Nom</span>]</a>
+    <ul class="nav-links">
+      <li><a href="../../../index.html">Accueil</a></li>
+      <li><a href="../../about.html">À propos</a></li>
+      <li><a href="../../ateliers.html">Ateliers Pro</a></li>
+      <li class="nav-dropdown">
+        <a href="../../stages.html">Stages</a>
+        <div class="dropdown-menu">
+          <a href="../stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+          <a href="../stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
+        </div>
+      </li>
+      <li><a href="../../veille.html">Veille techno</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <div class="section">
+
+      <div class="breadcrumb">
+        <a href="../../stages.html">Stages</a> › <a href="../stage2.html">SIA BDE INSA</a> › <span>Mission 1</span>
+      </div>
+
+      <div class="page-hero">
+        <div class="page-hero-icon">🔧</div>
+        <div>
+          <div class="page-hero-label">Mission 1 — Stage 2</div>
+          <div class="page-hero-title">[Titre de la mission 1]</div>
+          <div class="page-hero-sub">SIA BDE INSA Lyon · [Période]</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="content-block-title">Contexte & objectif</div>
+        <p class="content-text">
+          [Explique pourquoi cette mission t'a été confiée, dans quel contexte elle s'inscrit, quel était l'objectif attendu par l'entreprise.]
+        </p>
+      </div>
+
+      <div class="content-block">
+        <div class="content-block-title">Travail réalisé</div>
+        <p class="content-text">
+          [Décris en détail ce que tu as fait : étapes, méthodes, difficultés rencontrées, comment tu les as résolues. Tu peux organiser en plusieurs paragraphes.]
+        </p>
+      </div>
+
+      <div class="content-block">
+        <div class="content-block-title">Outils & technologies utilisés</div>
+        <div class="tools-grid">
+          <span class="chip blue">[Outil / Logiciel 1]</span>
+          <span class="chip blue">[Outil / Logiciel 2]</span>
+          <span class="chip">[Techno 1]</span>
+          <span class="chip">[Techno 2]</span>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="content-block-title">Résultat & apports</div>
+        <p class="content-text">
+          [Quel a été le résultat final ? Qu'est-ce que cette mission t'a appris, sur le plan technique et humain ?]
+        </p>
+      </div>
+
+      <div class="content-block">
+        <div class="content-block-title">Captures & photos</div>
+        <div class="photos-grid">
+          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
+          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
+          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
+        </div>
+      </div>
+
+      <div class="nav-bottom">
+        <a class="nav-btn" href="../stage2.html">← Retour au stage</a>
+        <a class="nav-btn" href="mission2.html">Mission 2 →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Portfolio de <strong>[Prénom Nom]</strong> &nbsp;·&nbsp; BTS Informatique &nbsp;·&nbsp; [Ton école] &nbsp;·&nbsp; [Année]
+  </footer>
+
+  <script src="../../../js/nav.js"></script>
+</body>
+</html>

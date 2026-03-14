@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Présentation — SIA BDE INSA Lyon</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.83rem; font-weight: 600; color: var(--muted);
+      text-decoration: none; margin-bottom: 2rem; transition: color 0.18s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+    }
+    .breadcrumb a { color: var(--light); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--accent); font-weight: 600; }
+
+    .page-hero {
+      background: white; border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .page-hero-logo {
+      width: 80px; height: 80px; flex-shrink: 0;
+      background: var(--bg); border-radius: 12px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0.5rem;
+    }
+    .page-hero-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
+    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+
+    .content-block {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem;
+    }
+    .content-block-title {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .content-block-title::before {
+      content: ''; display: block; width: 3px; height: 18px;
+      background: var(--accent); border-radius: 2px;
+    }
+    .content-text {
+      color: var(--muted); font-size: 0.9rem; line-height: 1.85;
+    }
+
+    .info-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem; margin-top: 0.5rem;
+    }
+    .info-item {
+      background: var(--bg); border-radius: 10px; padding: 1rem 1.1rem;
+    }
+    .info-item-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 0.3rem; }
+    .info-item-value { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../../index.html" class="nav-logo">[Prénom <span>Nom</span>]</a>
+    <ul class="nav-links">
+      <li><a href="../../../index.html">Accueil</a></li>
+      <li><a href="../../about.html">À propos</a></li>
+      <li><a href="../../ateliers.html">Ateliers Pro</a></li>
+      <li class="nav-dropdown">
+        <a href="../../stages.html">Stages</a>
+        <div class="dropdown-menu">
+          <a href="../stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+          <a href="../stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
+        </div>
+      </li>
+      <li><a href="../../veille.html">Veille techno</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <div class="section">
+
+      <div class="breadcrumb">
+        <a href="../../stages.html">Stages</a> › <a href="../stage1.html">SIA BDE INSA</a> › <span>Présentation</span>
+      </div>
+
+      <div class="page-hero">
+        <div class="page-hero-logo">
+          <img src="../../../images/logo-sia.png" alt="Paredes Orapi">
+        </div>
+        <div>
+          <div class="page-hero-title">Présentation — SIA BDE INSA Lyon</div>
+          <div class="page-hero-sub">Stage 2 · [Période]</div>
+        </div>
+      </div>
+
+      <!-- Infos clés -->
+      <div class="content-block">
+        <div class="content-block-title">Informations clés</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">Secteur</div>
+            <div class="info-item-value">Association étudiante</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Forme juridique</div>
+            <div class="info-item-value">[ex : SAS, SA, Groupe]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Effectifs</div>
+            <div class="info-item-value">[ex : +1 000 employés]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Siège</div>
+            <div class="info-item-value">[Ville du siège social]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Implantation</div>
+            <div class="info-item-value">[ex : France, Europe]</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">Label</div>
+            <div class="info-item-value">[Distinction / label]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Présentation générale -->
+      <div class="content-block">
+        <div class="content-block-title">Présentation générale</div>
+        <p class="content-text">
+          [Décris ici le groupe Paredes Orapi en détail : son histoire, sa création, son évolution. Qui sont leurs clients ? Quels types de produits ou services proposent-ils ? Dans quels secteurs interviennent-ils ? (hôtellerie, industrie, santé, collectivités…)]
+        </p>
+      </div>
+
+      <!-- Organisation -->
+      <div class="content-block">
+        <div class="content-block-title">Organisation & structure</div>
+        <p class="content-text">
+          [Décris l'organisation interne de l'entreprise : les différents services, la hiérarchie, l'équipe dans laquelle tu as évolué pendant ton stage. Tu peux ajouter un organigramme si tu en as un.]
+        </p>
+      </div>
+
+      <!-- Contexte du stage -->
+      <div class="content-block">
+        <div class="content-block-title">Contexte de mon stage</div>
+        <p class="content-text">
+          [Explique pourquoi tu as choisi cette entreprise, comment tu as obtenu ce stage, dans quel service tu étais intégré, avec qui tu travaillais et quel était ton rôle général au sein de l'équipe.]
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Portfolio de <strong>[Prénom Nom]</strong> &nbsp;·&nbsp; BTS Informatique &nbsp;·&nbsp; [Ton école] &nbsp;·&nbsp; [Année]
+  </footer>
+
+  <script src="../../../js/nav.js"></script>
+</body>
+</html>
