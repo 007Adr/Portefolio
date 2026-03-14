@@ -8,35 +8,34 @@
   <style>
     .breadcrumb {
       display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap;
     }
     .breadcrumb a { color: var(--light); text-decoration: none; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb span { color: var(--accent); font-weight: 600; }
 
+    /* ─── HERO ─── */
     .page-hero {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem;
+      border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
     }
     .page-hero-banner {
-      height: 200px; background: #f0f4ff;
-      overflow: hidden; border-bottom: 1px solid var(--border);
+      height: 200px; overflow: hidden; border-bottom: 1px solid var(--border);
+      background: #e8f0fe;
     }
     .page-hero-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-
-    .page-hero-body {
-      padding: 1.5rem 2rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    }
+    .page-hero-body { padding: 1.5rem 2rem; }
     .page-hero-label {
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
     }
     .page-hero-title {
-      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem;
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.2;
     }
-    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
 
+    /* ─── BLOCS ─── */
     .content-block {
       background: white; border: 1px solid var(--border);
       border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem;
@@ -47,25 +46,72 @@
     }
     .content-block-title::before {
       content: ''; display: block; width: 3px; height: 18px;
-      background: var(--accent); border-radius: 2px;
+      background: var(--accent); border-radius: 2px; flex-shrink: 0;
     }
     .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
     .content-text p + p { margin-top: 0.75rem; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-    .photos-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+    /* ─── LISTE ENVIRONNEMENT ─── */
+    .env-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.25rem; }
+    .env-list li {
+      font-size: 0.88rem; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.6;
     }
-    .photo-slot {
-      aspect-ratio: 4/3; background: var(--bg); border: 2px dashed var(--border2);
-      border-radius: 12px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.5rem; color: var(--light); font-size: 0.8rem; transition: all 0.18s;
-    }
-    .photo-slot:hover { border-color: var(--accent-mid); background: var(--accent-light); }
-    .photo-slot .icon { font-size: 1.8rem; }
+    .env-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
 
+    /* ─── ÉTAPES NUMÉROTÉES ─── */
+    .steps-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
+    .step-item {
+      display: flex; gap: 0.85rem; align-items: flex-start;
+      font-size: 0.88rem; color: var(--muted); line-height: 1.65;
+    }
+    .step-num {
+      background: var(--accent); color: white;
+      min-width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;
+    }
+
+    /* ─── GRILLES PHOTOS ─── */
+    .photos-duo {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .photos-solo { margin-top: 1.25rem; }
+    .photos-trio {
+      display: grid; gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .photos-trio .row2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+
+    .photo-frame {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .photo-frame img {
+      width: 100%; height: auto; display: block;
+      object-fit: cover;
+    }
+
+    /* caption sous image */
+    .photo-caption {
+      font-size: 0.75rem; color: var(--light);
+      text-align: center; margin-top: 0.35rem;
+      font-style: italic;
+    }
+
+    /* note encadrée */
+    .note-box {
+      background: var(--accent-light); border: 1px solid var(--accent-mid);
+      border-radius: 10px; padding: 0.9rem 1.2rem;
+      font-size: 0.87rem; color: var(--muted); line-height: 1.7;
+      margin-top: 1.25rem;
+    }
+    .note-box strong { color: var(--accent); }
+
+    /* ─── NAV BOTTOM ─── */
     .nav-bottom {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
@@ -76,6 +122,11 @@
       text-decoration: none; transition: color 0.18s;
     }
     .nav-btn:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .photos-duo { grid-template-columns: 1fr; }
+      .photos-trio .row2 { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -106,63 +157,179 @@
         <span>SP1 — Migration Windows 11</span>
       </div>
 
-      <!-- Hero -->
+      <!-- ══ HERO ══ -->
       <div class="page-hero">
         <div class="page-hero-banner">
           <img src="../../../images/mission-intune-win11.png" alt="Microsoft Intune → Windows 11">
         </div>
         <div class="page-hero-body">
+          <div class="page-hero-label">Situation Professionnelle 1 — Stage 1 · Groupe Paredes Orapi</div>
+          <div class="page-hero-title">SP1 PAREDES : Projet Migration Windows 11</div>
+          <div class="page-hero-sub">Microsoft Intune · Windows Autopilot · Entra ID</div>
+        </div>
+      </div>
+
+      <!-- ══ CONTEXTE ══ -->
+      <div class="content-block">
+        <div class="content-block-title">Contexte</div>
+        <div class="content-text">
+          <p>Dans le cadre de mon stage au sein du groupe PAREDES ORAPI, j'ai participé activement au projet de migration des postes de travail PAREDES sous Windows 10 vers Windows 11 via enrôlement INTUNE.</p>
+          <p>Mon rôle principal consistait à préparer et configurer les postes destinés à être déployés sous Windows 11, en veillant à respecter la charte informatique de l'entreprise. Ces PC font également des "phases de test" avant le déploiement officiel.</p>
+          <p>Ce projet a été réalisé en collaboration avec l'équipe support et l'équipe infrastructure. Même si je n'ai pas directement échangé avec tous les membres de l'infra, j'ai utilisé les outils et scripts qu'ils avaient mis en place pour faciliter le déploiement (notamment des scripts de configuration adaptés à Windows 11).</p>
+        </div>
+      </div>
+
+      <!-- ══ ENVIRONNEMENT ══ -->
+      <div class="content-block">
+        <div class="content-block-title">Environnement</div>
+        <ul class="env-list">
+          <li>Parc informatique PAREDES à migrer sous Windows 11</li>
+          <li>Utilisation de Microsoft Intune pour l'installation à distance</li>
+          <li>Scripts de préparation, fiches de contrôle, procédures internes</li>
+          <li>Collaboration avec l'équipe support et l'équipe infrastructure</li>
+        </ul>
+      </div>
+
+      <!-- ══ ÉTAPE 1 — FICHE CONTRÔLE ══ -->
+      <div class="content-block">
+        <div class="content-block-title">1 — Préparer la fiche de contrôle préparation poste de travail</div>
+        <div class="content-text">
+          <p>Lors de la sortie d'un PC PAREDES, une fiche de "contrôle de la préparation" doit être remplie au fur et à mesure.</p>
+          <ul class="env-list" style="margin-top: 0.75rem;">
+            <li>Elle me permet d'assurer que chaque étape de configuration soit correctement réalisée, dans le respect des procédures définies par l'entreprise.</li>
+            <li>Ce document sert également de traçabilité pour garantir la qualité et l'uniformité du déploiement des machines.</li>
+          </ul>
+        </div>
+
+        <!-- Photos 1 & 2 côte à côte -->
+        <div class="photos-duo">
           <div>
-            <div class="page-hero-label">Situation Professionnelle 1 — Stage 1</div>
-            <div class="page-hero-title">SP1 PAREDES — Projet Migration Windows 11</div>
-            <div class="page-hero-sub">Groupe Paredes Orapi · Microsoft Intune</div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-fiche-controle-1.png" alt="Fiche de contrôle page 1">
+            </div>
+            <p class="photo-caption">Fiche de contrôle — Page 1</p>
+          </div>
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-fiche-controle-2.png" alt="Fiche de contrôle page 2">
+            </div>
+            <p class="photo-caption">Fiche de contrôle — Page 2</p>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <strong>Note :</strong> Elle doit être respectivement remplie lors de chaque étape réalisée.
+        </div>
+      </div>
+
+      <!-- ══ ÉTAPE 2 — INSTALLATION WIN11 ══ -->
+      <div class="content-block">
+        <div class="content-block-title">2 — Installation de Windows 11 via Microsoft Intune</div>
+        <div class="content-text">
+          <p>Comme mentionné précédemment, certains postes ont été migrés sous Windows 11 de manière anticipée afin de réaliser des phases de test avant le lancement officiel de la migration sur l'ensemble du parc informatique Paredes.</p>
+          <p>Pour ce faire, une procédure d'enrôlement a été mise en place afin d'intégrer correctement les machines sous Windows 11, créée et modifiée par notre équipe.</p>
+        </div>
+
+        <!-- Photo 3 seule -->
+        <div class="photos-solo">
+          <div class="photo-frame" style="max-width: 680px; margin: 0 auto;">
+            <img src="../../../images/sp1-proc-1.png" alt="Procédure déploiement — Sommaire">
+          </div>
+          <p class="photo-caption">Procédure d'enrôlement Windows Autopilot — Sommaire & contexte</p>
+        </div>
+
+        <!-- Photos 4 & 5 côte à côte -->
+        <div class="photos-duo" style="margin-top: 0.75rem;">
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-proc-2.png" alt="Étapes 1-3 configuration">
+            </div>
+            <p class="photo-caption">Étapes 1 à 3 — Configuration initiale</p>
+          </div>
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-proc-3.png" alt="Étapes 4-7 PowerShell">
+            </div>
+            <p class="photo-caption">Étapes 4 à 7 — PowerShell & AutoPilot</p>
+          </div>
+        </div>
+
+        <!-- Photos 6 & 7 côte à côte -->
+        <div class="photos-duo" style="margin-top: 0.75rem;">
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-proc-4.png" alt="Étapes 8-10 authentification Intune">
+            </div>
+            <p class="photo-caption">Étapes 8 à 10 — Authentification & inscription Intune</p>
+          </div>
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-proc-5.png" alt="Étapes 11-13 centre admin Intune">
+            </div>
+            <p class="photo-caption">Étapes 11 à 13 — Centre d'administration Intune</p>
           </div>
         </div>
       </div>
 
-      <!-- Contexte -->
+      <!-- ══ ÉTAPE 3 — DOUBLE AUTH ══ -->
       <div class="content-block">
-        <div class="content-block-title">Contexte & objectif</div>
+        <div class="content-block-title">3 — Désactivation de la double authentification</div>
         <div class="content-text">
-          <p>[Explique pourquoi cette mission t'a été confiée. Dans quel contexte l'entreprise devait-elle migrer vers Windows 11 ? Quel était l'état du parc informatique avant ? Quel était l'objectif attendu ?]</p>
+          <p>Une fois que le poste démarre, les applications appliquées à la stratégie vont s'installer. Je dois configurer les applications de base telles que Microsoft Teams, Outlook, etc.</p>
+          <p>Cependant, pour chaque connexion avec un compte Microsoft, une vérification sur le téléphone de l'utilisateur est demandée. Il faut donc créer un mot de passe temporaire (TAP — Temporary Access Pass) accessible depuis le poste.</p>
+        </div>
+
+        <div style="margin-top: 1rem;">
+          <p style="font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem;">Avec un compte Administrateur :</p>
+          <div class="steps-list">
+            <div class="step-item"><span class="step-num">1</span><span>Accédez à <strong>Entra ID › Users</strong>.</span></div>
+            <div class="step-item"><span class="step-num">2</span><span>Sélectionnez l'utilisateur pour lequel vous souhaitez créer un TAP.</span></div>
+            <div class="step-item"><span class="step-num">3</span><span>Sélectionnez <strong>Méthodes d'authentification</strong> puis <strong>Ajouter une méthode d'authentification</strong>.</span></div>
+            <div class="step-item"><span class="step-num">4</span><span>Sélectionnez <strong>Pass d'accès temporaire</strong>.</span></div>
+            <div class="step-item"><span class="step-num">5</span><span>Définissez une durée ou une durée d'activation personnalisée, puis sélectionnez <strong>Ajouter</strong>.</span></div>
+          </div>
+        </div>
+
+        <!-- Photos 8 & 9 côte à côte -->
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-tap-1.png" alt="Entra ID — Ajouter méthode d'authentification">
+            </div>
+            <p class="photo-caption">Entra ID — Ajout d'une méthode d'authentification</p>
+          </div>
+          <div>
+            <div class="photo-frame">
+              <img src="../../../images/sp1-tap-2.png" alt="Temporary Access Pass — configuration">
+            </div>
+            <p class="photo-caption">Configuration du Temporary Access Pass</p>
+          </div>
         </div>
       </div>
 
-      <!-- Travail réalisé -->
+      <!-- ══ ÉTAPE 4 — DÉTAILS TAP ══ -->
       <div class="content-block">
-        <div class="content-block-title">Travail réalisé</div>
-        <div class="content-text">
-          <p>[Décris les étapes de la migration : préparation, configuration de Microsoft Intune, déploiement sur les postes, tests, suivi. Détaille les difficultés rencontrées et comment tu les as résolues.]</p>
-          <p>[Tu peux structurer en plusieurs paragraphes selon les phases du projet.]</p>
+        <div class="content-block-title">4 — Une fois ajouté, les détails du pass d'accès temporaire sont affichés</div>
+
+        <!-- Photo 10 seule centrée -->
+        <div class="photos-solo">
+          <div class="photo-frame" style="max-width: 480px; margin: 0 auto;">
+            <img src="../../../images/sp1-tap-3.png" alt="Temporary Access Pass details">
+          </div>
+          <p class="photo-caption">Détails du Temporary Access Pass généré</p>
         </div>
       </div>
 
-      <!-- Outils -->
+      <!-- ══ OUTILS ══ -->
       <div class="content-block">
         <div class="content-block-title">Outils & technologies utilisés</div>
-        <div class="tools-grid">
+        <div class="chips" style="gap: 0.5rem;">
           <span class="chip blue">Microsoft Intune</span>
           <span class="chip blue">Windows 11</span>
-          <span class="chip">[Autre outil]</span>
-          <span class="chip">[Autre outil]</span>
-        </div>
-      </div>
-
-      <!-- Résultat -->
-      <div class="content-block">
-        <div class="content-block-title">Résultat & apports</div>
-        <div class="content-text">
-          <p>[Quel a été le résultat final ? Combien de postes migrés ? Qu'est-ce que cette mission t'a appris, sur le plan technique et humain ?]</p>
-        </div>
-      </div>
-
-      <!-- Captures -->
-      <div class="content-block">
-        <div class="content-block-title">Captures & photos</div>
-        <div class="photos-grid">
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
+          <span class="chip blue">Windows Autopilot</span>
+          <span class="chip blue">Microsoft Entra ID</span>
+          <span class="chip">PowerShell</span>
+          <span class="chip">Temporary Access Pass</span>
         </div>
       </div>
 
