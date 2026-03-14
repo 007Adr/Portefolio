@@ -8,32 +8,34 @@
   <style>
     .breadcrumb {
       display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap;
     }
     .breadcrumb a { color: var(--light); text-decoration: none; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb span { color: var(--accent); font-weight: 600; }
 
+    /* ─── HERO ─── */
     .page-hero {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem;
+      border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
     }
     .page-hero-banner {
-      height: 200px; background: #faf5ff;
-      overflow: hidden; border-bottom: 1px solid var(--border);
+      height: 200px; overflow: hidden;
+      border-bottom: 1px solid var(--border); background: #faf5ff;
     }
     .page-hero-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-
     .page-hero-body { padding: 1.5rem 2rem; }
     .page-hero-label {
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
     }
     .page-hero-title {
-      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem;
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.2;
     }
-    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
 
+    /* ─── BLOCS ─── */
     .content-block {
       background: white; border: 1px solid var(--border);
       border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem;
@@ -44,25 +46,48 @@
     }
     .content-block-title::before {
       content: ''; display: block; width: 3px; height: 18px;
-      background: var(--accent); border-radius: 2px;
+      background: var(--accent); border-radius: 2px; flex-shrink: 0;
     }
     .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
     .content-text p + p { margin-top: 0.75rem; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-    .photos-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+    /* ─── LISTES ─── */
+    .env-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.5rem; }
+    .env-list li {
+      font-size: 0.88rem; color: var(--muted);
+      padding-left: 1.2rem; position: relative; line-height: 1.6;
     }
-    .photo-slot {
-      aspect-ratio: 4/3; background: var(--bg); border: 2px dashed var(--border2);
-      border-radius: 12px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.5rem; color: var(--light); font-size: 0.8rem; transition: all 0.18s;
-    }
-    .photo-slot:hover { border-color: var(--accent-mid); background: var(--accent-light); }
-    .photo-slot .icon { font-size: 1.8rem; }
+    .env-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+    .env-list li strong { color: var(--text); }
+    .env-list li ul { margin-top: 0.25rem; padding-left: 1rem; }
+    .env-list li ul li { font-size: 0.84rem; }
 
+    /* ─── GRILLE PHOTOS ─── */
+    .photos-duo {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem; margin-top: 1.25rem;
+    }
+    .photo-frame {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--bg);
+    }
+    .photo-frame img { width: 100%; height: auto; display: block; }
+    .photo-caption {
+      font-size: 0.75rem; color: var(--light);
+      text-align: center; margin-top: 0.35rem; font-style: italic;
+    }
+
+    /* ─── BLOC CMDB SPLIT (texte + photo à droite) ─── */
+    .block-split {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 1.25rem;
+      display: grid; grid-template-columns: 1fr 320px;
+    }
+    .block-split-content { padding: 1.75rem 2rem; }
+    .block-split-img { border-left: 1px solid var(--border); overflow: hidden; }
+    .block-split-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── NAV BOTTOM ─── */
     .nav-bottom {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
@@ -73,6 +98,12 @@
       text-decoration: none; transition: color 0.18s;
     }
     .nav-btn:hover { color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .photos-duo { grid-template-columns: 1fr; }
+      .block-split { grid-template-columns: 1fr; }
+      .block-split-img { height: 220px; border-left: none; border-top: 1px solid var(--border); }
+    }
   </style>
 </head>
 <body>
@@ -103,61 +134,216 @@
         <span>SP2 — Retour Utilisateur & CMDB</span>
       </div>
 
-      <!-- Hero -->
+      <!-- ══ HERO ══ -->
       <div class="page-hero">
         <div class="page-hero-banner">
           <img src="../../../images/mission-snipeit.png" alt="Snipe-IT — Open Source Asset Management">
         </div>
         <div class="page-hero-body">
-          <div class="page-hero-label">Situation Professionnelle 2 — Stage 1</div>
+          <div class="page-hero-label">Situation Professionnelle 2 — Stage 1 · Groupe Paredes Orapi</div>
           <div class="page-hero-title">SP2 PAREDES — Retour Utilisateur + Projet CMDB</div>
-          <div class="page-hero-sub">Groupe Paredes Orapi · Snipe-IT</div>
+          <div class="page-hero-sub">Snipe-IT · GLPI · Microsoft Intune · Gestion de parc</div>
         </div>
       </div>
 
-      <!-- Contexte -->
+      <!-- ══ CONTEXTE ══ -->
       <div class="content-block">
-        <div class="content-block-title">Contexte & objectif</div>
+        <div class="content-block-title">Contexte</div>
         <div class="content-text">
-          <p>[Explique le contexte de cette mission. Pourquoi l'entreprise avait-elle besoin d'un retour utilisateur après la migration ? En quoi consistait le projet CMDB (Configuration Management Database) ? Quel était l'objectif de l'outil Snipe-IT ?]</p>
+          <p>Pendant mon stage au sein du groupe PAREDES ORAPI, j'ai participé activement à la gestion des retours de matériel utilisateurs (postes et téléphones), surtout du côté PAREDES. Ce travail s'inscrivait dans le cadre de la mise à jour complète de la CMDB et de l'amélioration de la gestion du parc informatique.</p>
+          <p>Mon rôle a consisté à organiser, documenter et enregistrer les retours de PC portables et de téléphones professionnels. À chaque retour, je m'assurais que le matériel soit bien identifié, réinitialisé si besoin, puis remis dans le stock. Chaque équipement a été traité avec rigueur pour garantir une traçabilité parfaite dans la CMDB.</p>
+          <p>J'ai travaillé avec l'équipe Support, mais de façon assez autonome sur la mise à jour et la fiabilisation des données dans l'outil SNIPE-IT (CMDB). On a mis en place ou adapté des procédures spécifiques pour s'assurer de l'exactitude des données : modèles, numéros de série, statuts des équipements, affectations, etc.</p>
+          <p>Grâce à ce projet, j'ai pu remettre à jour l'inventaire du matériel et fiabiliser la CMDB, ce qui est essentiel pour assurer une bonne gestion du parc informatique du groupe.</p>
         </div>
       </div>
 
-      <!-- Travail réalisé -->
+      <!-- ══ ENVIRONNEMENT ══ -->
       <div class="content-block">
-        <div class="content-block-title">Travail réalisé</div>
+        <div class="content-block-title">Environnement</div>
+        <ul class="env-list">
+          <li>CMDB à mettre à jour et fiabiliser (matériel, affectations, statuts)</li>
+          <li>Procédures internes créées ou mises à jour pour le traitement des retours</li>
+          <li><strong>Matériel concerné :</strong>
+            <ul>
+              <li>PC portables professionnels</li>
+              <li>Téléphones mobiles d'entreprise</li>
+            </ul>
+          </li>
+          <li><strong>Outils utilisés :</strong>
+            <ul>
+              <li>Interface de gestion CMDB (SNIPE-IT)</li>
+              <li>Excel / tableaux de suivi</li>
+            </ul>
+          </li>
+          <li><strong>Collaboration avec :</strong>
+            <ul>
+              <li>Équipe Support pour la réception, la vérification et la remise en stock du matériel</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ══ ÉTAPE 1 — RÉCEPTION ══ -->
+      <div class="content-block">
+        <div class="content-block-title">1 — Réception des PC et téléphones</div>
         <div class="content-text">
-          <p>[Décris ce que tu as fait concrètement : collecte des retours utilisateurs post-migration, analyse des problèmes remontés, et mise en place ou alimentation de la CMDB avec Snipe-IT.]</p>
-          <p>[Tu peux détailler chaque volet séparément : volet "Retour Utilisateur" puis volet "Projet CMDB".]</p>
+          <p>Lors de la réception d'un poste ou d'un téléphone professionnel chez PAREDES, une procédure est suivie.</p>
+          <p>Selon le type de matériel et son statut, le retour doit être enregistré soit dans GLPI, soit dans SNIPE-IT (CMDB), en mettant à jour les informations clés (modèle, numéro de série, état, localisation, etc.). Ces opérations doivent être réalisées en suivant les procédures internes documentées, pour assurer la cohérence des enregistrements et la qualité de gestion du parc.</p>
+          <p>Cette démarche permet d'avoir une vision fiable de l'inventaire, tout en facilitant les futures réaffectations ou suppressions du matériel retourné.</p>
+        </div>
+
+        <!-- Photos 1 à 12 — 2 par 2 -->
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-01.png" alt="Procédure retour PC — p.1"></div>
+            <p class="photo-caption">Procédure retour PC — Page 1</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-02.png" alt="Procédure retour PC — p.2"></div>
+            <p class="photo-caption">Procédure retour PC — Page 2</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-03.png" alt="Procédure retour PC — p.3"></div>
+            <p class="photo-caption">Procédure retour PC — Page 3</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-04.png" alt="Procédure retour PC — p.4"></div>
+            <p class="photo-caption">Procédure retour PC — Page 4</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-05.png" alt="Procédure retour PC — p.5"></div>
+            <p class="photo-caption">Procédure retour PC — Page 5</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-06.png" alt="Procédure retour PC — p.6"></div>
+            <p class="photo-caption">Procédure retour PC — Page 6</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-07.png" alt="Procédure retour PC — p.7"></div>
+            <p class="photo-caption">Procédure retour PC — Page 7</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-08.png" alt="Procédure retour téléphone — p.8"></div>
+            <p class="photo-caption">Procédure retour téléphone — Page 8</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-09.png" alt="Gestion lignes mobiles Orange — p.9"></div>
+            <p class="photo-caption">Gestion lignes mobiles Orange — Page 9</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-10.png" alt="Retour matériel CMDB — p.10"></div>
+            <p class="photo-caption">Retour matériel dans la CMDB — Page 10</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-11.png" alt="GLPI PC Orapi — p.11"></div>
+            <p class="photo-caption">Exemple PC Orapi sur GLPI — Page 11</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-retour-12.png" alt="Stockage armoire — p.12"></div>
+            <p class="photo-caption">Stockage dans l'armoire — Page 12</p>
+          </div>
         </div>
       </div>
 
-      <!-- Outils -->
+      <!-- ══ ÉTAPE 2 — TRAITEMENT PC ══ -->
+      <div class="content-block">
+        <div class="content-block-title">2 — Traitement des PC</div>
+        <div class="content-text">
+          <p>J'ai dû mettre à jour manuellement plus de 1 030 postes sur la CMDB, en m'appuyant sur une extraction des données depuis Microsoft Intune. Ces informations ont été vérifiées ou modifiées par mes soins à l'aide d'un fichier Excel qui servait de support temporaire avant l'injection finale dans la CMDB.</p>
+          <p>En parallèle de ce travail de fond, je gérais également le traitement des retours utilisateurs, notamment la réception et la remise en état des PC portables. Cela incluait le diagnostic, la réinitialisation et la préparation au stockage ou à la réaffectation, selon l'état du matériel.</p>
+          <p>Ce projet m'a permis de travailler de manière autonome tout en respectant les procédures internes, et de contribuer à la qualité et la fiabilité de l'inventaire informatique de l'entreprise.</p>
+        </div>
+
+        <!-- Photos 13 à 20 — 2 par 2 -->
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-01.png" alt="Gestion de Parc — couverture"></div>
+            <p class="photo-caption">Document Gestion de Parc — Couverture</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-02.png" alt="Gestion de Parc — p.2"></div>
+            <p class="photo-caption">Gestion de Parc — Page 2</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-03.png" alt="Gestion de Parc — p.3"></div>
+            <p class="photo-caption">Gestion de Parc — Page 3</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-04.png" alt="Gestion de Parc — p.4"></div>
+            <p class="photo-caption">Gestion de Parc — Page 4</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-05.png" alt="Gestion de Parc — p.5"></div>
+            <p class="photo-caption">Gestion de Parc — Page 5</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-06.png" alt="Gestion de Parc — p.6"></div>
+            <p class="photo-caption">Gestion de Parc — Page 6</p>
+          </div>
+        </div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-07.png" alt="Gestion de Parc — p.7"></div>
+            <p class="photo-caption">Gestion de Parc — Page 7</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sp2-cmdb-08.png" alt="Gestion de Parc — p.8"></div>
+            <p class="photo-caption">Gestion de Parc — Page 8</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ÉTAPE 3 — MAJ CMDB (split avec emplacement photo future) ══ -->
+      <div class="block-split">
+        <div class="block-split-content">
+          <div class="content-block-title" style="margin-bottom: 1rem;">3 — Mise à jour CMDB</div>
+          <div class="content-text">
+            <p>Dans le cas où des doublons sont apparus, je vérifie sur Intune lequel est à supprimer (le PC avec l'utilisation la plus ancienne).</p>
+          </div>
+          <ul class="env-list" style="margin-top: 0.85rem;">
+            <li>Dans le cas où une erreur est trouvée, la ou les personnes concernées sont contactées en fonction de l'investigation.</li>
+            <li>Les PC en DEEE peuvent être soit jetés, soit réparés (récupération de pièces, réparation et ré-utilisation, etc.)</li>
+          </ul>
+        </div>
+        <!-- Emplacement réservé pour la photo à venir -->
+        <div class="block-split-img" style="background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; color: var(--light); font-size: 0.8rem;">
+          <span style="font-size: 1.8rem;">📷</span>
+          <span>Photo à venir</span>
+        </div>
+      </div>
+
+      <!-- ══ OUTILS ══ -->
       <div class="content-block">
         <div class="content-block-title">Outils & technologies utilisés</div>
-        <div class="tools-grid">
-          <span class="chip blue">Snipe-IT</span>
-          <span class="chip blue">CMDB</span>
-          <span class="chip">[Autre outil]</span>
-          <span class="chip">[Autre outil]</span>
-        </div>
-      </div>
-
-      <!-- Résultat -->
-      <div class="content-block">
-        <div class="content-block-title">Résultat & apports</div>
-        <div class="content-text">
-          <p>[Quel a été le résultat final ? Qu'est-ce que tu as livré à l'entreprise ? Qu'est-ce que cette mission t'a apporté techniquement et humainement ?]</p>
-        </div>
-      </div>
-
-      <!-- Captures -->
-      <div class="content-block">
-        <div class="content-block-title">Captures & photos</div>
-        <div class="photos-grid">
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
+        <div class="chips" style="gap: 0.5rem;">
+          <span class="chip blue">Snipe-IT (CMDB)</span>
+          <span class="chip blue">GLPI</span>
+          <span class="chip blue">Microsoft Intune</span>
+          <span class="chip">Excel</span>
+          <span class="chip">Orange Business (gestion SIM)</span>
+          <span class="chip">Entra ID</span>
         </div>
       </div>
 
