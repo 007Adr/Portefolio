@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veille Technologique — [Prénom Nom]</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .veille-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .veille-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; transition: all 0.2s;
+    }
+    .veille-card:hover {
+      border-color: var(--accent-mid); transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(29,78,216,0.1);
+    }
+
+    .veille-banner {
+      height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .vb1 { background: linear-gradient(135deg, #eff4ff, #c7d9ff); }
+    .vb2 { background: linear-gradient(135deg, #f0fdf4, #bbf7d0); }
+    .vb3 { background: linear-gradient(135deg, #fffbeb, #fde68a); }
+    .vb4 { background: linear-gradient(135deg, #fdf4ff, #e9d5ff); }
+
+    .veille-body { padding: 1.2rem 1.3rem; }
+    .veille-cat {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem;
+    }
+    .veille-title {
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: 0.98rem; margin-bottom: 0.5rem; line-height: 1.3;
+    }
+    .veille-desc { color: var(--muted); font-size: 0.81rem; line-height: 1.6; }
+    .veille-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 0.9rem; padding-top: 0.75rem;
+      border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--light);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">[Prénom <span>Nom</span>]</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="ateliers.html">Ateliers Pro</a></li>
+      <li><a href="stages.html">Stages</a></li>
+      <li><a href="veille.html">Veille techno</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Actualités & recherches</div>
+        <h2 class="section-title">Veille Technologique</h2>
+        <p class="section-sub">Suivi des évolutions et tendances dans mon domaine de formation.</p>
+      </div>
+
+      <div class="veille-grid">
+
+        <div class="veille-card">
+          <div class="veille-banner vb1">💻</div>
+          <div class="veille-body">
+            <div class="veille-cat">[Catégorie · ex : Développement Web]</div>
+            <div class="veille-title">[Titre du sujet de veille 1]</div>
+            <div class="veille-desc">[Résumé en 2-3 phrases : de quoi s'agit-il, pourquoi c'est important pour ton domaine, qu'est-ce que ça change.]</div>
+            <div class="veille-footer">
+              <span>📅 [Date · ex : Fév. 2025]</span>
+              <span>Source : [Nom du site]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="veille-card">
+          <div class="veille-banner vb2">🔐</div>
+          <div class="veille-body">
+            <div class="veille-cat">[Catégorie · ex : Cybersécurité]</div>
+            <div class="veille-title">[Titre du sujet de veille 2]</div>
+            <div class="veille-desc">[Résumé du sujet 2.]</div>
+            <div class="veille-footer">
+              <span>📅 [Date]</span>
+              <span>Source : [Nom du site]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="veille-card">
+          <div class="veille-banner vb3">☁️</div>
+          <div class="veille-body">
+            <div class="veille-cat">[Catégorie · ex : Cloud & DevOps]</div>
+            <div class="veille-title">[Titre du sujet de veille 3]</div>
+            <div class="veille-desc">[Résumé du sujet 3.]</div>
+            <div class="veille-footer">
+              <span>📅 [Date]</span>
+              <span>Source : [Nom du site]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="veille-card">
+          <div class="veille-banner vb4">🤖</div>
+          <div class="veille-body">
+            <div class="veille-cat">[Catégorie · ex : Intelligence Artificielle]</div>
+            <div class="veille-title">[Titre du sujet de veille 4]</div>
+            <div class="veille-desc">[Résumé du sujet 4.]</div>
+            <div class="veille-footer">
+              <span>📅 [Date]</span>
+              <span>Source : [Nom du site]</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Portfolio de <strong>[Prénom Nom]</strong> &nbsp;·&nbsp; BTS Informatique &nbsp;·&nbsp; [Ton école] &nbsp;·&nbsp; [Année]
+  </footer>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>

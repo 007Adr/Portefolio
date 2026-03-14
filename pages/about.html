@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos — [Prénom Nom]</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .about-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .about-sidebar { position: sticky; top: 80px; }
+
+    .profile-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem 1.75rem; text-align: center;
+    }
+    .profile-avatar {
+      width: 84px; height: 84px;
+      background: linear-gradient(135deg, var(--accent), #60a5fa);
+      border-radius: 50%; margin: 0 auto 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .profile-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; }
+    .profile-role { color: var(--accent); font-size: 0.82rem; margin-top: 0.25rem; font-weight: 600; }
+    .profile-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+    .profile-info { display: flex; flex-direction: column; gap: 0.55rem; text-align: left; }
+    .info-row { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.82rem; color: var(--muted); }
+    .info-row .icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+    .skill-section { margin-top: 1.25rem; text-align: left; }
+    .skill-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--light); margin-bottom: 0.6rem;
+    }
+
+    .dl-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.45rem;
+      background: var(--accent); color: white; text-decoration: none;
+      padding: 0.6rem 1.2rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.82rem;
+      margin-top: 1.25rem; transition: all 0.18s;
+    }
+    .dl-btn:hover { background: #1a45c0; }
+
+    /* CV */
+    .cv-block { margin-bottom: 2.25rem; }
+    .cv-block-title {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--light);
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem;
+    }
+    .cv-entry {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 0.2rem 1.5rem; padding: 0.85rem 0.75rem;
+      border-radius: 10px; transition: background 0.15s; margin-bottom: 0.1rem;
+    }
+    .cv-entry:hover { background: var(--accent-light); }
+    .cv-entry-title { font-weight: 600; font-size: 0.9rem; }
+    .cv-entry-org { color: var(--muted); font-size: 0.82rem; margin-top: 0.12rem; }
+    .cv-entry-date { font-size: 0.78rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+    .cv-entry-desc { grid-column: 1 / -1; color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin-top: 0.3rem; }
+
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">[Prénom <span>Nom</span>]</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="ateliers.html">Ateliers Pro</a></li>
+      <li><a href="stages.html">Stages</a></li>
+      <li><a href="veille.html">Veille techno</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Qui suis-je</div>
+        <h2 class="section-title">À propos de moi</h2>
+        <p class="section-sub">Mon parcours, mes compétences et mon curriculum vitæ.</p>
+      </div>
+
+      <div class="about-grid">
+
+        <!-- Sidebar -->
+        <div class="about-sidebar">
+          <div class="profile-card">
+            <div class="profile-avatar">🧑‍💻</div>
+            <div class="profile-name">[Prénom Nom]</div>
+            <div class="profile-role">BTS Informatique · [Option]</div>
+            <div class="profile-divider"></div>
+            <div class="profile-info">
+              <div class="info-row"><span class="icon">🎓</span><span>[Lycée / établissement]</span></div>
+              <div class="info-row"><span class="icon">📍</span><span>[Ville, Région]</span></div>
+              <div class="info-row"><span class="icon">📧</span><span>[ton@email.fr]</span></div>
+              <div class="info-row"><span class="icon">📞</span><span>[06 XX XX XX XX]</span></div>
+            </div>
+            <div class="profile-divider"></div>
+            <div class="skill-section">
+              <div class="skill-label">Compétences</div>
+              <div class="chips">
+                <span class="chip blue">[Techno 1]</span>
+                <span class="chip blue">[Techno 2]</span>
+                <span class="chip">[Outil 1]</span>
+                <span class="chip">[Outil 2]</span>
+                <span class="chip">[Outil 3]</span>
+              </div>
+            </div>
+            <a class="dl-btn" href="#">⬇&nbsp; Télécharger mon CV</a>
+          </div>
+        </div>
+
+        <!-- CV principal -->
+        <div>
+          <div class="cv-block">
+            <div class="cv-block-title">Présentation</div>
+            <p style="color:var(--muted); line-height:1.85; font-size:0.9rem; padding: 0.5rem 0.75rem;">
+              [Écris ici une présentation de toi en 3-4 phrases. Ex : Je suis étudiant(e) en BTS [spécialité] à [établissement]. Passionné(e) par le développement informatique, j'ai réalisé deux stages qui m'ont permis de mettre en pratique mes apprentissages. Curieux(se) et rigoureux(se), je cherche à progresser continuellement dans mon domaine.]
+            </p>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Formation</div>
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">BTS [Spécialité — ex : SIO option SLAM]</div>
+                <div class="cv-entry-org">[Lycée / établissement] · [Ville]</div>
+              </div>
+              <div class="cv-entry-date">2023 – 2025</div>
+              <div class="cv-entry-desc">[Description courte de la formation et des matières principales]</div>
+            </div>
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">[Baccalauréat — ex : Bac Général / Bac Pro]</div>
+                <div class="cv-entry-org">[Lycée] · [Ville]</div>
+              </div>
+              <div class="cv-entry-date">2020 – 2023</div>
+              <div class="cv-entry-desc">Mention [Mention] · Spécialités : [Tes spécialités]</div>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Expériences professionnelles</div>
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Stage 1 — [Poste / Intitulé]</div>
+                <div class="cv-entry-org">[Entreprise] · [Ville]</div>
+              </div>
+              <div class="cv-entry-date">[Mois–Mois Année]</div>
+              <div class="cv-entry-desc">[Description : missions principales, outils utilisés, apports.]</div>
+            </div>
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Stage 2 — [Poste / Intitulé]</div>
+                <div class="cv-entry-org">[Entreprise] · [Ville]</div>
+              </div>
+              <div class="cv-entry-date">[Mois–Mois Année]</div>
+              <div class="cv-entry-desc">[Description du stage 2.]</div>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Compétences techniques</div>
+            <div style="padding: 0.5rem 0.75rem;">
+              <div class="chips" style="gap: 0.5rem;">
+                <span class="chip blue">[Langage — ex : Python]</span>
+                <span class="chip blue">[Langage — ex : PHP]</span>
+                <span class="chip blue">[Langage — ex : JavaScript]</span>
+                <span class="chip">[BDD — ex : MySQL]</span>
+                <span class="chip">[Framework — ex : Laravel]</span>
+                <span class="chip">[Outil — ex : Git]</span>
+                <span class="chip">[OS — ex : Linux]</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Langues & centres d'intérêt</div>
+            <div class="cv-entry">
+              <div><div class="cv-entry-title">Langues</div></div>
+              <div></div>
+              <div class="cv-entry-desc">[Ex : Français (natif) · Anglais technique (B1) · Espagnol (notions)]</div>
+            </div>
+            <div class="cv-entry">
+              <div><div class="cv-entry-title">Centres d'intérêt</div></div>
+              <div></div>
+              <div class="cv-entry-desc">[Ex : Développement de projets personnels, cybersécurité, jeux vidéo, sport]</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Portfolio de <strong>[Prénom Nom]</strong> &nbsp;·&nbsp; BTS Informatique &nbsp;·&nbsp; [Ton école] &nbsp;·&nbsp; [Année]
+  </footer>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>
