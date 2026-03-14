@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission 1 — Paredes Orapi</title>
+  <title>SP1 — Migration Windows 11 · Paredes Orapi</title>
   <link rel="stylesheet" href="../../../css/style.css">
   <style>
     .breadcrumb {
@@ -16,16 +16,26 @@
 
     .page-hero {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
-      display: flex; align-items: center; gap: 1.5rem;
+      border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem;
     }
-    .page-hero-icon {
-      width: 56px; height: 56px; flex-shrink: 0;
-      background: var(--accent-light); border-radius: 14px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    .page-hero-banner {
+      height: 200px; background: #f0f4ff;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem; border-bottom: 1px solid var(--border);
     }
-    .page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
+    .page-hero-banner img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+    .page-hero-body {
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .page-hero-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .page-hero-title {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem;
+    }
     .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
 
     .content-block {
@@ -41,10 +51,10 @@
       background: var(--accent); border-radius: 2px;
     }
     .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
+    .content-text p + p { margin-top: 0.75rem; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
-    /* Zone photos */
     .photos-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
     }
@@ -56,8 +66,6 @@
     }
     .photo-slot:hover { border-color: var(--accent-mid); background: var(--accent-light); }
     .photo-slot .icon { font-size: 1.8rem; }
-    .photo-real { aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; }
-    .photo-real img { width: 100%; height: 100%; object-fit: cover; }
 
     .nav-bottom {
       display: flex; justify-content: space-between; align-items: center;
@@ -94,49 +102,62 @@
     <div class="section">
 
       <div class="breadcrumb">
-        <a href="../../stages.html">Stages</a> › <a href="../stage1.html">Paredes Orapi</a> › <span>Mission 1</span>
+        <a href="../../stages.html">Stages</a> ›
+        <a href="../stage1.html">Paredes Orapi</a> ›
+        <span>SP1 — Migration Windows 11</span>
       </div>
 
+      <!-- Hero -->
       <div class="page-hero">
-        <div class="page-hero-icon">🔧</div>
-        <div>
-          <div class="page-hero-label">Mission 1 — Stage 1</div>
-          <div class="page-hero-title">[Titre de la mission 1]</div>
-          <div class="page-hero-sub">Groupe Paredes Orapi · [Période]</div>
+        <div class="page-hero-banner">
+          <img src="../../../images/mission-intune-win11.png" alt="Microsoft Intune → Windows 11">
+        </div>
+        <div class="page-hero-body">
+          <div>
+            <div class="page-hero-label">Situation Professionnelle 1 — Stage 1</div>
+            <div class="page-hero-title">SP1 PAREDES — Projet Migration Windows 11</div>
+            <div class="page-hero-sub">Groupe Paredes Orapi · Microsoft Intune</div>
+          </div>
         </div>
       </div>
 
+      <!-- Contexte -->
       <div class="content-block">
         <div class="content-block-title">Contexte & objectif</div>
-        <p class="content-text">
-          [Explique pourquoi cette mission t'a été confiée, dans quel contexte elle s'inscrit, quel était l'objectif attendu par l'entreprise.]
-        </p>
+        <div class="content-text">
+          <p>[Explique pourquoi cette mission t'a été confiée. Dans quel contexte l'entreprise devait-elle migrer vers Windows 11 ? Quel était l'état du parc informatique avant ? Quel était l'objectif attendu ?]</p>
+        </div>
       </div>
 
+      <!-- Travail réalisé -->
       <div class="content-block">
         <div class="content-block-title">Travail réalisé</div>
-        <p class="content-text">
-          [Décris en détail ce que tu as fait : étapes, méthodes, difficultés rencontrées, comment tu les as résolues. Tu peux organiser en plusieurs paragraphes.]
-        </p>
+        <div class="content-text">
+          <p>[Décris les étapes de la migration : préparation, configuration de Microsoft Intune, déploiement sur les postes, tests, suivi. Détaille les difficultés rencontrées et comment tu les as résolues.]</p>
+          <p>[Tu peux structurer en plusieurs paragraphes selon les phases du projet.]</p>
+        </div>
       </div>
 
+      <!-- Outils -->
       <div class="content-block">
         <div class="content-block-title">Outils & technologies utilisés</div>
         <div class="tools-grid">
-          <span class="chip blue">[Outil / Logiciel 1]</span>
-          <span class="chip blue">[Outil / Logiciel 2]</span>
-          <span class="chip">[Techno 1]</span>
-          <span class="chip">[Techno 2]</span>
+          <span class="chip blue">Microsoft Intune</span>
+          <span class="chip blue">Windows 11</span>
+          <span class="chip">[Autre outil]</span>
+          <span class="chip">[Autre outil]</span>
         </div>
       </div>
 
+      <!-- Résultat -->
       <div class="content-block">
         <div class="content-block-title">Résultat & apports</div>
-        <p class="content-text">
-          [Quel a été le résultat final ? Qu'est-ce que cette mission t'a appris, sur le plan technique et humain ?]
-        </p>
+        <div class="content-text">
+          <p>[Quel a été le résultat final ? Combien de postes migrés ? Qu'est-ce que cette mission t'a appris, sur le plan technique et humain ?]</p>
+        </div>
       </div>
 
+      <!-- Captures -->
       <div class="content-block">
         <div class="content-block-title">Captures & photos</div>
         <div class="photos-grid">
@@ -148,7 +169,7 @@
 
       <div class="nav-bottom">
         <a class="nav-btn" href="../stage1.html">← Retour au stage</a>
-        <a class="nav-btn" href="mission2.html">Mission 2 →</a>
+        <a class="nav-btn" href="mission2.html">SP2 — Retour Utilisateur & CMDB →</a>
       </div>
 
     </div>

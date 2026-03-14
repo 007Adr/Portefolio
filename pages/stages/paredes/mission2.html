@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission 2 — Paredes Orapi</title>
+  <title>SP2 — Retour Utilisateur & CMDB · Paredes Orapi</title>
   <link rel="stylesheet" href="../../../css/style.css">
   <style>
     .breadcrumb {
@@ -16,16 +16,23 @@
 
     .page-hero {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
-      display: flex; align-items: center; gap: 1.5rem;
+      border-radius: 16px; overflow: hidden; margin-bottom: 2.5rem;
     }
-    .page-hero-icon {
-      width: 56px; height: 56px; flex-shrink: 0;
-      background: var(--accent-light); border-radius: 14px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    .page-hero-banner {
+      height: 200px; background: #faf5ff;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem; border-bottom: 1px solid var(--border);
     }
-    .page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
+    .page-hero-banner img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+    .page-hero-body { padding: 1.5rem 2rem; }
+    .page-hero-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .page-hero-title {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem;
+    }
     .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
 
     .content-block {
@@ -41,7 +48,9 @@
       background: var(--accent); border-radius: 2px;
     }
     .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .content-text p + p { margin-top: 0.75rem; }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
     .photos-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
@@ -90,42 +99,60 @@
     <div class="section">
 
       <div class="breadcrumb">
-        <a href="../../stages.html">Stages</a> › <a href="../stage1.html">Paredes Orapi</a> › <span>Mission 2</span>
+        <a href="../../stages.html">Stages</a> ›
+        <a href="../stage1.html">Paredes Orapi</a> ›
+        <span>SP2 — Retour Utilisateur & CMDB</span>
       </div>
 
+      <!-- Hero -->
       <div class="page-hero">
-        <div class="page-hero-icon">📊</div>
-        <div>
-          <div class="page-hero-label">Mission 2 — Stage 1</div>
-          <div class="page-hero-title">[Titre de la mission 2]</div>
-          <div class="page-hero-sub">Groupe Paredes Orapi · [Période]</div>
+        <div class="page-hero-banner">
+          <img src="../../../images/mission-snipeit.png" alt="Snipe-IT — Open Source Asset Management">
+        </div>
+        <div class="page-hero-body">
+          <div class="page-hero-label">Situation Professionnelle 2 — Stage 1</div>
+          <div class="page-hero-title">SP2 PAREDES — Retour Utilisateur + Projet CMDB</div>
+          <div class="page-hero-sub">Groupe Paredes Orapi · Snipe-IT</div>
         </div>
       </div>
 
+      <!-- Contexte -->
       <div class="content-block">
         <div class="content-block-title">Contexte & objectif</div>
-        <p class="content-text">[Explique le contexte et l'objectif de cette mission.]</p>
+        <div class="content-text">
+          <p>[Explique le contexte de cette mission. Pourquoi l'entreprise avait-elle besoin d'un retour utilisateur après la migration ? En quoi consistait le projet CMDB (Configuration Management Database) ? Quel était l'objectif de l'outil Snipe-IT ?]</p>
+        </div>
       </div>
 
+      <!-- Travail réalisé -->
       <div class="content-block">
         <div class="content-block-title">Travail réalisé</div>
-        <p class="content-text">[Décris en détail ce que tu as fait.]</p>
+        <div class="content-text">
+          <p>[Décris ce que tu as fait concrètement : collecte des retours utilisateurs post-migration, analyse des problèmes remontés, et mise en place ou alimentation de la CMDB avec Snipe-IT.]</p>
+          <p>[Tu peux détailler chaque volet séparément : volet "Retour Utilisateur" puis volet "Projet CMDB".]</p>
+        </div>
       </div>
 
+      <!-- Outils -->
       <div class="content-block">
         <div class="content-block-title">Outils & technologies utilisés</div>
         <div class="tools-grid">
-          <span class="chip blue">[Outil 1]</span>
-          <span class="chip blue">[Outil 2]</span>
-          <span class="chip">[Techno]</span>
+          <span class="chip blue">Snipe-IT</span>
+          <span class="chip blue">CMDB</span>
+          <span class="chip">[Autre outil]</span>
+          <span class="chip">[Autre outil]</span>
         </div>
       </div>
 
+      <!-- Résultat -->
       <div class="content-block">
         <div class="content-block-title">Résultat & apports</div>
-        <p class="content-text">[Résultat final et ce que tu en as retiré.]</p>
+        <div class="content-text">
+          <p>[Quel a été le résultat final ? Qu'est-ce que tu as livré à l'entreprise ? Qu'est-ce que cette mission t'a apporté techniquement et humainement ?]</p>
+        </div>
       </div>
 
+      <!-- Captures -->
       <div class="content-block">
         <div class="content-block-title">Captures & photos</div>
         <div class="photos-grid">
@@ -136,7 +163,7 @@
       </div>
 
       <div class="nav-bottom">
-        <a class="nav-btn" href="mission1.html">← Mission 1</a>
+        <a class="nav-btn" href="mission1.html">← SP1 — Migration Windows 11</a>
         <a class="nav-btn" href="rapport.html">Rapport de stage →</a>
       </div>
 
