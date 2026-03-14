@@ -3,85 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos — [Prénom Nom]</title>
+  <title>À propos de moi — Adrien Blaize</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
+    /* ─── LAYOUT ─── */
     .about-grid {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 300px 1fr;
       gap: 2.5rem;
       align-items: start;
     }
-
     .about-sidebar { position: sticky; top: 80px; }
 
+    /* ─── PROFILE CARD ─── */
     .profile-card {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem 1.75rem; text-align: center;
+      border-radius: 16px; overflow: hidden;
     }
-    .profile-avatar {
-      width: 84px; height: 84px;
-      background: linear-gradient(135deg, var(--accent), #60a5fa);
-      border-radius: 50%; margin: 0 auto 1.1rem;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem;
+
+    .profile-photo {
+      height: 220px; overflow: hidden;
+      background: var(--bg); border-bottom: 1px solid var(--border);
     }
-    .profile-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; }
-    .profile-role { color: var(--accent); font-size: 0.82rem; margin-top: 0.25rem; font-weight: 600; }
+    .profile-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+    .profile-body { padding: 1.5rem 1.75rem; }
+
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800; font-size: 1.2rem; color: var(--text);
+    }
+    .profile-role {
+      color: var(--accent); font-size: 0.82rem;
+      font-weight: 600; margin-top: 0.2rem;
+    }
+    .profile-status {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #fffbeb; border: 1px solid #fde68a; color: #92400e;
+      padding: 0.25rem 0.7rem; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 700; margin-top: 0.6rem;
+    }
+
     .profile-divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
 
-    .profile-info { display: flex; flex-direction: column; gap: 0.55rem; text-align: left; }
-    .info-row { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.82rem; color: var(--muted); }
+    .profile-info { display: flex; flex-direction: column; gap: 0.5rem; }
+    .info-row {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.82rem; color: var(--muted);
+    }
     .info-row .icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .info-row a { color: var(--accent); text-decoration: none; }
+    .info-row a:hover { text-decoration: underline; }
 
-    .skill-section { margin-top: 1.25rem; text-align: left; }
+    .skill-section { margin-top: 1.25rem; }
     .skill-label {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--light); margin-bottom: 0.6rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--light); margin-bottom: 0.55rem;
     }
 
     .dl-btn {
       display: flex; align-items: center; justify-content: center; gap: 0.45rem;
       background: var(--accent); color: white; text-decoration: none;
-      padding: 0.6rem 1.2rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.82rem;
+      padding: 0.65rem 1.2rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.85rem;
       margin-top: 1.25rem; transition: all 0.18s;
     }
-    .dl-btn:hover { background: #1a45c0; }
+    .dl-btn:hover { background: #1a45c0; transform: translateY(-1px); }
 
-    /* CV */
-    .cv-block { margin-bottom: 2.25rem; }
+    /* ─── CV SECTIONS ─── */
+    .cv-block { margin-bottom: 2rem; }
     .cv-block-title {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--light);
-      padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem;
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 0.85rem;
     }
+
     .cv-entry {
       display: grid; grid-template-columns: 1fr auto;
-      gap: 0.2rem 1.5rem; padding: 0.85rem 0.75rem;
-      border-radius: 10px; transition: background 0.15s; margin-bottom: 0.1rem;
+      gap: 0.15rem 1.5rem; padding: 0.85rem 0.75rem;
+      border-radius: 10px; transition: background 0.15s;
     }
     .cv-entry:hover { background: var(--accent-light); }
     .cv-entry-title { font-weight: 600; font-size: 0.9rem; }
-    .cv-entry-org { color: var(--muted); font-size: 0.82rem; margin-top: 0.12rem; }
+    .cv-entry-org { color: var(--muted); font-size: 0.82rem; margin-top: 0.1rem; }
     .cv-entry-date { font-size: 0.78rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
-    .cv-entry-desc { grid-column: 1 / -1; color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin-top: 0.3rem; }
+    .cv-entry-desc {
+      grid-column: 1 / -1;
+      margin-top: 0.4rem;
+    }
+    .cv-entry-desc ul {
+      list-style: none; display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .cv-entry-desc ul li {
+      font-size: 0.83rem; color: var(--muted); line-height: 1.55;
+      padding-left: 1rem; position: relative;
+    }
+    .cv-entry-desc ul li::before {
+      content: '·'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+
+    /* ─── CV PDF EMBED ─── */
+    .cv-pdf-section {
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 2rem;
+    }
+    .cv-pdf-header {
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-pdf-header-title { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+    .cv-pdf-embed {
+      width: 100%; height: 820px; border: none; display: block;
+    }
+
+    /* ─── COMPETENCES GRID ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.85rem;
+    }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.1rem;
+    }
+    .skill-card-title {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.55rem;
+    }
+    .skill-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
+    .skill-card ul li { font-size: 0.8rem; color: var(--muted); padding-left: 0.8rem; position: relative; }
+    .skill-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
 
     @media (max-width: 860px) {
       .about-grid { grid-template-columns: 1fr; }
       .about-sidebar { position: static; }
+      .cv-pdf-embed { height: 500px; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="../index.html" class="nav-logo">[Prénom <span>Nom</span>]</a>
+    <a href="../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
     <ul class="nav-links">
       <li><a href="../index.html">Accueil</a></li>
-      <li><a href="about.html">À propos</a></li>
+      <li><a href="about.html">À propos de moi</a></li>
       <li><a href="ateliers.html">Ateliers Pro</a></li>
-      <li class="nav-dropdown"><a href="stages.html">Stages</a><div class="dropdown-menu"><a href="stages/stage1.html">🏢 Stage 1 — Paredes Orapi</a><a href="stages/stage2.html">🏢 Stage 2 — SIA BDE INSA</a></div></li>
+      <li class="nav-dropdown">
+        <a href="stages.html">Stages</a>
+        <div class="dropdown-menu">
+          <a href="stages/stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+          <a href="stages/stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
+        </div>
+      </li>
       <li><a href="veille.html">Veille techno</a></li>
     </ul>
   </nav>
@@ -96,119 +173,283 @@
 
       <div class="about-grid">
 
-        <!-- Sidebar -->
+        <!-- ══ SIDEBAR ══ -->
         <div class="about-sidebar">
           <div class="profile-card">
-            <div class="profile-avatar">🧑‍💻</div>
-            <div class="profile-name">[Prénom Nom]</div>
-            <div class="profile-role">BTS Informatique · [Option]</div>
-            <div class="profile-divider"></div>
-            <div class="profile-info">
-              <div class="info-row"><span class="icon">🎓</span><span>[Lycée / établissement]</span></div>
-              <div class="info-row"><span class="icon">📍</span><span>[Ville, Région]</span></div>
-              <div class="info-row"><span class="icon">📧</span><span>[ton@email.fr]</span></div>
-              <div class="info-row"><span class="icon">📞</span><span>[06 XX XX XX XX]</span></div>
+            <div class="profile-photo">
+              <!-- Photo de profil : remplace src par ta photo quand tu veux -->
+              <img src="../images/photo-profil.jpg" alt="Adrien Blaize"
+                onerror="this.parentElement.style.background='linear-gradient(135deg,#eff4ff,#c7d9ff)'; this.style.display='none'">
             </div>
-            <div class="profile-divider"></div>
-            <div class="skill-section">
-              <div class="skill-label">Compétences</div>
-              <div class="chips">
-                <span class="chip blue">[Techno 1]</span>
-                <span class="chip blue">[Techno 2]</span>
-                <span class="chip">[Outil 1]</span>
-                <span class="chip">[Outil 2]</span>
-                <span class="chip">[Outil 3]</span>
+            <div class="profile-body">
+              <div class="profile-name">Adrien Blaize</div>
+              <div class="profile-role">BTS SIO — option SISR</div>
+              <div class="profile-status">🎓 En recherche d'école</div>
+
+              <div class="profile-divider"></div>
+
+              <div class="profile-info">
+                <div class="info-row"><span class="icon">🎓</span><span>Lycée La Martinière Duchère · Lyon 9</span></div>
+                <div class="info-row"><span class="icon">📍</span><span>Caluire-et-Cuire (69300)</span></div>
+                <div class="info-row"><span class="icon">📧</span><a href="mailto:adrien.blaize69@gmail.com">adrien.blaize69@gmail.com</a></div>
+                <div class="info-row"><span class="icon">📞</span><span>06 98 40 64 22</span></div>
+                <div class="info-row"><span class="icon">🚗</span><span>Permis B (en cours)</span></div>
               </div>
+
+              <div class="profile-divider"></div>
+
+              <div class="skill-section">
+                <div class="skill-label">Compétences clés</div>
+                <div class="chips">
+                  <span class="chip blue">Windows Server</span>
+                  <span class="chip blue">Linux</span>
+                  <span class="chip blue">Active Directory</span>
+                  <span class="chip">Cisco</span>
+                  <span class="chip">Intune</span>
+                  <span class="chip">PowerShell</span>
+                  <span class="chip">Docker</span>
+                  <span class="chip">Proxmox</span>
+                </div>
+              </div>
+
+              <a class="dl-btn" href="../files/cv-adrien-blaize.pdf" download>
+                ⬇&nbsp; Télécharger mon CV
+              </a>
             </div>
-            <a class="dl-btn" href="#">⬇&nbsp; Télécharger mon CV</a>
           </div>
         </div>
 
-        <!-- CV principal -->
+        <!-- ══ CONTENU PRINCIPAL ══ -->
         <div>
+
+          <!-- Présentation -->
           <div class="cv-block">
             <div class="cv-block-title">Présentation</div>
             <p style="color:var(--muted); line-height:1.85; font-size:0.9rem; padding: 0.5rem 0.75rem;">
-              [Écris ici une présentation de toi en 3-4 phrases. Ex : Je suis étudiant(e) en BTS [spécialité] à [établissement]. Passionné(e) par le développement informatique, j'ai réalisé deux stages qui m'ont permis de mettre en pratique mes apprentissages. Curieux(se) et rigoureux(se), je cherche à progresser continuellement dans mon domaine.]
+              Actuellement en 2ème année de BTS SIO (option SISR) au Lycée La Martinière Duchère, je suis à la recherche d'une école ou université pour une poursuite d'études. Passionné par les systèmes, les réseaux et l'infrastructure IT, j'ai eu l'opportunité de réaliser plusieurs stages qui m'ont permis de consolider mes compétences techniques dans des environnements professionnels variés.
             </p>
           </div>
 
-          <div class="cv-block">
-            <div class="cv-block-title">Formation</div>
-            <div class="cv-entry">
-              <div>
-                <div class="cv-entry-title">BTS [Spécialité — ex : SIO option SLAM]</div>
-                <div class="cv-entry-org">[Lycée / établissement] · [Ville]</div>
-              </div>
-              <div class="cv-entry-date">2023 – 2025</div>
-              <div class="cv-entry-desc">[Description courte de la formation et des matières principales]</div>
+          <!-- CV PDF intégré -->
+          <div class="cv-pdf-section">
+            <div class="cv-pdf-header">
+              <div class="cv-pdf-header-title">📄 Mon Curriculum Vitæ</div>
+              <a href="../files/cv-adrien-blaize.pdf" download class="btn btn-primary" style="font-size:0.8rem; padding: 0.5rem 1rem;">
+                ⬇ Télécharger
+              </a>
             </div>
-            <div class="cv-entry">
-              <div>
-                <div class="cv-entry-title">[Baccalauréat — ex : Bac Général / Bac Pro]</div>
-                <div class="cv-entry-org">[Lycée] · [Ville]</div>
-              </div>
-              <div class="cv-entry-date">2020 – 2023</div>
-              <div class="cv-entry-desc">Mention [Mention] · Spécialités : [Tes spécialités]</div>
-            </div>
+            <iframe
+              class="cv-pdf-embed"
+              src="../files/cv-adrien-blaize.pdf"
+              title="CV Adrien Blaize">
+            </iframe>
           </div>
 
+          <!-- Expériences -->
           <div class="cv-block">
             <div class="cv-block-title">Expériences professionnelles</div>
+
             <div class="cv-entry">
               <div>
-                <div class="cv-entry-title">Stage 1 — [Poste / Intitulé]</div>
-                <div class="cv-entry-org">[Entreprise] · [Ville]</div>
+                <div class="cv-entry-title">Stage & CDD — Technicien Support</div>
+                <div class="cv-entry-org">Groupe Paredes Orapi · Lyon, Part-Dieu</div>
               </div>
-              <div class="cv-entry-date">[Mois–Mois Année]</div>
-              <div class="cv-entry-desc">[Description : missions principales, outils utilisés, apports.]</div>
+              <div class="cv-entry-date">Mai – Août 2025</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Support utilisateur N1/N2 et gestion des tickets (GLPI / CMDB)</li>
+                  <li>Configuration, préparation et déploiement de postes (Windows 10/11)</li>
+                  <li>Intégration au domaine Active Directory et gestion des comptes utilisateurs</li>
+                  <li>Participation au projet de migration vers Windows 11 via Microsoft Intune</li>
+                  <li>Suivi de l'inventaire des téléphones professionnels (OCS – Bouygues/Orange)</li>
+                </ul>
+              </div>
             </div>
+
             <div class="cv-entry">
               <div>
-                <div class="cv-entry-title">Stage 2 — [Poste / Intitulé]</div>
-                <div class="cv-entry-org">[Entreprise] · [Ville]</div>
+                <div class="cv-entry-title">Stage — Administrateur Système & Réseau</div>
+                <div class="cv-entry-org">SIA BDE INSA Lyon · Villeurbanne</div>
               </div>
-              <div class="cv-entry-date">[Mois–Mois Année]</div>
-              <div class="cv-entry-desc">[Description du stage 2.]</div>
+              <div class="cv-entry-date">Jan – Fév 2026</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Migration de postes Windows vers Linux (double boot, réseau, permissions)</li>
+                  <li>Création & configuration d'une ferme Proxmox : LXC VPN Twingate, VM Wazuh, VM backup</li>
+                  <li>Refonte des scripts de backup via GitLab : automatisation cron, politique de rétention</li>
+                  <li>Documentation, tests de serveurs physiques, reventes de switchs</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Stage — Technicien AudioVisuel</div>
+                <div class="cv-entry-org">SIDEV · Rillieux-la-Pape</div>
+              </div>
+              <div class="cv-entry-date">Avr – Mai 2024</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Configuration, dépannage et tests de matériels défectueux (caméras PoE, enceintes)</li>
+                  <li>Création de synoptiques et installation de baies informatiques</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Stage — Technicien Systèmes & Réseau</div>
+                <div class="cv-entry-org">LOKRIS / AZ Vision · Saint-Bonnet-de-Mure</div>
+              </div>
+              <div class="cv-entry-date">Juin – Juil 2023</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Préparation et installation de PC, serveurs et systèmes d'exploitation</li>
+                  <li>Configuration de switches, bornes Wi-Fi Unifi et caméras PoE</li>
+                  <li>Assistance sur site et gestion des tickets clients</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Stage — Technicien Fibre Optique</div>
+                <div class="cv-entry-org">BLEU ANJ · Dardilly</div>
+              </div>
+              <div class="cv-entry-date">Fév – Mars 2023</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Installation de câbles à fibre optique et tests de connectivité</li>
+                  <li>Participation à des projets de déploiement de réseaux</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Stage — Technicien Réseau</div>
+                <div class="cv-entry-org">KEOLIS Lyon · Vaulx-en-Velin</div>
+              </div>
+              <div class="cv-entry-date">Jan – Fév 2022</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Suivi du système d'alarme incendie automatisé</li>
+                  <li>Soutien aux employés pour l'utilisation des outils informatiques</li>
+                </ul>
+              </div>
             </div>
           </div>
 
+          <!-- Formation -->
+          <div class="cv-block">
+            <div class="cv-block-title">Formation</div>
+
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">BTS SIO — option SISR</div>
+                <div class="cv-entry-org">Lycée La Martinière Duchère · Lyon 9</div>
+              </div>
+              <div class="cv-entry-date">Depuis 2024</div>
+              <div class="cv-entry-desc">
+                <ul>
+                  <li>Solutions d'Infrastructure, Systèmes et Réseaux</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-entry">
+              <div>
+                <div class="cv-entry-title">Bac Professionnel SN — Réseaux Informatiques & Systèmes Communicants</div>
+                <div class="cv-entry-org">Lycée Jacques de Flesselles · Lyon 1</div>
+              </div>
+              <div class="cv-entry-date">2021 – 2024</div>
+            </div>
+          </div>
+
+          <!-- Compétences techniques -->
           <div class="cv-block">
             <div class="cv-block-title">Compétences techniques</div>
-            <div style="padding: 0.5rem 0.75rem;">
-              <div class="chips" style="gap: 0.5rem;">
-                <span class="chip blue">[Langage — ex : Python]</span>
-                <span class="chip blue">[Langage — ex : PHP]</span>
-                <span class="chip blue">[Langage — ex : JavaScript]</span>
-                <span class="chip">[BDD — ex : MySQL]</span>
-                <span class="chip">[Framework — ex : Laravel]</span>
-                <span class="chip">[Outil — ex : Git]</span>
-                <span class="chip">[OS — ex : Linux]</span>
+            <div class="skills-grid">
+              <div class="skill-card">
+                <div class="skill-card-title">Réseaux</div>
+                <ul>
+                  <li>Ethernet, VLAN, IPv4/IPv6</li>
+                  <li>Routage statique, RIP, NAT</li>
+                  <li>Cisco, Wireshark</li>
+                  <li>VPN Twingate</li>
+                </ul>
+              </div>
+              <div class="skill-card">
+                <div class="skill-card-title">Windows</div>
+                <ul>
+                  <li>Windows Server</li>
+                  <li>Active Directory, GPO</li>
+                  <li>Microsoft Intune</li>
+                  <li>DNS, PowerShell</li>
+                </ul>
+              </div>
+              <div class="skill-card">
+                <div class="skill-card-title">Linux</div>
+                <ul>
+                  <li>Ubuntu, Debian</li>
+                  <li>Bash scripting</li>
+                  <li>Apache, MySQL, PHP</li>
+                  <li>Samba, GLPI</li>
+                </ul>
+              </div>
+              <div class="skill-card">
+                <div class="skill-card-title">Virtualisation</div>
+                <ul>
+                  <li>Proxmox (LXC / VM)</li>
+                  <li>Docker / Portainer</li>
+                  <li>Wazuh (SIEM)</li>
+                </ul>
+              </div>
+              <div class="skill-card">
+                <div class="skill-card-title">Outils & DevOps</div>
+                <ul>
+                  <li>Git, GitHub, GitLab</li>
+                  <li>OCS / GLPI</li>
+                  <li>Snipe-IT (CMDB)</li>
+                </ul>
+              </div>
+              <div class="skill-card">
+                <div class="skill-card-title">Projets perso</div>
+                <ul>
+                  <li>Hyperviseur Proxmox home</li>
+                  <li>Portfolio hébergé Docker</li>
+                  <li>Reverse proxy Nginx</li>
+                </ul>
               </div>
             </div>
           </div>
 
+          <!-- Langues & intérêts -->
           <div class="cv-block">
             <div class="cv-block-title">Langues & centres d'intérêt</div>
             <div class="cv-entry">
               <div><div class="cv-entry-title">Langues</div></div>
               <div></div>
-              <div class="cv-entry-desc">[Ex : Français (natif) · Anglais technique (B1) · Espagnol (notions)]</div>
+              <div class="cv-entry-desc" style="color:var(--muted); font-size:0.85rem; padding: 0 0.75rem;">
+                Français (natif) · Anglais (A2)
+              </div>
             </div>
             <div class="cv-entry">
               <div><div class="cv-entry-title">Centres d'intérêt</div></div>
               <div></div>
-              <div class="cv-entry-desc">[Ex : Développement de projets personnels, cybersécurité, jeux vidéo, sport]</div>
+              <div class="cv-entry-desc" style="color:var(--muted); font-size:0.85rem; padding: 0 0.75rem;">
+                Musculation · Jeux vidéos · Technologies
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
 
   <footer>
-    Portfolio de <strong>[Prénom Nom]</strong> &nbsp;·&nbsp; BTS Informatique &nbsp;·&nbsp; [Ton école] &nbsp;·&nbsp; [Année]
+    Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; BTS SIO SISR &nbsp;·&nbsp; Lycée La Martinière Duchère &nbsp;·&nbsp; 2025
   </footer>
 
   <script src="../js/nav.js"></script>
