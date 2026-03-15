@@ -8,72 +8,141 @@
   <style>
     .breadcrumb {
       display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap;
     }
     .breadcrumb a { color: var(--light); text-decoration: none; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb span { color: var(--accent); font-weight: 600; }
 
+    /* ─── HERO ─── */
     .page-hero {
       background: white; border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
+      border-radius: 16px; padding: 1.75rem 2rem; margin-bottom: 2rem;
       display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      flex-wrap: wrap;
     }
-    .page-hero-left { display: flex; align-items: center; gap: 1.5rem; }
+    .page-hero-left { display: flex; align-items: center; gap: 1.25rem; }
     .page-hero-icon {
-      width: 56px; height: 56px; flex-shrink: 0;
-      background: var(--accent-light); border-radius: 14px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: var(--accent-light); border-radius: 13px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
     }
-    .page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
-    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .page-hero-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .page-hero-title {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.3rem;
+    }
+    .page-hero-sub { color: var(--muted); font-size: 0.84rem; margin-top: 0.2rem; }
 
     .dl-btn {
       display: inline-flex; align-items: center; gap: 0.45rem;
       background: var(--accent); color: white; text-decoration: none;
-      padding: 0.6rem 1.2rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.82rem; white-space: nowrap;
+      padding: 0.65rem 1.3rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.85rem; white-space: nowrap;
       transition: all 0.18s; flex-shrink: 0;
     }
-    .dl-btn:hover { background: #1a45c0; }
+    .dl-btn:hover { background: #1a45c0; transform: translateY(-1px); }
+    .dl-btn.disabled {
+      background: var(--border2); color: var(--light); cursor: not-allowed;
+      pointer-events: none;
+    }
 
-    /* Journal hebdomadaire */
-    .weeks-list { display: flex; flex-direction: column; gap: 1rem; }
+    /* ─── STATS RAPIDES ─── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.1rem 1.25rem; text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: 1.8rem; color: var(--accent); line-height: 1;
+    }
+    .stat-label { color: var(--muted); font-size: 0.78rem; margin-top: 0.3rem; }
+
+    /* ─── ACCORDION SEMAINES ─── */
+    .weeks-list { display: flex; flex-direction: column; gap: 0.85rem; }
 
     .week-card {
-      background: white; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; transition: border-color 0.2s;
     }
-    .week-card.open { border-color: var(--accent-mid); }
+    .week-card.open { border-color: var(--accent-mid); box-shadow: 0 2px 14px rgba(29,78,216,0.07); }
 
     .week-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 1.6rem; cursor: pointer; user-select: none;
+      padding: 1.1rem 1.5rem; cursor: pointer; user-select: none;
     }
-    .week-left { display: flex; align-items: center; gap: 1rem; }
-    .week-num {
+
+    .week-left { display: flex; align-items: center; gap: 0.85rem; }
+
+    .week-badge {
       background: var(--accent); color: white;
-      font-size: 0.72rem; font-weight: 700;
-      padding: 0.25rem 0.65rem; border-radius: 6px; letter-spacing: 0.04em;
-      white-space: nowrap;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 0.22rem 0.65rem; border-radius: 6px;
+      letter-spacing: 0.04em; white-space: nowrap;
     }
-    .week-title { font-weight: 600; font-size: 0.92rem; }
-    .week-dates { color: var(--light); font-size: 0.78rem; margin-top: 0.1rem; }
+
+    .week-title { font-weight: 600; font-size: 0.9rem; }
+    .week-dates { color: var(--light); font-size: 0.77rem; margin-top: 0.08rem; }
+
     .week-chevron {
       width: 28px; height: 28px; background: var(--bg); border-radius: 7px;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.65rem; color: var(--muted); transition: transform 0.3s; flex-shrink: 0;
     }
-    .week-card.open .week-chevron { transform: rotate(180deg); }
+    .week-card.open .week-chevron { transform: rotate(180deg); color: var(--accent); }
 
-    .week-body { display: none; padding: 0 1.6rem 1.6rem; }
+    .week-body { display: none; padding: 0 1.5rem 1.5rem; }
     .week-card.open .week-body { display: block; }
 
-    .week-content { color: var(--muted); font-size: 0.88rem; line-height: 1.85; }
-    .week-content p + p { margin-top: 0.75rem; }
+    /* contenu semaine */
+    .week-items { display: flex; flex-direction: column; gap: 0.5rem; }
 
-    .week-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .week-item {
+      font-size: 0.87rem; color: var(--muted); line-height: 1.65;
+      padding-left: 1.1rem; position: relative;
+    }
+    .week-item::before {
+      content: '·'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700; font-size: 1.1rem; top: -0.05rem;
+    }
+    .week-item strong { color: var(--text); }
 
+    /* sous-liste */
+    .week-sub {
+      list-style: none; margin-top: 0.3rem; padding-left: 1rem;
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .week-sub li {
+      font-size: 0.83rem; color: var(--muted); line-height: 1.55;
+      padding-left: 0.9rem; position: relative;
+    }
+    .week-sub li::before { content: '–'; position: absolute; left: 0; color: var(--border2); }
+
+    /* sous-sous-liste */
+    .week-subsub {
+      list-style: none; margin-top: 0.2rem; padding-left: 1rem;
+    }
+    .week-subsub li {
+      font-size: 0.81rem; color: var(--muted); line-height: 1.5;
+      padding-left: 0.9rem; position: relative;
+    }
+    .week-subsub li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
+
+    /* tag "Réunion" */
+    .week-reunion {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a;
+      padding: 0.2rem 0.65rem; border-radius: 100px;
+      font-size: 0.73rem; font-weight: 600; margin-top: 0.5rem;
+    }
+
+    /* ─── NAV BOTTOM ─── */
     .nav-bottom {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
@@ -84,6 +153,11 @@
       text-decoration: none; transition: color 0.18s;
     }
     .nav-btn:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr; }
+      .page-hero { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
@@ -109,128 +183,199 @@
     <div class="section">
 
       <div class="breadcrumb">
-        <a href="../../stages.html">Stages</a> › <a href="../stage1.html">Paredes Orapi</a> › <span>Rapport</span>
+        <a href="../../stages.html">Stages</a> ›
+        <a href="../stage1.html">Paredes Orapi</a> ›
+        <span>Rapport de stage</span>
       </div>
 
+      <!-- ══ HERO ══ -->
       <div class="page-hero">
         <div class="page-hero-left">
           <div class="page-hero-icon">📄</div>
           <div>
             <div class="page-hero-label">Rapport de stage — Stage 1</div>
             <div class="page-hero-title">Groupe Paredes Orapi</div>
-            <div class="page-hero-sub">Journal de bord semaine par semaine</div>
+            <div class="page-hero-sub">Mai – Août 2025 · 6 semaines documentées · Lyon, Part-Dieu</div>
           </div>
         </div>
-        <a href="#" class="dl-btn">⬇ Télécharger le rapport</a>
+        <!-- Remplace le href par le chemin de ton rapport quand tu l'ajoutes dans files/ -->
+        <a href="../../../files/rapport-paredes.pdf" download class="dl-btn disabled" id="dl-rapport">
+          ⬇ Télécharger le rapport
+        </a>
       </div>
 
-      <!-- Journal hebdomadaire -->
+      <!-- ══ STATS ══ -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Semaines de stage</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1030</div>
+          <div class="stat-label">Postes mis à jour CMDB</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Situations professionnelles</div>
+        </div>
+      </div>
+
+      <!-- ══ JOURNAL HEBDOMADAIRE ══ -->
       <div class="weeks-list">
 
+        <!-- S1 -->
         <div class="week-card open" id="w1">
           <div class="week-header" onclick="toggleWeek('w1')">
             <div class="week-left">
-              <span class="week-num">Semaine 1</span>
+              <span class="week-badge">Semaine 1</span>
               <div>
-                <div class="week-title">[Thème ou titre de la semaine 1]</div>
-                <div class="week-dates">[ex : du 06 au 10 Janvier 2025]</div>
+                <div class="week-title">Prise en main & découverte des outils</div>
+                <div class="week-dates">19 au 23 Mai 2025</div>
               </div>
             </div>
             <div class="week-chevron">▼</div>
           </div>
           <div class="week-body">
-            <div class="week-content">
-              <p>[Décris ce que tu as fait lors de cette première semaine : accueil, présentation de l'entreprise, prise en main des outils, premières tâches confiées, rencontres avec l'équipe…]</p>
-              <p>[Tu peux ajouter autant de paragraphes que nécessaire pour détailler ta semaine.]</p>
-            </div>
-            <div class="week-tags">
-              <span class="chip">[Tâche / activité]</span>
-              <span class="chip">[Outil]</span>
+            <div class="week-items">
+              <div class="week-item">Initialisation des outils de gestion d'inventaires informatiques <strong>GLPI / SNIPE-IT (CMDB)</strong></div>
+              <div class="week-item">Gestion des lignes téléphoniques sur les centres d'administration <strong>Orange / Bouygues</strong></div>
+              <div class="week-item">Initialisation des procédures sur les PC <strong>« Retour Utilisateur »</strong> — vérification du PC, tests, conclusions</div>
+              <div class="week-item">Préparations de postes (PC et téléphones) et réparations de PC</div>
+              <div class="week-reunion">📅 Réunion d'équipe sur la semaine</div>
             </div>
           </div>
         </div>
 
+        <!-- S2 -->
         <div class="week-card" id="w2">
           <div class="week-header" onclick="toggleWeek('w2')">
             <div class="week-left">
-              <span class="week-num">Semaine 2</span>
+              <span class="week-badge">Semaine 2</span>
               <div>
-                <div class="week-title">[Thème ou titre de la semaine 2]</div>
-                <div class="week-dates">[ex : du 13 au 17 Janvier 2025]</div>
+                <div class="week-title">Lancement Migration Win11 & CMDB</div>
+                <div class="week-dates">26 au 30 Mai 2025</div>
               </div>
             </div>
             <div class="week-chevron">▼</div>
           </div>
           <div class="week-body">
-            <div class="week-content">
-              <p>[Contenu de la semaine 2.]</p>
-            </div>
-            <div class="week-tags">
-              <span class="chip">[Tâche / activité]</span>
-              <span class="chip">[Outil]</span>
+            <div class="week-items">
+              <div class="week-item">
+                Initialisation du projet <strong>« Migration Windows 11 »</strong> (à hauteur de l'équipe support)
+                <ul class="week-sub">
+                  <li>Préparations de PC PAREDES sous <strong>Microsoft Intune</strong></li>
+                  <li>Activation des stratégies, activation et affiliation de l'utilisateur sur Microsoft Intune</li>
+                </ul>
+              </div>
+              <div class="week-item">
+                Initialisation de l'objectif <strong>« Mise à jour CMDB »</strong>
+                <ul class="week-sub">
+                  <li>Réorganisation de la CMDB via extraction Intune sur Excel
+                    <ul class="week-subsub">
+                      <li>1 030 postes / utilisateurs à mettre à jour</li>
+                      <li>Réaffectations / contacts utilisateurs</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="week-item">Préparations de postes Orapi sous <strong>Windows 10</strong> / téléphones</div>
+              <div class="week-reunion">📅 Réunion d'équipe sur la semaine</div>
             </div>
           </div>
         </div>
 
+        <!-- S3 -->
         <div class="week-card" id="w3">
           <div class="week-header" onclick="toggleWeek('w3')">
             <div class="week-left">
-              <span class="week-num">Semaine 3</span>
+              <span class="week-badge">Semaine 3</span>
               <div>
-                <div class="week-title">[Thème ou titre de la semaine 3]</div>
-                <div class="week-dates">[ex : du 20 au 24 Janvier 2025]</div>
+                <div class="week-title">Visites des usines & avancement CMDB</div>
+                <div class="week-dates">2 au 6 Juin 2025</div>
               </div>
             </div>
             <div class="week-chevron">▼</div>
           </div>
           <div class="week-body">
-            <div class="week-content">
-              <p>[Contenu de la semaine 3.]</p>
-            </div>
-            <div class="week-tags">
-              <span class="chip">[Tâche / activité]</span>
+            <div class="week-items">
+              <div class="week-item">🏭 Visite de l'usine <strong>PAREDES FAB</strong> à Genas (69)</div>
+              <div class="week-item">🏭 Visite de l'usine <strong>ORAPI FAB</strong> à Saint-Vulbas (01)</div>
+              <div class="week-item">Avancement de la mise à jour CMDB</div>
+              <div class="week-item">Vérification des PC retournés pour déterminer s'ils étaient réutilisables, à mettre en DEEE ou à réparer</div>
+              <div class="week-reunion">📅 Réunion d'équipe sur la semaine</div>
             </div>
           </div>
         </div>
 
+        <!-- S4 -->
         <div class="week-card" id="w4">
           <div class="week-header" onclick="toggleWeek('w4')">
             <div class="week-left">
-              <span class="week-num">Semaine 4</span>
+              <span class="week-badge">Semaine 4</span>
               <div>
-                <div class="week-title">[Thème ou titre de la semaine 4]</div>
-                <div class="week-dates">[ex : du 27 au 31 Janvier 2025]</div>
+                <div class="week-title">Procédures, stock & tickets</div>
+                <div class="week-dates">9 au 13 Juin 2025</div>
               </div>
             </div>
             <div class="week-chevron">▼</div>
           </div>
           <div class="week-body">
-            <div class="week-content">
-              <p>[Contenu de la semaine 4.]</p>
-            </div>
-            <div class="week-tags">
-              <span class="chip">[Tâche / activité]</span>
+            <div class="week-items">
+              <div class="week-item">Mise à jour de la procédure <strong>« Autopilot – Enrôlement Intune des nouveaux postes »</strong></div>
+              <div class="week-item">Mise à jour de la procédure <strong>« Procédure-retour-PC »</strong></div>
+              <div class="week-item">Avancement de la mise à jour CMDB</div>
+              <div class="week-item">Réorganisation du stock physique</div>
+              <div class="week-item">Initialisation d'<strong>Exchange</strong></div>
+              <div class="week-item">Préparations de postes, téléphones…</div>
+              <div class="week-item">Gestion de tickets</div>
+              <div class="week-reunion">📅 Réunion d'équipe sur la semaine</div>
             </div>
           </div>
         </div>
 
+        <!-- S5 -->
         <div class="week-card" id="w5">
           <div class="week-header" onclick="toggleWeek('w5')">
             <div class="week-left">
-              <span class="week-num">Semaine 5</span>
+              <span class="week-badge">Semaine 5</span>
               <div>
-                <div class="week-title">[Thème ou titre de la semaine 5]</div>
-                <div class="week-dates">[ex : du 03 au 07 Février 2025]</div>
+                <div class="week-title">DEEE & améliorations matérielles</div>
+                <div class="week-dates">16 au 20 Juin 2025</div>
               </div>
             </div>
             <div class="week-chevron">▼</div>
           </div>
           <div class="week-body">
-            <div class="week-content">
-              <p>[Contenu de la semaine 5 — dernière semaine, bilan, ressenti final…]</p>
+            <div class="week-items">
+              <div class="week-item">Démontage de PC DEEE hors-service afin de récupérer des pièces (<strong>RAM, SSD…</strong>)</div>
+              <div class="week-item">Améliorations de PC réutilisables (rajout de RAM, SSD…)</div>
+              <div class="week-item">Avancement sur la mise à jour CMDB</div>
+              <div class="week-item">Vérification des PC retournés pour déterminer s'ils étaient réutilisables, à mettre en DEEE ou à réparer</div>
+              <div class="week-item">Préparations de postes / téléphones</div>
+              <div class="week-item">Gestion de tickets</div>
+              <div class="week-reunion">📅 Réunion d'équipe sur la semaine</div>
             </div>
-            <div class="week-tags">
-              <span class="chip">[Tâche / activité]</span>
+          </div>
+        </div>
+
+        <!-- S6 -->
+        <div class="week-card" id="w6">
+          <div class="week-header" onclick="toggleWeek('w6')">
+            <div class="week-left">
+              <span class="week-badge">Semaine 6</span>
+              <div>
+                <div class="week-title">Finalisation CMDB & clôture</div>
+                <div class="week-dates">23 au 27 Juin 2025</div>
+              </div>
+            </div>
+            <div class="week-chevron">▼</div>
+          </div>
+          <div class="week-body">
+            <div class="week-items">
+              <div class="week-item">✅ <strong>Mise à jour CMDB terminée</strong></div>
+              <div class="week-item">Préparations de postes / téléphones</div>
+              <div class="week-item">Gestion de tickets</div>
+              <div class="week-reunion">📅 Réunion d'équipe sur la semaine</div>
             </div>
           </div>
         </div>
@@ -238,7 +383,7 @@
       </div>
 
       <div class="nav-bottom">
-        <a class="nav-btn" href="mission2.html">← Mission 2</a>
+        <a class="nav-btn" href="mission2.html">← SP2 — Retour Utilisateur & CMDB</a>
         <a class="nav-btn" href="../stage1.html">Retour au stage →</a>
       </div>
 
