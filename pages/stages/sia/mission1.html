@@ -3,31 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission 1 — SIA BDE INSA Lyon</title>
+  <title>SP1 — Réponse à Incident WordPress · SIA BDE INSA Lyon</title>
   <link rel="stylesheet" href="../../../css/style.css">
   <style>
     .breadcrumb {
       display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem;
+      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap;
     }
     .breadcrumb a { color: var(--light); text-decoration: none; }
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb span { color: var(--accent); font-weight: 600; }
 
+    /* ─── HERO ─── */
     .page-hero {
-      background: white; border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem 2.25rem; margin-bottom: 2.5rem;
-      display: flex; align-items: center; gap: 1.5rem;
+      background: #1a0a0a; border: 1px solid #3b1515;
+      border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
     }
-    .page-hero-icon {
-      width: 56px; height: 56px; flex-shrink: 0;
-      background: var(--accent-light); border-radius: 14px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    .page-hero-banner {
+      height: 80px;
+      background: linear-gradient(135deg, #1a0a0a, #2d0f0f, #1a0a0a);
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; font-size: 2rem;
+      border-bottom: 1px solid #3b1515;
     }
-    .page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
-    .page-hero-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .page-hero-body { padding: 1.5rem 2rem; }
+    .page-hero-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #f87171; margin-bottom: 0.4rem;
+    }
+    .page-hero-title {
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.2; color: white;
+    }
+    .page-hero-sub { color: #9ca3af; font-size: 0.85rem; margin-top: 0.3rem; }
 
+    /* ─── ALERTE ─── */
+    .alert-block {
+      background: #fef2f2; border: 1px solid #fecaca;
+      border-left: 4px solid #ef4444;
+      border-radius: 12px; padding: 1.1rem 1.4rem; margin-bottom: 1.5rem;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .alert-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .alert-text { font-size: 0.87rem; color: #991b1b; line-height: 1.7; }
+    .alert-text strong { color: #7f1d1d; }
+
+    /* ─── BLOCS ─── */
     .content-block {
       background: white; border: 1px solid var(--border);
       border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem;
@@ -38,27 +59,113 @@
     }
     .content-block-title::before {
       content: ''; display: block; width: 3px; height: 18px;
-      background: var(--accent); border-radius: 2px;
+      background: var(--accent); border-radius: 2px; flex-shrink: 0;
     }
+    .content-block-title.red::before { background: #ef4444; }
+    .content-block-title.orange::before { background: #f97316; }
+    .content-block-title.green::before { background: #16a34a; }
+
     .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
+    .content-text p + p { margin-top: 0.75rem; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-
-    /* Zone photos */
-    .photos-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+    /* ─── LISTES ─── */
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.5rem; }
+    .bullet-list li {
+      font-size: 0.87rem; color: var(--muted); line-height: 1.65;
+      padding-left: 1.2rem; position: relative;
     }
-    .photo-slot {
-      aspect-ratio: 4/3; background: var(--bg); border: 2px dashed var(--border2);
-      border-radius: 12px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.5rem; color: var(--light); font-size: 0.8rem; transition: all 0.18s;
-    }
-    .photo-slot:hover { border-color: var(--accent-mid); background: var(--accent-light); }
-    .photo-slot .icon { font-size: 1.8rem; }
-    .photo-real { aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; }
-    .photo-real img { width: 100%; height: 100%; object-fit: cover; }
+    .bullet-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+    .bullet-list li strong { color: var(--text); }
+    .bullet-list.red li::before { color: #ef4444; }
+    .bullet-list.green li::before { color: #16a34a; }
 
+    /* ─── TIMELINE INCIDENT ─── */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 0.5rem; }
+    .tl-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .tl-dot {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .tl-dot.red { background: #fef2f2; border-color: #fecaca; }
+    .tl-dot.orange { background: #fff7ed; border-color: #fed7aa; }
+    .tl-dot.blue { background: var(--accent-light); border-color: var(--accent-mid); }
+    .tl-dot.green { background: #f0fdf4; border-color: #bbf7d0; }
+    .tl-line { width: 2px; flex: 1; min-height: 24px; background: var(--border); margin: 2px auto; }
+    .tl-content { padding-bottom: 1.5rem; flex: 1; }
+    .tl-date { font-size: 0.72rem; font-weight: 700; color: var(--light); letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+    .tl-title { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .tl-desc { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin-top: 0.3rem; }
+
+    /* ─── DÉCOUVERTES / FINDINGS ─── */
+    .findings-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem; margin-top: 0.5rem;
+    }
+    .finding-card {
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+    }
+    .finding-card.critical { background: #fef2f2; border: 1px solid #fecaca; }
+    .finding-card.high { background: #fff7ed; border: 1px solid #fed7aa; }
+    .finding-card.medium { background: #fefce8; border: 1px solid #fef08a; }
+    .finding-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 0.4rem;
+    }
+    .finding-label.critical { color: #b91c1c; }
+    .finding-label.high { color: #c2410c; }
+    .finding-label.medium { color: #a16207; }
+    .finding-title { font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.3rem; }
+    .finding-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; }
+
+    /* ─── CODE BLOCK ─── */
+    .code-block {
+      background: #1e1e1e; border-radius: 10px;
+      padding: 1rem 1.25rem; margin-top: 0.85rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem; color: #d4d4d4;
+      overflow-x: auto; line-height: 1.6;
+    }
+    .code-comment { color: #6a9955; }
+    .code-keyword { color: #569cd6; }
+    .code-string { color: #ce9178; }
+
+    /* ─── PHOTOS ─── */
+    .photos-duo {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem;
+    }
+    .photos-solo { margin-top: 1.25rem; }
+    .photo-frame {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--bg);
+    }
+    .photo-frame img { width: 100%; height: auto; display: block; }
+    .photo-caption { font-size: 0.75rem; color: var(--light); text-align: center; margin-top: 0.35rem; font-style: italic; }
+
+    /* ─── REMÉDIATION CHECKLIST ─── */
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.87rem; color: var(--muted); line-height: 1.6;
+    }
+    .checklist li .check {
+      width: 20px; height: 20px; flex-shrink: 0;
+      background: #f0fdf4; border: 1px solid #bbf7d0;
+      border-radius: 5px; display: flex; align-items: center;
+      justify-content: center; font-size: 0.75rem; color: #16a34a;
+      margin-top: 0.1rem;
+    }
+    .checklist li strong { color: var(--text); }
+
+    /* ─── OUTILS ─── */
+    .chip-red {
+      background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c;
+      padding: 0.22rem 0.65rem; border-radius: 100px; font-size: 0.73rem; font-weight: 500;
+    }
+
+    /* ─── NAV BOTTOM ─── */
     .nav-bottom {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
@@ -69,6 +176,11 @@
       text-decoration: none; transition: color 0.18s;
     }
     .nav-btn:hover { color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .photos-duo { grid-template-columns: 1fr; }
+      .findings-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -94,61 +206,260 @@
     <div class="section">
 
       <div class="breadcrumb">
-        <a href="../../stages.html">Stages</a> › <a href="../stage2.html">SIA BDE INSA</a> › <span>Mission 1</span>
+        <a href="../../stages.html">Stages</a> ›
+        <a href="../stage2.html">SIA BDE INSA</a> ›
+        <span>SP1 — Réponse à Incident WordPress</span>
       </div>
 
+      <!-- ══ HERO ══ -->
       <div class="page-hero">
-        <div class="page-hero-icon">🔧</div>
-        <div>
-          <div class="page-hero-label">Mission 1 — Stage 2</div>
-          <div class="page-hero-title">[Titre de la mission 1]</div>
-          <div class="page-hero-sub">SIA BDE INSA Lyon · [Période]</div>
+        <div class="page-hero-banner">🚨 🔐 🛡️</div>
+        <div class="page-hero-body">
+          <div class="page-hero-label">Situation Professionnelle 1 — Stage 2 · SIA BDE INSA Lyon</div>
+          <div class="page-hero-title">SP1 SIA — Réponse à Incident : Compromission WordPress</div>
+          <div class="page-hero-sub">Cybersécurité · Forensique · Remédiation · 14 Décembre 2025</div>
         </div>
       </div>
 
-      <div class="content-block">
-        <div class="content-block-title">Contexte & objectif</div>
-        <p class="content-text">
-          [Explique pourquoi cette mission t'a été confiée, dans quel contexte elle s'inscrit, quel était l'objectif attendu par l'entreprise.]
-        </p>
+      <!-- ══ ALERTE ══ -->
+      <div class="alert-block">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-text">
+          <strong>Incident critique détecté le 14 Décembre 2025 —</strong> Le site WordPress de l'intégration BDE INSA Lyon a été compromis via un plugin vulnérable. Plusieurs backdoors, comptes administrateurs frauduleux et malwares ont été découverts. Cette page présente l'intégralité de l'investigation et de la remédiation.
+        </div>
       </div>
 
+      <!-- ══ CONTEXTE ══ -->
       <div class="content-block">
-        <div class="content-block-title">Travail réalisé</div>
-        <p class="content-text">
-          [Décris en détail ce que tu as fait : étapes, méthodes, difficultés rencontrées, comment tu les as résolues. Tu peux organiser en plusieurs paragraphes.]
-        </p>
+        <div class="content-block-title">Contexte</div>
+        <div class="content-text">
+          <p>Lors de mon stage au SIA BDE INSA Lyon, le site WordPress de l'intégration des nouvelles promotions a été victime d'une attaque par compromission de plugin. L'incident a été détecté le 14 décembre 2025, lorsque des membres de l'équipe IT ont remarqué une page de phishing imitant le <strong>human checker de Cloudflare</strong>.</p>
+          <p>La page malveillante invitait les visiteurs Windows à copier et exécuter un script PowerShell effectuant un memory dump. L'attaque était suffisamment sophistiquée pour ne s'activer <strong>que sur Windows</strong>, passant inaperçue sur Mac et Linux à moins de modifier le user-agent.</p>
+          <p>J'ai participé activement à l'investigation en collaboration avec les membres de l'équipe SIA (Yassine, Valentin, Clément), en analysant les logs, les plugins compromis, la base de données et les fichiers modifiés.</p>
+        </div>
       </div>
 
+      <!-- ══ ENVIRONNEMENT ══ -->
+      <div class="content-block">
+        <div class="content-block-title">Environnement technique</div>
+        <ul class="bullet-list">
+          <li><strong>Cible :</strong> Site WordPress de l'intégration BDE INSA Lyon (wp-inte)</li>
+          <li><strong>Infrastructure :</strong> Container Docker sur serveur Bitnami, derrière VPN Twingate</li>
+          <li><strong>Outils d'investigation :</strong> Portainer, accès VPS, dump MariaDB, analyse de fichiers PHP</li>
+          <li><strong>Vecteur initial :</strong> Plugin WordPress vulnérable installé le 18 octobre 2025</li>
+          <li><strong>Collaboration :</strong> Investigation collective via canal Discord sécurisé, en temps réel</li>
+        </ul>
+      </div>
+
+      <!-- ══ TIMELINE ══ -->
+      <div class="content-block">
+        <div class="content-block-title red">Chronologie de l'incident</div>
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot red">🔓</div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-date">18 Octobre 2025</div>
+              <div class="tl-title">Point d'entrée — Installation du plugin vulnérable</div>
+              <div class="tl-desc">Installation du plugin <strong>One User Avatar</strong> (<code>one_images_user</code>), contenant une backdoor PHP obfusquée. Ce plugin crée silencieusement un compte administrateur caché (<code>admlnlx</code>) et réinitialise les mots de passe des autres admins.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot red">⚙️</div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-date">18 – 20 Octobre 2025</div>
+              <div class="tl-title">Propagation — Installation de plugins malveillants</div>
+              <div class="tl-desc">Depuis le compte admin compromis, les attaquants installent plusieurs plugins malveillants : un <strong>faux reCAPTCHA</strong> (<code>content-recaptcha</code>) effectuant des injections SQL obfusquées, un <strong>faux WAF</strong> (<code>__waffance.php</code> en mu-plugin) redirigeant les visiteurs vers la page de phishing, et un module de backlinks cachés (<code>__secwaf.php</code>).</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot orange">👥</div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-date">Octobre – Décembre 2025</div>
+              <div class="tl-title">Persistance — Création de comptes administrateurs frauduleux</div>
+              <div class="tl-desc">5 comptes administrateurs frauduleux créés : <code>admlnlx</code>, <code>root</code> (root@fexpost.com), <code>admins</code>, <code>adminbackup</code>, <code>HostingManager</code>. Tous avec le rôle administrateur WordPress complet.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot orange">🎣</div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-date">Décembre 2025</div>
+              <div class="tl-title">Attaque active — Page de phishing Cloudflare</div>
+              <div class="tl-desc">Déploiement d'une fausse page "Human Verification" imitant Cloudflare, ciblant uniquement les visiteurs Windows. La page demande d'exécuter un script PowerShell (memory dump). Un canal Telegram diffuse les données exfiltrées.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot blue">🔍</div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-date">14 Décembre 2025 — 18h</div>
+              <div class="tl-title">Détection & Investigation</div>
+              <div class="tl-desc">Détection de l'attaque par l'équipe SIA. Shutdown du container compromis, dump des logs, redéploiement derrière VPN. Lancement de l'investigation collaborative sur Discord : analyse des plugins, de la BDD, des fichiers modifiés.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot green">✅</div></div>
+            <div class="tl-content">
+              <div class="tl-date">14 Décembre 2025 — 22h17</div>
+              <div class="tl-title">Remédiation — Site restauré</div>
+              <div class="tl-desc">Suppression de tous les plugins malveillants, nettoyage de la BDD, restauration du site. Plan de remédiation complet défini pour la suite.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ DÉCOUVERTES ══ -->
+      <div class="content-block">
+        <div class="content-block-title red">Découvertes forensiques</div>
+        <div class="findings-grid">
+
+          <div class="finding-card critical">
+            <div class="finding-label critical">🔴 Critique</div>
+            <div class="finding-title">Plugin backdoor — One User Avatar</div>
+            <div class="finding-desc">Fausse extension WordPress créant un compte admin caché (<code>admlnlx</code>) et réinitialisant les mots de passe de tous les autres admins. Code PHP masqué par obfuscation.</div>
+          </div>
+
+          <div class="finding-card critical">
+            <div class="finding-label critical">🔴 Critique</div>
+            <div class="finding-title">5 comptes administrateurs frauduleux</div>
+            <div class="finding-desc">Tous avec rôle <code>wp_capabilities: administrator</code>. Emails liés à des domaines suspects (<code>fexpost.com</code>). Créés entre le 18 et 19 octobre 2025.</div>
+          </div>
+
+          <div class="finding-card critical">
+            <div class="finding-label critical">🔴 Critique</div>
+            <div class="finding-title">MU-Plugin WAF malveillant</div>
+            <div class="finding-desc">Le fichier <code>__waffance.php</code> intercepte les requêtes de la page d'accueil et redirige les visiteurs Windows vers la page de phishing Cloudflare en servant un fichier <code>amp.php</code> malveillant.</div>
+          </div>
+
+          <div class="finding-card high">
+            <div class="finding-label high">🟠 Élevé</div>
+            <div class="finding-title">Plugin reCAPTCHA avec injections SQL</div>
+            <div class="finding-desc">Dossier <code>content-recaptcha</code> : un seul fichier PHP fortement obfusqué réalisant des injections SQL pour maintenir la persistance et exfiltrer des données.</div>
+          </div>
+
+          <div class="finding-card high">
+            <div class="finding-label high">🟠 Élevé</div>
+            <div class="finding-title">MU-Plugin backlinks cachés</div>
+            <div class="finding-desc">Le fichier <code>__secwaf.php</code> injecte des liens cachés (<code>display:none</code>) en footer, renvoyant vers des sites tiers via l'API <code>aiobacklinks.com</code>. Sert au SEO poisoning.</div>
+          </div>
+
+          <div class="finding-card high">
+            <div class="finding-label high">🟠 Élevé</div>
+            <div class="finding-title">Web shell dans /tmp</div>
+            <div class="finding-desc">Fichier PHP malveillant récupéré dans le répertoire <code>/tmp</code> du container, donnant un accès shell complet au système de fichiers WordPress via navigateur.</div>
+          </div>
+
+          <div class="finding-card medium">
+            <div class="finding-label medium">🟡 Moyen</div>
+            <div class="finding-title">Fichiers modifiés 18–20 Oct</div>
+            <div class="finding-desc">Commande <code>find . -type f -newermt "2025-10-18" ! -newermt "2025-10-20"</code> révèle des dizaines de fichiers core WordPress altérés sur cette fenêtre temporelle.</div>
+          </div>
+
+          <div class="finding-card medium">
+            <div class="finding-label medium">🟡 Moyen</div>
+            <div class="finding-title">Script PowerShell de phishing</div>
+            <div class="finding-desc">Page imitant le "Human Checker" Cloudflare, ciblant Windows uniquement (détection du User-Agent). Invite l'utilisateur à coller et exécuter un script dans le presse-papier (ClickFix).</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ PHOTOS PREUVES ══ -->
+      <div class="content-block">
+        <div class="content-block-title red">Preuves & captures d'investigation</div>
+
+        <div class="photos-duo">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-script-obfusque.png" alt="Script PHP obfusqué dans content-recaptcha"></div>
+            <p class="photo-caption">Script PHP fortement obfusqué — plugin <code>content-recaptcha</code></p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-users-compromis.png" alt="Comptes utilisateurs frauduleux dans la BDD"></div>
+            <p class="photo-caption">Comptes admin frauduleux découverts dans la base de données</p>
+          </div>
+        </div>
+
+        <div class="photos-duo" style="margin-top:0.75rem;">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-users-admins.png" alt="Tous les comptes ont le rôle administrateur"></div>
+            <p class="photo-caption">Tous les comptes frauduleux ont le rôle <code>administrator</code></p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-plugin-danger.png" alt="Avertissement script dangereux"></div>
+            <p class="photo-caption">Avertissement intégré au script — s'auto-supprime après exécution</p>
+          </div>
+        </div>
+
+        <div class="photos-duo" style="margin-top:0.75rem;">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-plugin-backdoor.png" alt="Plugin One User backdoor PHP"></div>
+            <p class="photo-caption">Backdoor dans le plugin <code>one_images_user</code> — point d'entrée initial</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-script-turc.png" alt="Origine turque du script"></div>
+            <p class="photo-caption">Commentaires en turc dans le code malveillant — origine identifiée</p>
+          </div>
+        </div>
+
+        <div class="photos-duo" style="margin-top:0.75rem;">
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-waf-malveillant.png" alt="Faux WAF mu-plugin"></div>
+            <p class="photo-caption">Faux WAF (<code>__waffance.php</code>) — redirection phishing Cloudflare</p>
+          </div>
+          <div>
+            <div class="photo-frame"><img src="../../../images/sia-sp1-file-manager.png" alt="Web shell dans le file manager"></div>
+            <p class="photo-caption">Web shell récupéré dans <code>/tmp</code> — accès filesystem complet</p>
+          </div>
+        </div>
+
+        <!-- Commande forensique -->
+        <div style="margin-top: 1.25rem;">
+          <p style="font-size:0.83rem; font-weight:600; color:var(--text); margin-bottom:0.5rem;">Commande utilisée pour identifier les fichiers compromis :</p>
+          <div class="code-block">
+            <span class="code-comment"># Trouver tous les fichiers modifiés entre le 18 et le 20 octobre 2025</span><br>
+            find . -type f -newermt <span class="code-string">"2025-10-18 00:00:00"</span> ! -newermt <span class="code-string">"2025-10-20 00:00:00"</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ REMÉDIATION ══ -->
+      <div class="content-block">
+        <div class="content-block-title green">Plan de remédiation appliqué</div>
+        <ul class="checklist">
+          <li><div class="check">✓</div><span>Suppression de tous les plugins compromis (<code>/plugins</code> et <code>/mu-plugins</code>)</span></li>
+          <li><div class="check">✓</div><span>Analyse et nettoyage des fichiers modifiés entre le 18 et le 20 octobre</span></li>
+          <li><div class="check">✓</div><span>Nettoyage de la base de données — suppression des 5 comptes admin frauduleux</span></li>
+          <li><div class="check">✓</div><span>Rotation des mots de passe : BDD, compte SIA, comptes WordPress légitimes</span></li>
+          <li><div class="check">✓</div><span>Redéploiement depuis une image propre — réinstallation des fichiers core WordPress</span></li>
+          <li><div class="check">✓</div><span>Activation des mises à jour automatiques des plugins</span></li>
+          <li><div class="check">✓</div><span>Mise en place d'une image Docker sécurisée (Chainguard WordPress)</span></li>
+          <li><div class="check">✓</div><span>Sensibilisation de l'équipe intégration sur la maintenance des plugins</span></li>
+        </ul>
+      </div>
+
+      <!-- ══ OUTILS ══ -->
       <div class="content-block">
         <div class="content-block-title">Outils & technologies utilisés</div>
-        <div class="tools-grid">
-          <span class="chip blue">[Outil / Logiciel 1]</span>
-          <span class="chip blue">[Outil / Logiciel 2]</span>
-          <span class="chip">[Techno 1]</span>
-          <span class="chip">[Techno 2]</span>
-        </div>
-      </div>
-
-      <div class="content-block">
-        <div class="content-block-title">Résultat & apports</div>
-        <p class="content-text">
-          [Quel a été le résultat final ? Qu'est-ce que cette mission t'a appris, sur le plan technique et humain ?]
-        </p>
-      </div>
-
-      <div class="content-block">
-        <div class="content-block-title">Captures & photos</div>
-        <div class="photos-grid">
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
-          <div class="photo-slot"><span class="icon">📷</span><span>Ajouter une capture</span></div>
+        <div class="chips" style="gap: 0.5rem;">
+          <span class="chip-red">WordPress Forensics</span>
+          <span class="chip-red">PHP Analysis</span>
+          <span class="chip blue">Docker / Portainer</span>
+          <span class="chip blue">Twingate VPN</span>
+          <span class="chip blue">MariaDB</span>
+          <span class="chip">Bash / Linux CLI</span>
+          <span class="chip">Git</span>
+          <span class="chip">Chainguard Images</span>
         </div>
       </div>
 
       <div class="nav-bottom">
         <a class="nav-btn" href="../stage2.html">← Retour au stage</a>
-        <a class="nav-btn" href="mission2.html">Mission 2 →</a>
+        <a class="nav-btn" href="rapport.html">Rapport de stage →</a>
       </div>
 
     </div>
