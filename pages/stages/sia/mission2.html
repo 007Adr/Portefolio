@@ -1,568 +1,326 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SP2 — Serveur de Backup Automatisé · SIA BDE INSA Lyon</title>
-  <link rel="stylesheet" href="../../../css/style.css">
-  <style>
-    .breadcrumb {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap;
-    }
-    .breadcrumb a { color: var(--light); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--accent); }
-    .breadcrumb span { color: var(--accent); font-weight: 600; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SP2 — Serveur de Backup Automatisé · SIA BDE INSA Lyon</title>
+<link rel="stylesheet" href="../../../css/style.css">
+<style>
+.breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap; }
+.breadcrumb a { color: var(--light); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { color: var(--accent); font-weight: 600; }
 
-    /* ─── HERO ─── */
-    .page-hero {
-      background: #0f1a0f; border: 1px solid #1a3a1a;
-      border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
-    }
-    .page-hero-banner {
-      height: 80px;
-      background: linear-gradient(135deg, #0f1a0f, #1a3a1a, #0f1a0f);
-      display: flex; align-items: center; justify-content: center;
-      gap: 1rem; font-size: 2rem;
-      border-bottom: 1px solid #1a3a1a;
-    }
-    .page-hero-body { padding: 1.5rem 2rem; }
-    .page-hero-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #4ade80; margin-bottom: 0.4rem;
-    }
-    .page-hero-title {
-      font-family: 'Playfair Display', serif; font-weight: 800;
-      font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.2; color: white;
-    }
-    .page-hero-sub { color: #9ca3af; font-size: 0.85rem; margin-top: 0.3rem; }
+.page-hero { background: #0f1a0f; border: 1px solid #1a3a1a; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; }
+.page-hero-banner { height: 80px; background: linear-gradient(135deg, #0f1a0f, #1a3a1a, #0f1a0f); display: flex; align-items: center; justify-content: center; gap: 1rem; font-size: 2rem; border-bottom: 1px solid #1a3a1a; }
+.page-hero-body { padding: 1.5rem 2rem; }
+.page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4ade80; margin-bottom: 0.4rem; }
+.page-hero-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.2; color: white; }
+.page-hero-sub { color: #9ca3af; font-size: 0.85rem; margin-top: 0.3rem; }
 
-    /* ─── BLOCS ─── */
-    .content-block {
-      background: white; border: 1px solid var(--border);
-      border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem;
-    }
-    .content-block-title {
-      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem;
-      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
-    }
-    .content-block-title::before {
-      content: ''; display: block; width: 3px; height: 18px;
-      background: var(--accent); border-radius: 2px; flex-shrink: 0;
-    }
-    .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
-    .content-text p + p { margin-top: 0.75rem; }
+.content-block { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; }
+.content-block-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.content-block-title::before { content: ''; display: block; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; flex-shrink: 0; }
 
-    /* ─── LISTES ─── */
-    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.5rem; }
-    .bullet-list li {
-      font-size: 0.87rem; color: var(--muted); line-height: 1.65;
-      padding-left: 1.2rem; position: relative;
-    }
-    .bullet-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
-    .bullet-list li strong { color: var(--text); }
+.content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
+.content-text p + p { margin-top: 0.75rem; }
 
-    /* ─── CODE BLOCK ─── */
-    .code-block {
-      background: #1e1e1e; border-radius: 10px;
-      padding: 1rem 1.25rem; margin-top: 0.85rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.82rem; color: #d4d4d4;
-      overflow-x: auto; line-height: 1.7;
-    }
-    .code-comment { color: #6a9955; }
-    .code-cmd { color: #4ec9b0; }
-    .code-flag { color: #9cdcfe; }
-    .code-string { color: #ce9178; }
-    .code-path { color: #dcdcaa; }
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.5rem; }
+.bullet-list li { font-size: 0.87rem; color: var(--muted); line-height: 1.65; padding-left: 1.2rem; position: relative; }
+.bullet-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+.bullet-list li strong { color: var(--text); }
 
-    /* ─── ARBRE DE FICHIERS ─── */
-    .file-tree {
-      background: #1e1e1e; border-radius: 10px;
-      padding: 1rem 1.25rem; margin-top: 0.85rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.82rem; color: #d4d4d4; line-height: 1.8;
-    }
-    .ft-dir { color: #4ec9b0; font-weight: 700; }
-    .ft-file { color: #d4d4d4; }
-    .ft-comment { color: #6a9955; }
+.code-block { background: #1e1e1e; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 0.85rem; font-family: 'Courier New', monospace; font-size: 0.82rem; color: #d4d4d4; overflow-x: auto; line-height: 1.7; }
+.code-comment { color: #6a9955; }
+.code-cmd { color: #4ec9b0; }
+.code-flag { color: #9cdcfe; }
+.code-string { color: #ce9178; }
+.code-path { color: #dcdcaa; }
 
-    /* ─── PHOTOS ─── */
-    .photos-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
-    .photos-solo { margin-top: 1.25rem; }
-    .photo-frame { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
-    .photo-frame img { width: 100%; height: auto; display: block; }
-    .photo-caption { font-size: 0.75rem; color: var(--light); text-align: center; margin-top: 0.35rem; font-style: italic; }
+.file-tree { background: #1e1e1e; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 0.85rem; font-family: 'Courier New', monospace; font-size: 0.82rem; color: #d4d4d4; line-height: 1.8; }
+.ft-dir { color: #4ec9b0; font-weight: 700; }
+.ft-file { color: #d4d4d4; }
+.ft-comment { color: #6a9955; }
 
-    /* ─── SCHEMA ARCHI ─── */
-    .arch-schema {
-      background: #f8faff; border: 1px solid var(--accent-mid);
-      border-radius: 12px; padding: 1.5rem; margin-top: 0.85rem;
-    }
-    .arch-row {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;
-    }
-    .arch-node {
-      background: white; border: 1px solid var(--border);
-      border-radius: 10px; padding: 0.6rem 1rem;
-      font-size: 0.82rem; font-weight: 600; text-align: center;
-      white-space: nowrap;
-    }
-    .arch-node.proxmox { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
-    .arch-node.vm { background: var(--accent-light); border-color: var(--accent-mid); color: var(--accent); }
-    .arch-node.disk { background: #f0fdf4; border-color: #bbf7d0; color: #16a34a; }
-    .arch-node.discord { background: #f5f3ff; border-color: #ddd6fe; color: #7c3aed; }
-    .arch-node.vps { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
-    .arch-arrow { font-size: 1.2rem; color: var(--muted); }
-    .arch-label { font-size: 0.72rem; color: var(--light); text-align: center; margin-top: 0.2rem; }
+.photos-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
+.photos-solo { margin-top: 1.25rem; }
+.photo-frame { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
+.photo-frame img { width: 100%; height: auto; display: block; }
+.photo-caption { font-size: 0.75rem; color: var(--light); text-align: center; margin-top: 0.35rem; font-style: italic; }
 
-    /* ─── NOTE ─── */
-    .note-box {
-      background: var(--accent-light); border: 1px solid var(--accent-mid);
-      border-radius: 10px; padding: 0.9rem 1.2rem; margin-top: 1rem;
-      font-size: 0.87rem; color: var(--muted); line-height: 1.7;
-    }
-    .note-box strong { color: var(--accent); }
+.arch-schema { background: #f8faff; border: 1px solid var(--accent-mid); border-radius: 12px; padding: 1.5rem; margin-top: 0.85rem; }
+.arch-row { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.arch-node { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 1rem; font-size: 0.82rem; font-weight: 600; text-align: center; white-space: nowrap; }
+.arch-node.proxmox { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+.arch-node.vm { background: var(--accent-light); border-color: var(--accent-mid); color: var(--accent); }
+.arch-node.disk { background: #f0fdf4; border-color: #bbf7d0; color: #16a34a; }
+.arch-node.discord { background: #f5f3ff; border-color: #ddd6fe; color: #7c3aed; }
+.arch-node.vps { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+.arch-arrow { font-size: 1.2rem; color: var(--muted); }
 
-    /* ─── NAV BOTTOM ─── */
-    .nav-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
-    }
-    .nav-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.83rem; font-weight: 600; color: var(--muted);
-      text-decoration: none; transition: color 0.18s;
-    }
-    .nav-btn:hover { color: var(--accent); }
+.note-box { background: var(--accent-light); border: 1px solid var(--accent-mid); border-radius: 10px; padding: 0.9rem 1.2rem; margin-top: 1rem; font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+.note-box strong { color: var(--accent); }
 
-    @media (max-width: 700px) {
-      .photos-duo { grid-template-columns: 1fr; }
-    }
-  </style>
+.nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.nav-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.83rem; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+.nav-btn:hover { color: var(--accent); }
+
+@media (max-width: 700px) { .photos-duo { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="../../../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
-    <ul class="nav-links">
-      <li><a href="../../../index.html">Accueil</a></li>
-      <li><a href="../../about.html">À propos de moi</a></li>
-      <li><a href="../../ateliers.html">Ateliers Pro</a></li>
-      <li class="nav-dropdown">
-        <a href="../../stages.html">Stages</a>
-        <div class="dropdown-menu">
-          <a href="../stage1.html">🏢 Stage 1 — Paredes Orapi</a>
-          <a href="../stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
-        </div>
-      </li>
-      <li><a href="../../veille.html">Veille techno</a></li>
-    </ul>
-  </nav>
-
-  <div class="page-content">
-    <div class="section">
-
-      <div class="breadcrumb">
-        <a href="../../stages.html">Stages</a> ›
-        <a href="../stage2.html">SIA BDE INSA</a> ›
-        <span>SP2 — Serveur de Backup Automatisé</span>
+<nav>
+  <a href="../../../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
+  <ul class="nav-links">
+    <li><a href="../../../index.html">Accueil</a></li>
+    <li><a href="../../about.html">À propos de moi</a></li>
+    <li><a href="../../ateliers.html">Ateliers Pro</a></li>
+    <li class="nav-dropdown">
+      <a href="../../stages.html">Stages</a>
+      <div class="dropdown-menu">
+        <a href="../stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+        <a href="../stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
       </div>
+    </li>
+    <li><a href="../../veille.html">Veille techno</a></li>
+  </ul>
+</nav>
 
-      <!-- ══ HERO ══ -->
-      <div class="page-hero">
-        <div class="page-hero-banner">💾 🖥️ ⚙️</div>
-        <div class="page-hero-body">
-          <div class="page-hero-label">Situation Professionnelle 2 — Stage 2 · SIA BDE INSA Lyon</div>
-          <div class="page-hero-title">SP2 SIA — Déploiement d'un Serveur de Backup Automatisé</div>
-          <div class="page-hero-sub">Proxmox · VM Ubuntu · Crontab · Rclone · Discord Webhook · GitLab</div>
-        </div>
-      </div>
-
-      <!-- ══ CONTEXTE ══ -->
-      <div class="content-block">
-        <div class="content-block-title">Contexte</div>
-        <div class="content-text">
-          <p>Dans le cadre de mon stage au SIA BDE INSA Lyon, j'ai été chargé de déployer et configurer un <strong>serveur de backup automatisé</strong> destiné à sauvegarder les bases de données critiques de l'infrastructure (PostgreSQL et MariaDB).</p>
-          <p>L'objectif était de mettre en place une solution fiable, automatique et observable : les sauvegardes devaient se déclencher la nuit via crontab, copier les données depuis le VPS de production, appliquer une politique de rétention, et notifier l'équipe en temps réel sur Discord via un webhook.</p>
-          <p>Ce projet m'a permis de travailler de bout en bout sur la création d'une VM sous Proxmox, la configuration des disques, la migration des scripts existants depuis GitLab, et l'automatisation complète du processus de backup.</p>
-        </div>
-      </div>
-
-      <!-- ══ ENVIRONNEMENT ══ -->
-      <div class="content-block">
-        <div class="content-block-title">Environnement technique</div>
-        <ul class="bullet-list">
-          <li><strong>Hyperviseur :</strong> Proxmox VE — VM ID 100 (ubuntu-backup)</li>
-          <li><strong>Système :</strong> Ubuntu Server 24.04.3 LTS</li>
-          <li><strong>Disques :</strong> 2 disques — <code>sda</code> (32G OS) · <code>sdb</code> (1.8T Backups)</li>
-          <li><strong>Outils :</strong> Rclone, fdisk, mkfs.ext4, crontab, Bash</li>
-          <li><strong>Sources de backup :</strong> VPS <code>infra.bde-insa-lyon.fr</code> — PostgreSQL + MariaDB + Duplicati</li>
-          <li><strong>Notification :</strong> Discord Webhook via variable d'environnement système</li>
-          <li><strong>Versioning :</strong> GitLab SIA — dépôt privé infra, deploy token <code>infra-mde</code></li>
-        </ul>
-
-        <!-- Schéma d'architecture -->
-        <div class="arch-schema">
-          <div class="arch-row">
-            <div>
-              <div class="arch-node vps">🖥️ VPS infra.bde-insa-lyon.fr<br><small>PostgreSQL · MariaDB · Duplicati</small></div>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div>
-              <div class="arch-node vm">💻 VM ubuntu-backup (ID 100)<br><small>Proxmox · Ubuntu 24.04</small></div>
-            </div>
-          </div>
-          <div class="arch-row">
-            <div style="text-align:center;">
-              <div class="arch-arrow" style="display:block;">↓</div>
-              <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
-                <div>
-                  <div class="arch-node disk">💾 /dev/sda (32G)<br><small>OS + Scripts</small></div>
-                </div>
-                <div>
-                  <div class="arch-node disk">💽 /dev/sdb (1.8T)<br><small>/mnt/backups</small></div>
-                </div>
-                <div>
-                  <div class="arch-node discord">💬 Discord Webhook<br><small>Notifications statut</small></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ PARTIE 1 — CONFIGURATION DISQUES ══ -->
-      <div class="content-block">
-        <div class="content-block-title">1 — Configuration des disques</div>
-        <div class="content-text">
-          <p>La première étape consiste à stopper la VM depuis le shell Proxmox, puis à identifier les disques disponibles avec <code>lsblk</code>. Cela permet de visualiser l'ensemble des disques et leurs partitions avant toute modification.</p>
-        </div>
-
-        <div class="photos-duo">
-          <div>
-            <div class="photo-frame"><img src="../../../images/sia-sp2-lsblk.png" alt="qm stop et lsblk sur Proxmox"></div>
-            <p class="photo-caption"><code>qm stop 100</code> pour stopper la VM · <code>lsblk</code> pour lister les disques</p>
-          </div>
-          <div>
-            <div class="photo-frame"><img src="../../../images/sia-sp2-qmset.png" alt="qm set 100 -scsi1 /dev/sdb"></div>
-            <p class="photo-caption"><code>qm set 100 -scsi1 /dev/sdb</code> — rattachement du disque 1.8T à la VM</p>
-          </div>
-        </div>
-
-        <div class="content-text" style="margin-top:1.25rem;">
-          <p>La commande <code>qm set 100 -scsi1 /dev/sdb</code> permet de choisir le type de disque et de le rattacher à la VM. On peut ensuite vérifier via <code>qm config 100 | grep scsi</code> que le disque est bien associé, puis redémarrer la VM.</p>
-        </div>
-
-        <div class="photos-solo">
-          <div class="photo-frame" style="max-width:600px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-qmconfig.png" alt="qm config et qm start">
-          </div>
-          <p class="photo-caption">Vérification de la config SCSI et redémarrage de la VM</p>
-        </div>
-
-        <div class="content-text" style="margin-top:1.25rem;">
-          <p>Une fois la VM redémarrée, je prépare le disque <code>/dev/sdb</code> proprement en supprimant l'ancienne partition, en créant une nouvelle et en formatant en ext4 :</p>
-        </div>
-
-        <div class="code-block">
-          <span class="code-comment"># Partitionner le disque avec fdisk</span><br>
-          <span class="code-cmd">sudo fdisk</span> <span class="code-path">/dev/sdb</span><br>
-          &nbsp;&nbsp;<span class="code-flag">d</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Supprimer partition existante</span><br>
-          &nbsp;&nbsp;<span class="code-flag">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Numéro sdb1</span><br>
-          &nbsp;&nbsp;<span class="code-flag">n</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Nouvelle partition</span><br>
-          &nbsp;&nbsp;<span class="code-comment"># Entrées (partition 1, début défaut, fin 100%)</span><br>
-          &nbsp;&nbsp;<span class="code-flag">w</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Écrire la table et quitter</span><br><br>
-          <span class="code-comment"># Formater en ext4</span><br>
-          <span class="code-cmd">sudo mkfs.ext4</span> <span class="code-flag">-F</span> <span class="code-path">/dev/sdb1</span><br><br>
-          <span class="code-comment"># Monter le disque</span><br>
-          <span class="code-cmd">sudo mount</span> <span class="code-path">/dev/sdb1 /mnt</span><br><br>
-          <span class="code-comment"># Vérifier</span><br>
-          <span class="code-cmd">sudo fdisk -l</span> <span class="code-path">/dev/sdb</span>
-        </div>
-
-        <div class="photos-solo" style="margin-top:1.25rem;">
-          <div class="photo-frame" style="max-width:700px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-lsblk-vm.png" alt="lsblk -f dans la VM ubuntu-backup">
-          </div>
-          <p class="photo-caption">Structure des disques dans la VM — <code>sdb1</code> monté sur <code>/mnt</code></p>
-        </div>
-
-        <div class="content-text" style="margin-top:1.5rem;">
-          <p>La structure des dossiers est ensuite mise en place sur les deux disques :</p>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:0.85rem;">
-          <div>
-            <p style="font-size:0.82rem; font-weight:600; color:var(--text); margin-bottom:0.4rem;">📁 Disque 1 — Scripts (<code>/</code>)</p>
-            <div class="file-tree">
-<span class="ft-dir">/scripts/</span><br>
-├── <span class="ft-file">README.md</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Documentation</span><br>
-├── <span class="ft-file">pull_backups.sh</span>&nbsp;&nbsp;<span class="ft-comment"># Script pull backups</span><br>
-├── <span class="ft-file">send_backup.sh</span>&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script envoi backups</span><br>
-└── <span class="ft-dir">logs/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Logs des scripts</span>
-            </div>
-          </div>
-          <div>
-            <p style="font-size:0.82rem; font-weight:600; color:var(--text); margin-bottom:0.4rem;">📁 Disque 2 — Backups (<code>/mnt/backups/</code>)</p>
-            <div class="file-tree">
-<span class="ft-dir">/mnt/backups/</span><br>
-├── <span class="ft-dir">logs/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Logs backups</span><br>
-├── <span class="ft-dir">mariadb-backups/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Dumps MariaDB</span><br>
-├── <span class="ft-dir">postgresql-backups/</span>&nbsp;&nbsp;<span class="ft-comment"># Dumps PostgreSQL</span><br>
-└── <span class="ft-file">pull_process.log</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Log du processus</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="photos-duo" style="margin-top:1.25rem;">
-          <div>
-            <div class="photo-frame"><img src="../../../images/sia-sp2-backups-dir.png" alt="Structure dossier backups"></div>
-            <p class="photo-caption">Contenu de <code>/mnt/backups/</code> — répertoires organisés</p>
-          </div>
-          <div>
-            <div class="photo-frame"><img src="../../../images/sia-sp2-scripts-dir.png" alt="Structure dossier scripts"></div>
-            <p class="photo-caption">Scripts dans <code>~/scripts/</code> — <code>pull_backups.sh</code> et <code>send_backup.sh</code></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ PARTIE 2 — MIGRATION DONNÉES ══ -->
-      <div class="content-block">
-        <div class="content-block-title">2 — Migration des données & configuration des scripts</div>
-        <div class="content-text">
-          <p>Pour récupérer les scripts existants, j'ai eu accès au dépôt Git privé côté infra. Cependant, le mot de passe du token d'accès n'était plus connu. Mon maître de stage a géré cette étape en regénérant un <strong>deploy token GitLab</strong> (<code>infra-mde</code>) permettant un accès en lecture seule au dépôt.</p>
-        </div>
-
-        <div class="photos-solo">
-          <div class="photo-frame" style="max-width:700px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-deploy-token.png" alt="Deploy token GitLab infra-mde">
-          </div>
-          <p class="photo-caption">Deploy token <code>infra-mde</code> — accès <code>read_repository</code> sur le dépôt infra GitLab</p>
-        </div>
-
-        <div class="content-text" style="margin-top:1.25rem;">
-          <p>Une fois les scripts récupérés, j'ai ajouté les <strong>variables d'environnement</strong> nécessaires à leur fonctionnement. Le script <code>pull_backups.sh</code> utilise notamment <code>rclone</code> pour copier les backups depuis le VPS vers le serveur local, avec une politique de rétention de 30 jours.</p>
-        </div>
-
-        <div class="photos-solo">
-          <div class="photo-frame" style="max-width:700px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-pull-script.png" alt="Script pull_backups.sh dans nano">
-          </div>
-          <p class="photo-caption">Configuration du script <code>pull_backups.sh</code> — rétention 30j, VPS source, chemins locaux</p>
-        </div>
-
-        <div class="content-text" style="margin-top:1.25rem;">
-          <p>J'ai également ajouté une variable d'environnement <code>DISCORD_WEBHOOK_URL</code> dans le fichier <code>/etc/environment</code>, exportée globalement sur le système. Cette variable est utilisée par les scripts pour envoyer des notifications Discord à chaque exécution.</p>
-        </div>
-
-        <div class="photos-solo">
-          <div class="photo-frame" style="max-width:700px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-env-discord.png" alt="Variable DISCORD_WEBHOOK_URL dans /etc/environment">
-          </div>
-          <p class="photo-caption"><code>DISCORD_WEBHOOK_URL</code> déclarée dans <code>/etc/environment</code></p>
-        </div>
-
-        <div class="note-box">
-          💬 <strong>Webhook Discord :</strong> Les webhooks sont une manière simple de poster des messages dans Discord depuis des applications externes via une URL HTTP. À chaque lancement manuel ou automatique des scripts, un message est envoyé sur le canal Discord de l'équipe SIA avec le statut détaillé de chaque copie.
-        </div>
-
-        <div class="photos-solo" style="margin-top:1.25rem;">
-          <div class="photo-frame" style="max-width:480px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-discord-notif.png" alt="Notifications Discord backup success">
-          </div>
-          <p class="photo-caption">Notifications Discord — statut détaillé PostgreSQL, MariaDB, Duplicati, Rétention</p>
-        </div>
-      </div>
-
-      <!-- ══ PARTIE 3 — AUTOMATISATION CRONTAB ══ -->
-      <div class="content-block">
-        <div class="content-block-title">3 — Automatisation avec Crontab</div>
-        <div class="content-text">
-          <p>Les backups sont automatisés grâce à <strong>crontab</strong>. La tâche planifiée exécute le script <code>pull_backups.sh</code> tous les jours à 03h44, en redirigeant les sorties (stdout et stderr) dans un fichier de log dédié.</p>
-        </div>
-
-        <div class="photos-solo">
-          <div class="photo-frame" style="max-width:700px; margin:0 auto;">
-            <img src="../../../images/sia-sp2-crontab.png" alt="Crontab - règle 44 3 * * *">
-          </div>
-          <p class="photo-caption">Règle crontab — exécution quotidienne à 03h44</p>
-        </div>
-
-        <div class="code-block" style="margin-top:1rem;">
-          <span class="code-comment"># Syntaxe : minute heure jour mois jour-semaine commande</span><br>
-          44 3 * * * <span class="code-path">/home/sia/scripts/pull_backups.sh</span> >> <span class="code-path">/mnt/backups/logs/pull_backups.log</span> 2>&1<br><br>
-          <span class="code-comment"># "44 3 * * *" = à 03h44 tous les jours</span><br>
-          <span class="code-comment"># ">> fichier.log 2>&1" = stdout + stderr dans le même fichier de log</span>
-        </div>
-
-        <div class="note-box" style="margin-top:1rem;">
-          ⏱️ <strong>Note :</strong> Bien que la tâche soit planifiée à 03h44, le script prend du temps à s'exécuter (copies réseau, vérifications). En pratique, les notifications Discord arrivent aux alentours de <strong>04h00</strong>, ce qui correspond au temps de traitement complet du Backup Puller.
-        </div>
-
-        <div class="photos-duo" style="margin-top:1.25rem;">
-          <div>
-            <div class="photo-frame"><img src="../../../images/sia-sp2-discord-notif.png" alt="Backup success Discord"></div>
-            <p class="photo-caption">Statut succès — toutes les copies réussies ✅</p>
-          </div>
-          <div>
-            <div class="photo-frame"><img src="../../../images/sia-sp2-discord-status.png" alt="Backup errors et warnings Discord"></div>
-            <p class="photo-caption">Statuts erreur / warning — Duplicati KO, reboot requis ⚠️</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ PARTIE 4 — SCRIPTS & README ══ -->
-      <div class="content-block">
-        <div class="content-block-title">4 — Scripts & Documentation</div>
-
-        <div class="content-text">
-          <p>L'ensemble des scripts est versionné sur le dépôt GitLab privé du SIA. Le projet contient 4 fichiers : les scripts de production actuels et leurs versions de sauvegarde (<code>_save</code>).</p>
-        </div>
-
-        <!-- Arborescence repo -->
-        <div class="file-tree">
-<span class="ft-dir">MdE scripts/</span><br>
-├── <span class="ft-file">pull_backups.sh</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script pull — version production</span><br>
-├── <span class="ft-file">send_backup.sh</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script send — version production</span><br>
-├── <span class="ft-file">pull_backups_save.sh</span>&nbsp;&nbsp;<span class="ft-comment"># Script pull — ancienne génération</span><br>
-├── <span class="ft-file">send_backup_save.sh</span>&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script send — ancienne génération</span><br>
-└── <span class="ft-file">README.md</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Documentation complète</span>
-        </div>
-
-        <!-- Script pull -->
-        <p style="font-size:0.88rem; font-weight:700; color:var(--text); margin: 1.5rem 0 0.5rem; display:flex; align-items:center; gap:0.5rem;">
-          <span style="background:var(--accent-light); border:1px solid var(--accent-mid); color:var(--accent); padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-family:monospace;">pull_backups.sh</span>
-          — Copie des backups depuis le VPS
-        </p>
-        <div class="content-text">
-          <p>Ce script exécute une pipeline complète qui :</p>
-        </div>
-        <ul class="bullet-list" style="margin-top:0.5rem;">
-          <li>Copie les backups <strong>PostgreSQL</strong> dans un dossier commun</li>
-          <li>Copie les backups <strong>MariaDB</strong> dans un dossier commun</li>
-          <li>Copie les backups <strong>Duplicati</strong> dans un dossier organisé par date</li>
-          <li>Applique une <strong>politique de rétention</strong> (30 jours)</li>
-          <li>Écrit les backups dans <code>/home/sia/backups</code> et génère des logs détaillés</li>
-        </ul>
-
-        <!-- Script send -->
-        <p style="font-size:0.88rem; font-weight:700; color:var(--text); margin: 1.5rem 0 0.5rem; display:flex; align-items:center; gap:0.5rem;">
-          <span style="background:var(--accent-light); border:1px solid var(--accent-mid); color:var(--accent); padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-family:monospace;">send_backup.sh</span>
-          — Envoi sélectif vers le serveur OVH
-        </p>
-        <div class="content-text">
-          <p>Ce script permet de sélectionner un backup spécifique (PostgreSQL, MariaDB ou Duplicati) à une date précise et de l'envoyer dans une dropzone sur le serveur principal OVH.</p>
-          <p>Le script attend un format de nommage strict :</p>
-        </div>
-        <div class="code-block">
-<span class="code-comment"># Backups de BDD — format attendu</span><br>
-backups/<span class="code-path">postgresql-backups</span>/nombase-<span class="code-string">YYYYMMDD</span>.sql<br>
-backups/<span class="code-path">mariadb-backups</span>/nombase-<span class="code-string">YYYYMMDD</span>.dump<br><br>
-<span class="code-comment"># Backups Duplicati — format attendu</span><br>
-backups/duplicati/<span class="code-string">YYYY-MM-DD</span>/
-        </div>
-
-        <!-- Installation SSH + Rclone -->
-        <p style="font-size:0.88rem; font-weight:700; color:var(--text); margin: 1.5rem 0 0.75rem;">⚙️ Installation & configuration</p>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">🔑 SSH</p>
-            <ul class="bullet-list">
-              <li>Générer une paire de clés <strong>ed25519</strong></li>
-              <li>Créer un user <code>backup_puller</code> sur le VPS source</li>
-              <li>Droits <strong>lecture/écriture uniquement</strong> sur les dossiers nécessaires</li>
-              <li>Ajouter la clé publique dans <code>authorized_keys</code></li>
-            </ul>
-          </div>
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">☁️ Rclone</p>
-            <ul class="bullet-list">
-              <li>Configurer via <code>rclone config</code></li>
-              <li>Créer un remote nommé <code>sia</code></li>
-              <li>Host : <code>infra.bde-insa-lyon.fr</code></li>
-              <li>Renseigner les clés SSH privée et publique</li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="note-box" style="margin-top:1rem;">
-          🛡️ <strong>Bonnes pratiques :</strong> Ne pas oublier de configurer les mises à jour automatiques (<code>unattended-upgrades</code>), un firewall (<code>ufw</code>) et <strong>Twingate VPN</strong> pour sécuriser l'accès au serveur de backup.
-        </div>
-      </div>
-
-      <!-- ══ CE QUE J'AI APPRIS ══ -->
-      <div class="content-block">
-        <div class="content-block-title">Ce que j'ai appris</div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:0.85rem;">
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Virtualisation</p>
-            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Création et configuration d'une VM sous Proxmox, gestion des disques SCSI, commandes <code>qm</code>.</p>
-          </div>
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Stockage Linux</p>
-            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Partitionnement avec <code>fdisk</code>, formatage <code>mkfs.ext4</code>, montage et organisation des volumes.</p>
-          </div>
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Automatisation</p>
-            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Mise en place de tâches cron, rédaction de scripts Bash robustes avec gestion des erreurs et logs.</p>
-          </div>
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Observabilité</p>
-            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Intégration d'un webhook Discord pour notifier l'équipe en temps réel du statut des sauvegardes.</p>
-          </div>
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">GitLab & versioning</p>
-            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Utilisation des deploy tokens GitLab, clonage de dépôts privés, gestion des variables d'environnement.</p>
-          </div>
-
-          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Sécurité</p>
-            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Principe du moindre privilège (user <code>backup_puller</code>), clés ed25519, accès VPN Twingate.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ══ OUTILS ══ -->
-      <div class="content-block">
-        <div class="content-block-title">Outils & technologies utilisés</div>
-        <div class="chips" style="gap: 0.5rem;">
-          <span class="chip blue">Proxmox VE</span>
-          <span class="chip blue">Ubuntu Server 24.04</span>
-          <span class="chip blue">Rclone</span>
-          <span class="chip blue">GitLab CI/CD</span>
-          <span class="chip">Bash / Crontab</span>
-          <span class="chip">fdisk / mkfs.ext4</span>
-          <span class="chip">Discord Webhook</span>
-          <span class="chip">MariaDB / PostgreSQL</span>
-          <span class="chip">Duplicati</span>
-          <span class="chip">SSH / Twingate VPN</span>
-        </div>
-      </div>
-
-      <div class="nav-bottom">
-        <a class="nav-btn" href="mission1.html">← SP1 — Réponse à Incident WordPress</a>
-        <a class="nav-btn" href="rapport.html">Rapport de stage →</a>
-      </div>
-
+<div class="page-content">
+  <div class="section">
+    <div class="breadcrumb">
+      <a href="../../stages.html">Stages</a> ›
+      <a href="../stage2.html">SIA BDE INSA</a> ›
+      <span>SP2 — Serveur de Backup Automatisé</span>
     </div>
+
+    <div class="page-hero">
+      <div class="page-hero-banner">💾 🖥️ ⚙️</div>
+      <div class="page-hero-body">
+        <div class="page-hero-label">Situation Professionnelle 2 — Stage 2 · SIA BDE INSA Lyon</div>
+        <div class="page-hero-title">SP2 SIA — Déploiement d'un Serveur de Backup Automatisé</div>
+        <div class="page-hero-sub">Proxmox · VM Ubuntu · Crontab · Rclone · Discord Webhook · GitLab</div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">Contexte</div>
+      <div class="content-text">
+        <p>Dans le cadre de mon stage au SIA BDE INSA Lyon, j'ai été chargé de déployer et configurer un <strong>serveur de backup automatisé</strong> destiné à sauvegarder les bases de données critiques de l'infrastructure (PostgreSQL et MariaDB).</p>
+        <p>L'objectif était de mettre en place une solution fiable, automatique et observable : les sauvegardes devaient se déclencher la nuit via crontab, copier les données depuis le VPS de production, appliquer une politique de rétention, et notifier l'équipe en temps réel sur Discord via un webhook.</p>
+        <p>Ce projet m'a permis de travailler de bout en bout sur la création d'une VM sous Proxmox, la configuration des disques, la migration des scripts existants depuis GitLab, et l'automatisation complète du processus de backup.</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">Environnement technique</div>
+      <ul class="bullet-list">
+        <li><strong>Hyperviseur :</strong> Proxmox VE — VM ID 100 (ubuntu-backup)</li>
+        <li><strong>Système :</strong> Ubuntu Server 24.04.3 LTS</li>
+        <li><strong>Disques :</strong> 2 disques — <code>sda</code> (32G OS) · <code>sdb</code> (1.8T Backups)</li>
+        <li><strong>Outils :</strong> Rclone, fdisk, mkfs.ext4, crontab, Bash</li>
+        <li><strong>Sources de backup :</strong> VPS <code>infra.bde-insa-lyon.fr</code> — PostgreSQL + MariaDB + Duplicati</li>
+        <li><strong>Notification :</strong> Discord Webhook via variable d'environnement système</li>
+        <li><strong>Versioning :</strong> GitLab SIA — dépôt privé infra, deploy token <code>infra-mde</code></li>
+      </ul>
+      <div class="arch-schema">
+        <div class="arch-row">
+          <div><div class="arch-node vps">🖥️ VPS infra.bde-insa-lyon.fr<br><small>PostgreSQL · MariaDB · Duplicati</small></div></div>
+          <div class="arch-arrow">→</div>
+          <div><div class="arch-node vm">💻 VM ubuntu-backup (ID 100)<br><small>Proxmox · Ubuntu 24.04</small></div></div>
+        </div>
+        <div class="arch-row">
+          <div style="text-align:center;">
+            <div class="arch-arrow" style="display:block;">↓</div>
+            <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+              <div><div class="arch-node disk">💾 /dev/sda (32G)<br><small>OS + Scripts</small></div></div>
+              <div><div class="arch-node disk">💽 /dev/sdb (1.8T)<br><small>/mnt/backups</small></div></div>
+              <div><div class="arch-node discord">💬 Discord Webhook<br><small>Notifications statut</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">1 — Configuration des disques</div>
+      <div class="content-text">
+        <p>La première étape consiste à stopper la VM depuis le shell Proxmox, puis à identifier les disques disponibles avec <code>lsblk</code>.</p>
+      </div>
+      <div class="photos-duo">
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-lsblk.png" alt="qm stop et lsblk sur Proxmox"></div>
+          <p class="photo-caption"><code>qm stop 100</code> · <code>lsblk</code> pour lister les disques</p>
+        </div>
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-qmset.png" alt="qm set 100 -scsi1 /dev/sdb"></div>
+          <p class="photo-caption"><code>qm set 100 -scsi1 /dev/sdb</code> — rattachement du disque 1.8T</p>
+        </div>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:600px; margin:0 auto;">
+          <img src="../../../images/sia-sp2-qmconfig.png" alt="qm config et qm start">
+        </div>
+        <p class="photo-caption">Vérification de la config SCSI et redémarrage de la VM</p>
+      </div>
+      <div class="content-text" style="margin-top:1.25rem;">
+        <p>Une fois la VM redémarrée, je prépare le disque <code>/dev/sdb</code> avec fdisk puis formatage en ext4 :</p>
+      </div>
+      <div class="code-block">
+<span class="code-comment"># Partitionner le disque avec fdisk</span><br>
+<span class="code-cmd">sudo fdisk</span> <span class="code-path">/dev/sdb</span><br>
+&nbsp;&nbsp;<span class="code-flag">d</span> &nbsp;<span class="code-comment"># Supprimer partition existante</span><br>
+&nbsp;&nbsp;<span class="code-flag">n</span> &nbsp;<span class="code-comment"># Nouvelle partition (défauts)</span><br>
+&nbsp;&nbsp;<span class="code-flag">w</span> &nbsp;<span class="code-comment"># Écrire et quitter</span><br><br>
+<span class="code-cmd">sudo mkfs.ext4</span> <span class="code-flag">-F</span> <span class="code-path">/dev/sdb1</span><br>
+<span class="code-cmd">sudo mount</span> <span class="code-path">/dev/sdb1 /mnt</span>
+      </div>
+      <div class="photos-solo" style="margin-top:1.25rem;">
+        <div class="photo-frame" style="max-width:700px; margin:0 auto;">
+          <img src="../../../images/sia-sp2-lsblk-vm.png" alt="lsblk -f dans la VM ubuntu-backup">
+        </div>
+        <p class="photo-caption">Structure des disques dans la VM — <code>sdb1</code> monté sur <code>/mnt</code></p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+        <div>
+          <p style="font-size:0.82rem; font-weight:600; color:var(--text); margin-bottom:0.4rem;">📁 Disque 1 — Scripts</p>
+          <div class="file-tree">
+<span class="ft-dir">/scripts/</span><br>
+├── <span class="ft-file">pull_backups.sh</span><br>
+├── <span class="ft-file">send_backup.sh</span><br>
+└── <span class="ft-dir">logs/</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.82rem; font-weight:600; color:var(--text); margin-bottom:0.4rem;">📁 Disque 2 — Backups</p>
+          <div class="file-tree">
+<span class="ft-dir">/mnt/backups/</span><br>
+├── <span class="ft-dir">mariadb-backups/</span><br>
+├── <span class="ft-dir">postgresql-backups/</span><br>
+└── <span class="ft-dir">logs/</span>
+          </div>
+        </div>
+      </div>
+      <div class="photos-duo" style="margin-top:1.25rem;">
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-backups-dir.png" alt="Structure dossier backups"></div>
+          <p class="photo-caption">Contenu de <code>/mnt/backups/</code></p>
+        </div>
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-scripts-dir.png" alt="Structure dossier scripts"></div>
+          <p class="photo-caption">Scripts dans <code>~/scripts/</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">2 — Migration des données & configuration des scripts</div>
+      <div class="content-text">
+        <p>Mon maître de stage a généré un <strong>deploy token GitLab</strong> (<code>infra-mde</code>) permettant un accès en lecture seule au dépôt pour récupérer les scripts existants.</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:700px; margin:0 auto;">
+          <img src="../../../images/sia-sp2-deploy-token.png" alt="Deploy token GitLab infra-mde">
+        </div>
+        <p class="photo-caption">Deploy token <code>infra-mde</code> — accès <code>read_repository</code></p>
+      </div>
+      <div class="content-text" style="margin-top:1.25rem;">
+        <p>Le script <code>pull_backups.sh</code> utilise <code>rclone</code> pour copier les backups depuis le VPS avec une rétention de 30 jours. J'ai également ajouté la variable <code>DISCORD_WEBHOOK_URL</code> dans <code>/etc/environment</code>.</p>
+      </div>
+      <div class="photos-duo" style="margin-top:0.75rem;">
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-pull-script.png" alt="Script pull_backups.sh dans nano"></div>
+          <p class="photo-caption">Configuration du script <code>pull_backups.sh</code></p>
+        </div>
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-env-discord.png" alt="Variable DISCORD_WEBHOOK_URL dans /etc/environment"></div>
+          <p class="photo-caption"><code>DISCORD_WEBHOOK_URL</code> dans <code>/etc/environment</code></p>
+        </div>
+      </div>
+      <div class="photos-solo" style="margin-top:0.75rem;">
+        <div class="photo-frame" style="max-width:480px; margin:0 auto;">
+          <img src="../../../images/sia-sp2-discord-notif.png" alt="Notifications Discord backup success">
+        </div>
+        <p class="photo-caption">Notifications Discord — statut détaillé PostgreSQL, MariaDB, Duplicati</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">3 — Automatisation avec Crontab</div>
+      <div class="content-text">
+        <p>Les backups sont automatisés via <strong>crontab</strong> : exécution tous les jours à 03h44.</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:700px; margin:0 auto;">
+          <img src="../../../images/sia-sp2-crontab.png" alt="Crontab - règle 44 3 * * *">
+        </div>
+        <p class="photo-caption">Règle crontab — exécution quotidienne à 03h44</p>
+      </div>
+      <div class="code-block" style="margin-top:1rem;">
+<span class="code-comment"># minute heure jour mois jour-semaine commande</span><br>
+44 3 * * * <span class="code-path">/home/sia/scripts/pull_backups.sh</span> >> <span class="code-path">/mnt/backups/logs/pull_backups.log</span> 2>&amp;1
+      </div>
+      <div class="photos-duo" style="margin-top:1.25rem;">
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-discord-notif.png" alt="Backup success Discord"></div>
+          <p class="photo-caption">Statut succès — toutes les copies réussies ✅</p>
+        </div>
+        <div>
+          <div class="photo-frame"><img src="../../../images/sia-sp2-discord-status.png" alt="Backup errors et warnings Discord"></div>
+          <p class="photo-caption">Statuts erreur / warning ⚠️</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">Ce que j'ai appris</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:0.85rem;">
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Virtualisation</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Création et configuration d'une VM sous Proxmox, gestion des disques SCSI, commandes <code>qm</code>.</p>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Stockage Linux</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Partitionnement avec <code>fdisk</code>, formatage <code>mkfs.ext4</code>, montage et organisation des volumes.</p>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Automatisation</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Mise en place de tâches cron, scripts Bash robustes avec gestion des erreurs et logs.</p>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Observabilité</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Intégration d'un webhook Discord pour notifier l'équipe en temps réel du statut des sauvegardes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-title">Outils & technologies utilisés</div>
+      <div class="chips" style="gap: 0.5rem;">
+        <span class="chip blue">Proxmox VE</span>
+        <span class="chip blue">Ubuntu Server 24.04</span>
+        <span class="chip blue">Rclone</span>
+        <span class="chip blue">GitLab CI/CD</span>
+        <span class="chip">Bash / Crontab</span>
+        <span class="chip">fdisk / mkfs.ext4</span>
+        <span class="chip">Discord Webhook</span>
+        <span class="chip">MariaDB / PostgreSQL</span>
+        <span class="chip">SSH / Twingate VPN</span>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <a class="nav-btn" href="mission1.html">← SP1 — Infrastructure Proxmox & Twingate</a>
+      <a class="nav-btn" href="mission3.html">SP3 — Réponse à Incident WordPress →</a>
+    </div>
+
   </div>
+</div>
 
-  <footer>
-    Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; BTS SIO SISR &nbsp;·&nbsp; La Martinière Duchère &nbsp;·&nbsp; 2025
-  </footer>
-
-  <script src="../../../js/nav.js"></script>
+<footer>
+  Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; BTS SIO SISR &nbsp;·&nbsp; La Martinière Duchère &nbsp;·&nbsp; 2025
+</footer>
+<script src="../../../js/nav.js"></script>
 </body>
 </html>
