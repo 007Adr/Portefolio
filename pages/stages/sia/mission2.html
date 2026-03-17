@@ -413,6 +413,127 @@
         </div>
       </div>
 
+      <!-- ══ PARTIE 4 — SCRIPTS & README ══ -->
+      <div class="content-block">
+        <div class="content-block-title">4 — Scripts & Documentation</div>
+
+        <div class="content-text">
+          <p>L'ensemble des scripts est versionné sur le dépôt GitLab privé du SIA. Le projet contient 4 fichiers : les scripts de production actuels et leurs versions de sauvegarde (<code>_save</code>).</p>
+        </div>
+
+        <!-- Arborescence repo -->
+        <div class="file-tree">
+<span class="ft-dir">MdE scripts/</span><br>
+├── <span class="ft-file">pull_backups.sh</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script pull — version production</span><br>
+├── <span class="ft-file">send_backup.sh</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script send — version production</span><br>
+├── <span class="ft-file">pull_backups_save.sh</span>&nbsp;&nbsp;<span class="ft-comment"># Script pull — ancienne génération</span><br>
+├── <span class="ft-file">send_backup_save.sh</span>&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Script send — ancienne génération</span><br>
+└── <span class="ft-file">README.md</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># Documentation complète</span>
+        </div>
+
+        <!-- Script pull -->
+        <p style="font-size:0.88rem; font-weight:700; color:var(--text); margin: 1.5rem 0 0.5rem; display:flex; align-items:center; gap:0.5rem;">
+          <span style="background:var(--accent-light); border:1px solid var(--accent-mid); color:var(--accent); padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-family:monospace;">pull_backups.sh</span>
+          — Copie des backups depuis le VPS
+        </p>
+        <div class="content-text">
+          <p>Ce script exécute une pipeline complète qui :</p>
+        </div>
+        <ul class="bullet-list" style="margin-top:0.5rem;">
+          <li>Copie les backups <strong>PostgreSQL</strong> dans un dossier commun</li>
+          <li>Copie les backups <strong>MariaDB</strong> dans un dossier commun</li>
+          <li>Copie les backups <strong>Duplicati</strong> dans un dossier organisé par date</li>
+          <li>Applique une <strong>politique de rétention</strong> (30 jours)</li>
+          <li>Écrit les backups dans <code>/home/sia/backups</code> et génère des logs détaillés</li>
+        </ul>
+
+        <!-- Script send -->
+        <p style="font-size:0.88rem; font-weight:700; color:var(--text); margin: 1.5rem 0 0.5rem; display:flex; align-items:center; gap:0.5rem;">
+          <span style="background:var(--accent-light); border:1px solid var(--accent-mid); color:var(--accent); padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-family:monospace;">send_backup.sh</span>
+          — Envoi sélectif vers le serveur OVH
+        </p>
+        <div class="content-text">
+          <p>Ce script permet de sélectionner un backup spécifique (PostgreSQL, MariaDB ou Duplicati) à une date précise et de l'envoyer dans une dropzone sur le serveur principal OVH.</p>
+          <p>Le script attend un format de nommage strict :</p>
+        </div>
+        <div class="code-block">
+<span class="code-comment"># Backups de BDD — format attendu</span><br>
+backups/<span class="code-path">postgresql-backups</span>/nombase-<span class="code-string">YYYYMMDD</span>.sql<br>
+backups/<span class="code-path">mariadb-backups</span>/nombase-<span class="code-string">YYYYMMDD</span>.dump<br><br>
+<span class="code-comment"># Backups Duplicati — format attendu</span><br>
+backups/duplicati/<span class="code-string">YYYY-MM-DD</span>/
+        </div>
+
+        <!-- Installation SSH + Rclone -->
+        <p style="font-size:0.88rem; font-weight:700; color:var(--text); margin: 1.5rem 0 0.75rem;">⚙️ Installation & configuration</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">🔑 SSH</p>
+            <ul class="bullet-list">
+              <li>Générer une paire de clés <strong>ed25519</strong></li>
+              <li>Créer un user <code>backup_puller</code> sur le VPS source</li>
+              <li>Droits <strong>lecture/écriture uniquement</strong> sur les dossiers nécessaires</li>
+              <li>Ajouter la clé publique dans <code>authorized_keys</code></li>
+            </ul>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">☁️ Rclone</p>
+            <ul class="bullet-list">
+              <li>Configurer via <code>rclone config</code></li>
+              <li>Créer un remote nommé <code>sia</code></li>
+              <li>Host : <code>infra.bde-insa-lyon.fr</code></li>
+              <li>Renseigner les clés SSH privée et publique</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="note-box" style="margin-top:1rem;">
+          🛡️ <strong>Bonnes pratiques :</strong> Ne pas oublier de configurer les mises à jour automatiques (<code>unattended-upgrades</code>), un firewall (<code>ufw</code>) et <strong>Twingate VPN</strong> pour sécuriser l'accès au serveur de backup.
+        </div>
+      </div>
+
+      <!-- ══ CE QUE J'AI APPRIS ══ -->
+      <div class="content-block">
+        <div class="content-block-title">Ce que j'ai appris</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:0.85rem;">
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Virtualisation</p>
+            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Création et configuration d'une VM sous Proxmox, gestion des disques SCSI, commandes <code>qm</code>.</p>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Stockage Linux</p>
+            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Partitionnement avec <code>fdisk</code>, formatage <code>mkfs.ext4</code>, montage et organisation des volumes.</p>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Automatisation</p>
+            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Mise en place de tâches cron, rédaction de scripts Bash robustes avec gestion des erreurs et logs.</p>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Observabilité</p>
+            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Intégration d'un webhook Discord pour notifier l'équipe en temps réel du statut des sauvegardes.</p>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">GitLab & versioning</p>
+            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Utilisation des deploy tokens GitLab, clonage de dépôts privés, gestion des variables d'environnement.</p>
+          </div>
+
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
+            <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Sécurité</p>
+            <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Principe du moindre privilège (user <code>backup_puller</code>), clés ed25519, accès VPN Twingate.</p>
+          </div>
+
+        </div>
+      </div>
+
       <!-- ══ OUTILS ══ -->
       <div class="content-block">
         <div class="content-block-title">Outils & technologies utilisés</div>
