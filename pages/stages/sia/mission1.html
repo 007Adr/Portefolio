@@ -10,39 +10,34 @@
 .breadcrumb a { color: var(--light); text-decoration: none; }
 .breadcrumb a:hover { color: var(--accent); }
 .breadcrumb span { color: var(--accent); font-weight: 600; }
-
 .page-hero { background: #0d1520; border: 1px solid #1a2e4a; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; }
 .page-hero-banner { height: 80px; background: linear-gradient(135deg, #0d1520, #0e2340, #0d1520); display: flex; align-items: center; justify-content: center; gap: 1rem; font-size: 2rem; border-bottom: 1px solid #1a2e4a; }
 .page-hero-body { padding: 1.5rem 2rem; }
 .page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 0.4rem; }
 .page-hero-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.2; color: white; }
 .page-hero-sub { color: #9ca3af; font-size: 0.85rem; margin-top: 0.3rem; }
-
 .content-block { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; }
 .content-block-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
 .content-block-title::before { content: ''; display: block; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; flex-shrink: 0; }
 .content-block-title.orange::before { background: #f97316; }
 .content-block-title.blue::before { background: #3b82f6; }
-
+.content-block-title.green::before { background: #16a34a; }
 .content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
 .content-text p + p { margin-top: 0.75rem; }
-
 .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.5rem; }
 .bullet-list li { font-size: 0.87rem; color: var(--muted); line-height: 1.65; padding-left: 1.2rem; position: relative; }
 .bullet-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
 .bullet-list li strong { color: var(--text); }
-
 .code-block { background: #1e1e1e; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 0.85rem; font-family: 'Courier New', monospace; font-size: 0.82rem; color: #d4d4d4; overflow-x: auto; line-height: 1.7; }
 .code-cmd { color: #4ec9b0; }
 .code-flag { color: #9cdcfe; }
 .code-string { color: #ce9178; }
-
+.code-comment { color: #6a9955; }
 .photos-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
 .photos-solo { margin-top: 1.25rem; }
 .photo-frame { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
 .photo-frame img { width: 100%; height: auto; display: block; }
 .photo-caption { font-size: 0.75rem; color: var(--light); text-align: center; margin-top: 0.35rem; font-style: italic; }
-
 .arch-schema { background: #f8faff; border: 1px solid var(--accent-mid); border-radius: 12px; padding: 1.5rem; margin-top: 0.85rem; }
 .arch-row { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
 .arch-node { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 1rem; font-size: 0.82rem; font-weight: 600; text-align: center; }
@@ -52,29 +47,26 @@
 .arch-node.twingate { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
 .arch-node.user { background: #f5f3ff; border-color: #ddd6fe; color: #7c3aed; }
 .arch-arrow { font-size: 1.2rem; color: var(--muted); }
-
 .note-box { background: var(--accent-light); border: 1px solid var(--accent-mid); border-radius: 10px; padding: 0.9rem 1.2rem; margin-top: 1rem; font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
 .note-box strong { color: var(--accent); }
-
+.note-box.green { background: #f0fdf4; border-color: #bbf7d0; }
+.note-box.green strong { color: #16a34a; }
 .etape-title { font-size: 0.88rem; font-weight: 700; color: var(--text); margin: 1.5rem 0 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
 .badge-blue { background: var(--accent-light); border: 1px solid var(--accent-mid); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; }
 .badge-green { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; }
-
+.badge-orange { background: #fff7ed; border: 1px solid #fed7aa; color: #c2410c; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; }
 .info-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem; }
 .info-table th { background: var(--surface); text-align: left; padding: 0.6rem 0.85rem; font-weight: 600; color: var(--text); border-bottom: 2px solid var(--border); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .info-table td { padding: 0.55rem 0.85rem; color: var(--muted); line-height: 1.5; border-bottom: 1px solid var(--border); }
 .info-table tr:last-child td { border-bottom: none; }
 .info-table td code { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 0.1rem 0.35rem; font-size: 0.78rem; color: var(--text); }
-
 .nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 .nav-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.83rem; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.18s; }
 .nav-btn:hover { color: var(--accent); }
-
 @media (max-width: 700px) { .photos-duo { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
 <nav>
   <a href="../../../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
   <ul class="nav-links">
@@ -94,7 +86,6 @@
 
 <div class="page-content">
   <div class="section">
-
     <div class="breadcrumb">
       <a href="../../stages.html">Stages</a> ›
       <a href="../stage2.html">SIA BDE INSA</a> ›
@@ -110,24 +101,24 @@
       </div>
     </div>
 
+    <!-- CONTEXTE -->
     <div class="content-block">
       <div class="content-block-title">Contexte</div>
       <div class="content-text">
         <p>Avant de déployer les différentes solutions techniques du stage (serveur de backup, VM de production…), il a fallu poser des <strong>fondations solides</strong> : un hyperviseur Proxmox correctement configuré, avec une gestion des accès adaptée à l'équipe, et une connectivité sécurisée via <strong>Twingate</strong>.</p>
-        <p>Cette situation professionnelle couvre deux volets complémentaires : d'abord la <strong>configuration de Proxmox VE</strong> (groupes, utilisateurs, permissions), ensuite le <strong>déploiement du connecteur Twingate</strong> dans un conteneur LXC pour sécuriser l'accès à distance à l'ensemble de l'infrastructure du SIA.</p>
-        <p>L'ensemble a été réalisé de manière autonome, en m'appuyant sur la documentation officielle Proxmox et les scripts community-scripts de la communauté.</p>
+        <p>Cette situation professionnelle couvre deux volets complémentaires : d'abord la <strong>configuration de Proxmox VE</strong> (groupes, utilisateurs, permissions, réseau), ensuite le <strong>déploiement du connecteur Twingate</strong> et la <strong>création complète de la VM Ubuntu-Backup</strong>.</p>
       </div>
     </div>
 
+    <!-- ENVIRONNEMENT -->
     <div class="content-block">
       <div class="content-block-title">Environnement technique</div>
       <ul class="bullet-list">
         <li><strong>Hyperviseur :</strong> Proxmox VE 9.1.1 — nœud <code>bde608-s07</code></li>
         <li><strong>Kernel :</strong> Linux 6.17.2-1-pve — x86_64</li>
-        <li><strong>Stockage :</strong> <code>local</code> (82.1 Go) · <code>local-lvm</code> (792.8 Go)</li>
-        <li><strong>Réseau :</strong> Bridge <code>vmbr1</code> — sous-réseau <code>10.129.234.0/24</code></li>
-        <li><strong>Connecteur Twingate :</strong> LXC ID 101 · Ubuntu 24.04 · Unprivileged · 1 vCPU · 1 Go RAM · 3 Go disque</li>
-        <li><strong>Réseau Twingate :</strong> <code>infrabdeinsalyon</code></li>
+        <li><strong>Réseau :</strong> <code>vmbr0</code> WAN (134.214.129.50/26) · <code>vmbr1</code> LAN interne (10.129.234.1/24) avec NAT</li>
+        <li><strong>Connecteur Twingate :</strong> LXC ID 101 · Ubuntu 24.04 · Unprivileged · 1 vCPU · 1 Go RAM</li>
+        <li><strong>VM Backup :</strong> VM ID 100 · Ubuntu 24.04 · 2 vCPUs · 32 Go OS + 1.8T backups</li>
       </ul>
       <div class="arch-schema">
         <div class="arch-row">
@@ -151,78 +142,60 @@
 
     <!-- PARTIE 1 — PROXMOX -->
     <div class="content-block">
-      <div class="content-block-title blue">Partie 1 — Configuration de Proxmox VE</div>
+      <div class="content-block-title blue">Partie 1 — Configuration des accès Proxmox VE</div>
       <div class="content-text">
-        <p>La première étape consiste à structurer les accès à Proxmox pour l'équipe du SIA. Plutôt que d'utiliser uniquement le compte <code>root</code>, la bonne pratique est de créer un <strong>groupe dédié</strong> avec les permissions appropriées, puis d'y rattacher les utilisateurs individuels.</p>
+        <p>La bonne pratique est de créer un <strong>groupe dédié</strong> avec les permissions appropriées plutôt que d'utiliser uniquement le compte <code>root</code>.</p>
       </div>
 
       <p class="etape-title"><span class="badge-blue">Étape 1</span> Création du groupe <code>Admins-SIA</code></p>
-      <div class="content-text">
-        <p>Dans <strong>Datacenter → Permissions → Groups</strong>, je crée le groupe <code>Admins-SIA</code> qui regroupera tous les membres de l'équipe disposant d'un accès administrateur à l'infrastructure.</p>
-      </div>
       <div class="photos-duo">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-proxmox-groups.png" alt="Menu Groups dans Proxmox Datacenter"></div>
-          <p class="photo-caption">Navigation vers <strong>Datacenter → Permissions → Groups</strong></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-proxmox-groups.png" alt="Menu Groups Proxmox"></div>
+          <p class="photo-caption">Datacenter → Permissions → <strong>Groups</strong></p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-create-group.png" alt="Formulaire Create Group — Admins-SIA"></div>
-          <p class="photo-caption">Création du groupe <code>Admins-SIA</code> via le formulaire</p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-create-group.png" alt="Create Group Admins-SIA"></div>
+          <p class="photo-caption">Création du groupe <code>Admins-SIA</code></p>
         </div>
       </div>
       <div class="photos-solo">
         <div class="photo-frame" style="max-width:640px; margin:0 auto;">
-          <img src="../../../images/sia-sp3-group-created.png" alt="Groupe Admins-SIA créé dans la liste">
+          <img src="../../../images/sia-sp3-group-created.png" alt="Admins-SIA créé">
         </div>
-        <p class="photo-caption">Groupe <code>Admins-SIA</code> visible dans la liste — création confirmée</p>
+        <p class="photo-caption">Groupe <code>Admins-SIA</code> confirmé dans la liste</p>
       </div>
 
       <p class="etape-title"><span class="badge-blue">Étape 2</span> Création des utilisateurs</p>
-      <div class="content-text">
-        <p>Dans <strong>Datacenter → Permissions → Users</strong>, je crée les comptes pour chaque membre de l'équipe. Chaque utilisateur est rattaché directement au groupe <code>Admins-SIA</code> lors de sa création, avec le realm <strong>Proxmox VE authentication</strong>.</p>
-      </div>
       <div class="photos-duo">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-users-menu.png" alt="Menu Users dans Proxmox — seul root existe"></div>
-          <p class="photo-caption">Section <strong>Users</strong> — seul <code>root@pam</code> existe initialement</p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-users-menu.png" alt="Menu Users — root seul"></div>
+          <p class="photo-caption">Seul <code>root@pam</code> existe initialement</p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-add-user.png" alt="Formulaire Add User — cgre rattaché à Admins-SIA"></div>
-          <p class="photo-caption">Création de l'utilisateur <code>cgre</code> — rattaché au groupe <code>Admins-SIA</code></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-add-user.png" alt="Add User cgre Admins-SIA"></div>
+          <p class="photo-caption"><code>cgre</code> rattaché au groupe <code>Admins-SIA</code></p>
         </div>
       </div>
       <div class="photos-solo">
         <div class="photo-frame" style="max-width:780px; margin:0 auto;">
-          <img src="../../../images/sia-sp3-users-list.png" alt="Liste complète des utilisateurs Proxmox">
+          <img src="../../../images/sia-sp3-users-list.png" alt="Liste users abla cgre ykta">
         </div>
-        <p class="photo-caption">Liste finale — <code>abla</code>, <code>cgre</code>, <code>ykta</code> tous dans le groupe <code>Admins-SIA</code></p>
+        <p class="photo-caption"><code>abla</code>, <code>cgre</code>, <code>ykta</code> — tous dans <code>Admins-SIA</code></p>
       </div>
-      <table class="info-table" style="margin-top:1.25rem;">
-        <thead><tr><th>Username</th><th>Realm</th><th>Groupe</th><th>Enabled</th></tr></thead>
-        <tbody>
-          <tr><td><code>abla</code></td><td>pve</td><td>Admins-SIA</td><td>✅ Yes</td></tr>
-          <tr><td><code>cgre</code></td><td>pve</td><td>Admins-SIA</td><td>✅ Yes</td></tr>
-          <tr><td><code>ykta</code></td><td>pve</td><td>Admins-SIA</td><td>✅ Yes</td></tr>
-          <tr><td><code>root</code></td><td>pam</td><td>—</td><td>✅ Yes</td></tr>
-        </tbody>
-      </table>
 
-      <p class="etape-title"><span class="badge-blue">Étape 3</span> Attribution des permissions au groupe</p>
-      <div class="content-text">
-        <p>J'assigne le rôle <strong>Administrator</strong> directement au groupe <code>Admins-SIA</code> sur le chemin <code>/</code> (racine). L'option <strong>Propagate</strong> est activée pour que la permission s'applique automatiquement à tous les nœuds, VMs et conteneurs.</p>
-      </div>
+      <p class="etape-title"><span class="badge-blue">Étape 3</span> Attribution des permissions Administrator sur <code>/</code></p>
       <div class="photos-duo">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-permissions-menu.png" alt="Menu Add Group Permission dans Proxmox"></div>
-          <p class="photo-caption"><strong>Permissions → Add → Group Permission</strong></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-permissions-menu.png" alt="Menu Group Permission"></div>
+          <p class="photo-caption">Permissions → Add → <strong>Group Permission</strong></p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-group-permission.png" alt="Formulaire Group Permission — Admins-SIA Administrator sur /"></div>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-group-permission.png" alt="Administrator sur / Propagate"></div>
           <p class="photo-caption">Rôle <code>Administrator</code> sur <code>/</code> — Propagate activé</p>
         </div>
       </div>
       <div class="note-box">
-        🔐 <strong>Bonne pratique :</strong> En assignant les droits au groupe plutôt qu'aux utilisateurs individuels, l'ajout d'un nouveau membre ne nécessite que de l'ajouter au groupe <code>Admins-SIA</code> — sans reconfigurer les permissions.
+        🔐 <strong>Bonne pratique :</strong> L'ajout d'un nouveau membre à l'équipe ne nécessite que de l'ajouter au groupe <code>Admins-SIA</code> — les permissions suivent automatiquement.
       </div>
     </div>
 
@@ -230,137 +203,230 @@
     <div class="content-block">
       <div class="content-block-title blue">Partie 2 — Déploiement du Connecteur Twingate</div>
       <div class="content-text">
-        <p>Twingate est une solution de <strong>Zero Trust Network Access (ZTNA)</strong> qui remplace les VPN traditionnels. Au lieu d'exposer l'ensemble du réseau, Twingate ne permet l'accès qu'aux ressources spécifiquement autorisées, via un connecteur déployé dans l'infrastructure.</p>
-        <p>J'utilise les <strong>community-scripts</strong> de la communauté Proxmox, qui fournissent un script d'installation automatisé pour créer un conteneur LXC Twingate en quelques minutes.</p>
+        <p>Twingate est une solution <strong>Zero Trust Network Access (ZTNA)</strong> — accès granulaire aux ressources sans exposer le réseau entier, via un connecteur LXC.</p>
       </div>
 
-      <p class="etape-title"><span class="badge-green">Étape 1</span> Lancement du script d'installation</p>
-      <div class="content-text">
-        <p>Depuis le shell du nœud Proxmox (<code>bde608-s07</code>), j'exécute la commande fournie par community-scripts :</p>
-      </div>
+      <p class="etape-title"><span class="badge-green">Étape 1</span> Script community-scripts</p>
       <div class="code-block">
 <span class="code-cmd">bash</span> <span class="code-flag">-c</span> <span class="code-string">"$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/twingate-connector.sh)"</span>
       </div>
       <div class="photos-solo">
         <div class="photo-frame" style="max-width:780px; margin:0 auto;">
-          <img src="../../../images/sia-sp3-twingate-shell.png" alt="Commande bash community-scripts dans le shell Proxmox">
+          <img src="../../../images/sia-sp3-twingate-shell.png" alt="Shell Proxmox community-scripts">
         </div>
-        <p class="photo-caption">Exécution de la commande depuis le shell Proxmox — nœud <code>bde608-s07</code></p>
+        <p class="photo-caption">Exécution depuis le shell du nœud <code>bde608-s07</code></p>
       </div>
 
-      <p class="etape-title"><span class="badge-green">Étape 2</span> Configuration avancée du conteneur</p>
-      <div class="content-text">
-        <p>Je choisis l'option <strong>Advanced Install</strong> pour contrôler précisément les paramètres du conteneur LXC.</p>
-      </div>
+      <p class="etape-title"><span class="badge-green">Étape 2</span> Configuration avancée du LXC</p>
       <div class="photos-duo">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-twingate-advanced.png" alt="Menu community-scripts — Advanced Install sélectionné"></div>
-          <p class="photo-caption">Sélection de <strong>Advanced Install</strong></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-twingate-advanced.png" alt="Advanced Install"></div>
+          <p class="photo-caption"><strong>Advanced Install</strong> sélectionné</p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-container-type.png" alt="Choix du type de container — Unprivileged"></div>
-          <p class="photo-caption">Type : <strong>Unprivileged</strong> — recommandé pour la sécurité</p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-container-type.png" alt="Unprivileged container"></div>
+          <p class="photo-caption">Type : <strong>Unprivileged</strong> — recommandé</p>
         </div>
       </div>
       <div class="photos-duo" style="margin-top:0.75rem;">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-root-password.png" alt="Configuration du mot de passe root du LXC"></div>
-          <p class="photo-caption">Définition du mot de passe root pour l'accès SSH</p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-root-password.png" alt="Root password LXC"></div>
+          <p class="photo-caption">Mot de passe root pour l'accès SSH</p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-container-id.png" alt="Container ID réglé sur 101"></div>
-          <p class="photo-caption">ID du conteneur : <strong>101</strong> — hostname : <code>twingate-connector</code></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-container-id.png" alt="Container ID 101"></div>
+          <p class="photo-caption">ID : <strong>101</strong> · hostname : <code>twingate-connector</code></p>
         </div>
       </div>
       <div class="photos-solo" style="margin-top:0.75rem;">
         <div class="photo-frame" style="max-width:780px; margin:0 auto;">
-          <img src="../../../images/sia-sp3-install-summary.png" alt="Résumé complet de la configuration avancée du LXC Twingate">
+          <img src="../../../images/sia-sp3-install-summary.png" alt="Résumé config LXC">
         </div>
-        <p class="photo-caption">Récapitulatif de la configuration — validation avant création du conteneur</p>
+        <p class="photo-caption">Récapitulatif complet — validation avant création</p>
       </div>
-      <table class="info-table" style="margin-top:1.25rem;">
+      <table class="info-table" style="margin-top:1rem;">
         <thead><tr><th>Paramètre</th><th>Valeur</th></tr></thead>
         <tbody>
-          <tr><td>PVE Version</td><td>9.1.1 (Kernel 6.17.2-1-pve)</td></tr>
           <tr><td>OS / Version</td><td>Ubuntu 24.04</td></tr>
           <tr><td>Container Type</td><td>Unprivileged</td></tr>
           <tr><td>Container ID</td><td><code>101</code></td></tr>
-          <tr><td>Hostname</td><td><code>twingate-connector</code></td></tr>
           <tr><td>Disk / CPU / RAM</td><td>3 GB · 1 vCPU · 1024 MiB</td></tr>
           <tr><td>Bridge / IPv4</td><td><code>vmbr1</code> · <code>10.129.234.11/24</code></td></tr>
-          <tr><td>Nesting</td><td>Enabled</td></tr>
-          <tr><td>Timezone</td><td>Europe/Paris</td></tr>
+          <tr><td>Nesting / Timezone</td><td>Enabled · Europe/Paris</td></tr>
         </tbody>
       </table>
 
-      <p class="etape-title"><span class="badge-green">Étape 3</span> Configuration des tokens Twingate</p>
-      <div class="content-text">
-        <p>Une fois le conteneur créé, le script demande les tokens d'authentification générés depuis la console Twingate :</p>
-      </div>
+      <p class="etape-title"><span class="badge-green">Étape 3</span> Tokens d'authentification Twingate</p>
       <div class="photos-solo">
         <div class="photo-frame" style="max-width:580px; margin:0 auto;">
-          <img src="../../../images/sia-sp3-twingate-tokens.png" alt="Access Token, Refresh Token et Network Name dans l'interface Twingate">
+          <img src="../../../images/sia-sp3-twingate-tokens.png" alt="Tokens Twingate console">
         </div>
-        <p class="photo-caption">Console Twingate — <strong>Access Token</strong>, <strong>Refresh Token</strong> et <strong>Network Name</strong></p>
+        <p class="photo-caption">Console Twingate — Access Token · Refresh Token · Network Name</p>
       </div>
       <div class="photos-duo" style="margin-top:0.75rem;">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-token-input-1.png" alt="Saisie de l'Access Token dans le terminal"></div>
-          <p class="photo-caption">Saisie de l'<strong>Access Token</strong> dans le terminal</p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-token-input-1.png" alt="Saisie Access Token"></div>
+          <p class="photo-caption">Saisie de l'<strong>Access Token</strong></p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-token-input-2.png" alt="Saisie du Refresh Token et du Network Name"></div>
-          <p class="photo-caption"><strong>Refresh Token</strong> + <strong>Network Name</strong> <code>infrabdeinsalyon</code></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-token-input-2.png" alt="Refresh Token + Network Name"></div>
+          <p class="photo-caption"><strong>Refresh Token</strong> + Network Name <code>infrabdeinsalyon</code></p>
         </div>
       </div>
       <div class="note-box">
-        🔒 <strong>Zero Trust :</strong> Le connecteur déployé dans le LXC 101 sert de point d'entrée sécurisé vers l'infrastructure Proxmox du SIA, sans ouvrir de port entrant sur le pare-feu.
+        🔒 <strong>Zero Trust :</strong> Le LXC 101 sert de point d'entrée sécurisé vers l'infrastructure, sans ouvrir de port entrant sur le pare-feu.
       </div>
     </div>
 
     <!-- PARTIE 3 — VM -->
     <div class="content-block">
-      <div class="content-block-title orange">Partie 3 — Création de la VM Ubuntu-Backup</div>
+      <div class="content-block-title orange">Partie 3 — Création et configuration de la VM Ubuntu-Backup</div>
       <div class="content-text">
-        <p>En parallèle, je prépare la VM qui servira de <strong>serveur de backup</strong> (voir SP2). La VM est créée via l'interface Proxmox :</p>
+        <p>Configuration complète de la VM qui servira de <strong>serveur de backup</strong> — chaque onglet de l'assistant Proxmox est configuré avec soin.</p>
+      </div>
+
+      <p class="etape-title"><span class="badge-orange">Onglet OS</span> Système d'exploitation</p>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:640px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-vm-os.png" alt="VM OS — Ubuntu 24.04.3 Linux 6.x">
+        </div>
+        <p class="photo-caption">ISO <strong>Ubuntu 24.04.3 LTS</strong> · Type Linux · Kernel 6.x — 2.6</p>
+      </div>
+
+      <p class="etape-title"><span class="badge-orange">Onglet System</span> Paramètres système</p>
+      <div class="content-text">
+        <p>Contrôleur SCSI <strong>VirtIO SCSI single</strong> pour de meilleures performances disque. <strong>TPM v2.0</strong> activé sur <code>local-lvm</code>. QEMU Agent activé pour une meilleure intégration Proxmox.</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:640px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-vm-system.png" alt="VM System — VirtIO SCSI, TPM v2.0, SeaBIOS">
+        </div>
+        <p class="photo-caption">VirtIO SCSI single · TPM v2.0 · SeaBIOS · QEMU Agent activé</p>
+      </div>
+
+      <p class="etape-title"><span class="badge-orange">Onglet Disks</span> Configuration des disques</p>
+      <div class="content-text">
+        <p>Disque <code>scsi0</code> : <strong>32 Go</strong> sur <code>local-lvm</code>, format Raw, IO thread activé. Un second disque 1.8T sera rattaché après installation pour les backups (voir SP2).</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:640px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-vm-disks.png" alt="VM Disks — scsi0 32Go local-lvm">
+        </div>
+        <p class="photo-caption"><code>scsi0</code> — 32 Go · <code>local-lvm</code> · VirtIO SCSI · IO thread ✅</p>
+      </div>
+
+      <p class="etape-title"><span class="badge-orange">Onglet CPU</span> Processeur</p>
+      <div class="content-text">
+        <p><strong>1 socket · 2 cœurs</strong> (2 vCPUs total) · Type <strong>x86-64-v2-AES</strong> avec flags de sécurité activés (md-clear, pcid, spec-ctrl, ssbd).</p>
       </div>
       <div class="photos-duo">
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-vm-general.png" alt="Création VM — VM ID 100 Ubuntu-Backup"></div>
-          <p class="photo-caption">Onglet <strong>General</strong> — VM ID : <code>100</code> · Nom : <code>Ubuntu-Backup</code></p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-vm-cpu-1.png" alt="CPU flags avancés"></div>
+          <p class="photo-caption">Flags CPU de sécurité — nested-virt, md-clear, pcid, spec-ctrl</p>
         </div>
         <div>
-          <div class="photo-frame"><img src="../../../images/sia-sp3-vm-os.png" alt="Création VM — ISO Ubuntu 24.04.3"></div>
-          <p class="photo-caption">Onglet <strong>OS</strong> — ISO Ubuntu 24.04.3 · Type Linux · Kernel 6.x</p>
+          <div class="photo-frame"><img src="../../../images/sia-sp3-vm-cpu-2.png" alt="1 socket 2 cores x86-64-v2-AES"></div>
+          <p class="photo-caption">1 socket · 2 cœurs · <code>x86-64-v2-AES</code></p>
         </div>
       </div>
-      <div class="note-box" style="margin-top:1.25rem;">
-        🔗 <strong>Lien avec la SP2 :</strong> Cette VM (ID 100) est celle configurée en détail dans la SP2 — ajout du disque 1.8T, scripts de backup, crontab et notifications Discord.
+
+      <p class="etape-title"><span class="badge-orange">Config IP</span> Adresse statique Ubuntu</p>
+      <div class="content-text">
+        <p>Une fois Ubuntu installé, configuration d'une <strong>IP statique</strong> sur <code>ens18</code> pour que la VM soit toujours joignable sur le réseau interne.</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:560px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-vm-network-config.png" alt="IP statique 10.129.234.10/24">
+        </div>
+        <p class="photo-caption">IP statique <code>10.129.234.10/24</code> · Gateway <code>10.129.234.1</code> · DNS <code>8.8.8.8</code></p>
+      </div>
+
+      <p class="etape-title"><span class="badge-orange">Stockage LVM-Thin</span> Pool dédié aux sauvegardes</p>
+      <div class="content-text">
+        <p>Création d'un pool LVM-Thin nommé <strong>Disk-Sauvegarde-Backup</strong> dans Proxmox, pointant sur le VG <code>pve</code> / thin pool <code>data</code>.</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:540px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-lvm-thin.png" alt="Add LVM-Thin Disk-Sauvegarde-Backup">
+        </div>
+        <p class="photo-caption">LVM-Thin <code>Disk-Sauvegarde-Backup</code> — VG <code>pve</code> · Thin Pool <code>data</code></p>
+      </div>
+
+      <div class="note-box">
+        🔗 <strong>Lien SP2 :</strong> Cette VM (ID 100) est configurée en détail dans la SP2 — disque 1.8T, scripts de backup, crontab et notifications Discord.
       </div>
     </div>
 
+    <!-- PARTIE 4 — RÉSEAU -->
+    <div class="content-block">
+      <div class="content-block-title green">Partie 4 — Configuration réseau Proxmox</div>
+      <div class="content-text">
+        <p>L'infrastructure réseau repose sur deux bridges Linux séparant trafic WAN et réseau interne des VMs/LXC.</p>
+      </div>
+
+      <p class="etape-title"><span class="badge-green">Interfaces</span> vmbr0 (WAN) + vmbr1 (LAN interne)</p>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:900px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-proxmox-network.png" alt="Interfaces réseau Proxmox vmbr0 vmbr1">
+        </div>
+        <p class="photo-caption"><code>vmbr0</code> WAN (134.214.129.50/26) · <code>vmbr1</code> LAN interne (10.129.234.1/24)</p>
+      </div>
+      <table class="info-table" style="margin-top:1rem;">
+        <thead><tr><th>Interface</th><th>CIDR</th><th>Rôle</th></tr></thead>
+        <tbody>
+          <tr><td><code>vmbr0</code></td><td><code>134.214.129.50/26</code></td><td>Bridge WAN — accès internet</td></tr>
+          <tr><td><code>vmbr1</code></td><td><code>10.129.234.1/24</code></td><td>Bridge LAN interne — VMs & LXC (NAT)</td></tr>
+        </tbody>
+      </table>
+
+      <p class="etape-title"><span class="badge-green">Config NAT</span> /etc/network/interfaces</p>
+      <div class="content-text">
+        <p><code>vmbr1</code> est configuré avec du <strong>NAT via iptables MASQUERADE</strong> pour permettre aux VMs d'accéder à internet via <code>vmbr0</code>.</p>
+      </div>
+      <div class="photos-solo">
+        <div class="photo-frame" style="max-width:780px; margin:0 auto;">
+          <img src="../../../images/sia-sp3-proxmox-interfaces.png" alt="/etc/network/interfaces NAT vmbr1">
+        </div>
+        <p class="photo-caption"><code>/etc/network/interfaces</code> — NAT MASQUERADE sur <code>vmbr1</code> → <code>vmbr0</code></p>
+      </div>
+      <div class="code-block" style="margin-top:1rem;">
+<span class="code-comment"># vmbr1 — réseau interne avec NAT</span><br>
+auto vmbr1<br>
+iface vmbr1 inet static<br>
+&nbsp;&nbsp;address <span class="code-string">10.129.234.1/24</span><br>
+&nbsp;&nbsp;post-up echo 1 > /proc/sys/net/ipv4/ip_forward<br>
+&nbsp;&nbsp;post-up iptables -t nat -A POSTROUTING -s <span class="code-string">'10.129.234.0/24'</span> -o vmbr0 -j MASQUERADE<br>
+&nbsp;&nbsp;post-down iptables -t nat -D POSTROUTING -s <span class="code-string">'10.129.234.0/24'</span> -o vmbr0 -j MASQUERADE
+      </div>
+      <div class="note-box green">
+        🌐 <strong>Architecture NAT :</strong> Les VMs et LXC sur <code>vmbr1</code> (10.129.234.0/24) accèdent à internet via MASQUERADE sur <code>vmbr0</code> — elles ne sont pas exposées directement.
+      </div>
+    </div>
+
+    <!-- CE QUE J'AI APPRIS -->
     <div class="content-block">
       <div class="content-block-title">Ce que j'ai appris</div>
       <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:0.85rem;">
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
           <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Gestion des accès</p>
-          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Structuration des permissions Proxmox par groupes — plus maintenable et scalable qu'une gestion individuelle.</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Permissions Proxmox par groupes — maintenable et scalable.</p>
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
           <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Virtualisation</p>
-          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Différence entre VM et conteneur LXC, choix du type unprivileged pour la sécurité, paramétrage réseau via vmbr.</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Config complète d'une VM Proxmox — OS, System, Disks, CPU, réseau, LVM-Thin.</p>
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
           <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Zero Trust</p>
-          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Compréhension du modèle ZTNA de Twingate — accès granulaire par ressource, sans VPN full-tunnel.</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">ZTNA Twingate — accès granulaire sans port entrant exposé.</p>
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem;">
-          <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Autonomie</p>
-          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Déploiement complet d'une infrastructure depuis zéro en s'appuyant sur la documentation et les ressources communautaires.</p>
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;">Réseau Linux</p>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;">Bridges Linux, NAT iptables MASQUERADE, séparation WAN/LAN interne.</p>
         </div>
       </div>
     </div>
 
+    <!-- OUTILS -->
     <div class="content-block">
       <div class="content-block-title">Outils & technologies utilisés</div>
       <div class="chips" style="gap: 0.5rem;">
@@ -368,9 +434,11 @@
         <span class="chip blue">Ubuntu 24.04</span>
         <span class="chip blue">Twingate</span>
         <span class="chip blue">LXC Container</span>
-        <span class="chip">community-scripts</span>
-        <span class="chip">Bash / Shell</span>
         <span class="chip">VirtIO SCSI</span>
+        <span class="chip">iptables / NAT</span>
+        <span class="chip">LVM-Thin</span>
+        <span class="chip">TPM v2.0</span>
+        <span class="chip">community-scripts</span>
         <span class="chip">Zero Trust ZTNA</span>
       </div>
     </div>
@@ -379,7 +447,6 @@
       <a class="nav-btn" href="../stage2.html">← Retour au stage</a>
       <a class="nav-btn" href="mission2.html">SP2 — Serveur de Backup →</a>
     </div>
-
   </div>
 </div>
 
