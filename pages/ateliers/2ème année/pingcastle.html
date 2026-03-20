@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP — PingCastle · Audit Active Directory</title>
+<link rel="stylesheet" href="../../css/style.css">
+<style>
+.breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap; }
+.breadcrumb a { color: var(--light); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { color: var(--accent); font-weight: 600; }
+
+/* ─── HERO ─── */
+.page-hero {
+  background: #0d1520; border: 1px solid #1a2e4a;
+  border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
+}
+.page-hero-banner {
+  height: 90px;
+  background: linear-gradient(135deg, #0d1520, #0e2340, #1a0a0a, #0d1520);
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.25rem; font-size: 2.2rem;
+  border-bottom: 1px solid #1a2e4a;
+}
+.page-hero-body { padding: 1.5rem 2rem; }
+.page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 0.4rem; }
+.page-hero-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(1.2rem, 2.5vw, 1.65rem); line-height: 1.2; color: white; }
+.page-hero-sub { color: #9ca3af; font-size: 0.85rem; margin-top: 0.3rem; }
+
+/* ─── STATS ─── */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; text-align: center; }
+.stat-num { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.8rem; color: var(--accent); line-height: 1; }
+.stat-num.red { color: #ef4444; }
+.stat-num.green { color: #16a34a; }
+.stat-label { color: var(--muted); font-size: 0.78rem; margin-top: 0.3rem; }
+
+/* ─── CONTENT BLOCKS ─── */
+.content-block { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; }
+.content-block-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.content-block-title::before { content: ''; display: block; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; flex-shrink: 0; }
+.content-block-title.red::before { background: #ef4444; }
+.content-block-title.green::before { background: #16a34a; }
+.content-block-title.orange::before { background: #f97316; }
+.content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
+.content-text p + p { margin-top: 0.75rem; }
+
+/* ─── SCORE CARDS ─── */
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+.score-card { border-radius: 12px; padding: 1rem 1.25rem; }
+.score-card.stale { background: #fff7ed; border: 1px solid #fed7aa; }
+.score-card.priv  { background: #fef2f2; border: 1px solid #fecaca; }
+.score-card.trust { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.score-card.anom  { background: #fff7ed; border: 1px solid #fed7aa; }
+.score-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+.score-card-name { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.score-card.stale .score-card-name { color: #c2410c; }
+.score-card.priv  .score-card-name { color: #b91c1c; }
+.score-card.trust .score-card-name { color: #16a34a; }
+.score-card.anom  .score-card-name { color: #c2410c; }
+.score-card-val { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; }
+.score-card.priv  .score-card-val { color: #b91c1c; }
+.score-card.stale .score-card-val { color: #c2410c; }
+.score-card.trust .score-card-val { color: #16a34a; }
+.score-card.anom  .score-card-val { color: #c2410c; }
+.score-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+/* ─── FAILLES LIST ─── */
+.faille-list { display: flex; flex-direction: column; gap: 0; }
+
+.faille-item { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1rem; background: white; }
+
+.faille-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; }
+.faille-header.critical { background: linear-gradient(135deg, #fef2f2, #fee2e2); border-bottom: 1px solid #fecaca; }
+.faille-header.high     { background: linear-gradient(135deg, #fff7ed, #ffedd5); border-bottom: 1px solid #fed7aa; }
+.faille-header.medium   { background: linear-gradient(135deg, #fefce8, #fef9c3); border-bottom: 1px solid #fef08a; }
+
+.faille-num {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.95rem; color: white;
+}
+.faille-header.critical .faille-num { background: #ef4444; }
+.faille-header.high     .faille-num { background: #f97316; }
+.faille-header.medium   .faille-num { background: #eab308; }
+
+.faille-title { font-weight: 700; font-size: 0.92rem; color: var(--text); }
+.faille-cat-badge {
+  margin-left: auto; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.22rem 0.65rem; border-radius: 100px;
+}
+.faille-header.critical .faille-cat-badge { background: #fecaca; color: #b91c1c; }
+.faille-header.high     .faille-cat-badge { background: #fed7aa; color: #c2410c; }
+.faille-header.medium   .faille-cat-badge { background: #fef08a; color: #a16207; }
+
+.faille-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+.faille-section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.faille-text { color: var(--muted); font-size: 0.87rem; line-height: 1.75; }
+
+.faille-steps { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.25rem; }
+.faille-steps li { font-size: 0.86rem; color: var(--muted); line-height: 1.6; padding-left: 1.4rem; position: relative; }
+.faille-steps li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+.impact-tag {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a;
+  padding: 0.3rem 0.85rem; border-radius: 100px;
+  font-size: 0.73rem; font-weight: 700;
+}
+
+/* ─── PDF EMBED ─── */
+.pdf-section {
+  background: white; border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; margin-bottom: 2rem;
+}
+.pdf-header {
+  padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap;
+}
+.pdf-header-left { display: flex; align-items: center; gap: 1rem; }
+.pdf-header-icon {
+  width: 42px; height: 42px; background: var(--accent-light);
+  border: 1px solid var(--accent-mid); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.pdf-header-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.pdf-header-title { font-weight: 600; font-size: 0.92rem; color: var(--text); }
+.pdf-embed { width: 100%; height: 860px; border: none; display: block; }
+.dl-btn-dark {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--accent); color: white; text-decoration: none;
+  padding: 0.75rem 1.5rem; border-radius: 9px;
+  font-weight: 700; font-size: 0.88rem; white-space: nowrap;
+  transition: all 0.18s; flex-shrink: 0;
+}
+.dl-btn-dark:hover { background: #1a45c0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(29,78,216,0.4); }
+
+/* ─── BILAN TABLE ─── */
+.bilan-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.bilan-table th { background: #1e1e1e; color: white; text-align: left; padding: 0.65rem 1rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.bilan-table td { padding: 0.6rem 1rem; color: var(--muted); border-bottom: 1px solid var(--border); }
+.bilan-table tr:last-child td { border-bottom: none; background: var(--accent-light); color: var(--accent); font-weight: 700; }
+.bilan-table tr:nth-child(even) td { background: var(--surface); }
+.badge-down { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; padding: 0.15rem 0.55rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; }
+.badge-stable { background: var(--tag-bg); border: 1px solid var(--border2); color: var(--muted); padding: 0.15rem 0.55rem; border-radius: 100px; font-size: 0.72rem; font-weight: 600; }
+
+/* ─── NAV BOTTOM ─── */
+.nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.nav-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.83rem; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+.nav-btn:hover { color: var(--accent); }
+
+@media (max-width: 700px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .score-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
+  <ul class="nav-links">
+    <li><a href="../../index.html">Accueil</a></li>
+    <li><a href="../about.html">À propos de moi</a></li>
+    <li><a href="../ateliers.html" class="active">Ateliers Pro</a></li>
+    <li class="nav-dropdown">
+      <a href="../stages.html">Stages</a>
+      <div class="dropdown-menu">
+        <a href="../stages/stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+        <a href="../stages/stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
+      </div>
+    </li>
+    <li><a href="../veille.html">Veille techno</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+  <div class="section">
+
+    <div class="breadcrumb">
+      <a href="../ateliers.html">Ateliers Professionnels</a> ›
+      <a href="../ateliers.html">Année 2</a> ›
+      <span>AP — PingCastle</span>
+    </div>
+
+    <!-- ══ HERO ══ -->
+    <div class="page-hero">
+      <div class="page-hero-banner">🔐 🛡️ 🔍</div>
+      <div class="page-hero-body">
+        <div class="page-hero-label">Atelier de Professionnalisation — Année 2 · BTS SIO SISR</div>
+        <div class="page-hero-title">PingCastle — Audit de sécurité Active Directory</div>
+        <div class="page-hero-sub">Cybersécurité · Active Directory · GPO · PowerShell · Score 45 → 20/100</div>
+      </div>
+    </div>
+
+    <!-- ══ STATS ══ -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num red">45</div>
+        <div class="stat-label">Score initial / 100</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num green">20</div>
+        <div class="stat-label">Score final / 100</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Failles corrigées</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num green">-25</div>
+        <div class="stat-label">Points de risque gagnés</div>
+      </div>
+    </div>
+
+    <!-- ══ PDF EMBED ══ -->
+    <div class="pdf-section">
+      <div class="pdf-header">
+        <div class="pdf-header-left">
+          <div class="pdf-header-icon">📄</div>
+          <div>
+            <div class="pdf-header-label">Compte-rendu professionnel</div>
+            <div class="pdf-header-title">AP PingCastle — Audit Active Directory</div>
+          </div>
+        </div>
+        <a href="../../files/AP_PingCastle_BLAIZE.pdf" download class="dl-btn-dark">
+          ⬇&nbsp; Télécharger
+        </a>
+      </div>
+      <iframe
+        class="pdf-embed"
+        src="../../files/AP_PingCastle_BLAIZE.pdf"
+        title="Compte-rendu AP PingCastle — Adrien BLAIZE">
+      </iframe>
+    </div>
+
+    <!-- ══ CONTEXTE ══ -->
+    <div class="content-block">
+      <div class="content-block-title">Contexte de l'atelier</div>
+      <div class="content-text">
+        <p>Dans le cadre du BTS SIO SISR — 2ème année, cet atelier de professionnalisation consiste à auditer un domaine <strong>Active Directory</strong> à l'aide de l'outil <strong>PingCastle</strong> (Netwrix). Le contexte simulé est celui d'un prestataire IT mandaté par un client qui s'inquiète de la sécurité de son infrastructure Windows.</p>
+        <p>PingCastle génère un <strong>score de risque de 0 à 100</strong> — plus le score est bas, meilleure est la sécurité du domaine. Il analyse quatre indicateurs : <strong>Stale Object</strong> (objets obsolètes), <strong>Privileged Accounts</strong> (comptes à privilèges), <strong>Trusts</strong> (relations de confiance inter-domaines) et <strong>Anomalies</strong> (configurations risquées).</p>
+        <p>L'objectif est d'identifier les failles majeures, de les comprendre, de les corriger, et de produire ce compte-rendu professionnel documentant la démarche complète.</p>
+      </div>
+    </div>
+
+    <!-- ══ AUDIT INITIAL ══ -->
+    <div class="content-block">
+      <div class="content-block-title red">Audit initial — Score 45/100</div>
+      <div class="content-text" style="margin-bottom: 1rem;">
+        <p>Au premier audit, le domaine <strong>blaize.lmd</strong> présente un score de risque de <strong>45/100</strong>. Ce score indique une sécurité mitigée avec plusieurs axes d'amélioration prioritaires.</p>
+      </div>
+      <div class="score-grid">
+        <div class="score-card stale">
+          <div class="score-card-top">
+            <span class="score-card-name">Stale Object</span>
+            <span class="score-card-val">31/100</span>
+          </div>
+          <p class="score-card-desc">11 règles correspondantes · Comptes utilisateurs et ordinateurs obsolètes ou mal suivis, pouvant servir de porte d'entrée à un attaquant.</p>
+        </div>
+        <div class="score-card priv">
+          <div class="score-card-top">
+            <span class="score-card-name">Privileged Accounts</span>
+            <span class="score-card-val">40/100</span>
+          </div>
+          <p class="score-card-desc">4 règles correspondantes · Comptes administrateurs insuffisamment protégés, exposés aux attaques de type Pass-the-Hash et usurpation d'identité.</p>
+        </div>
+        <div class="score-card trust">
+          <div class="score-card-top">
+            <span class="score-card-name">Trusts</span>
+            <span class="score-card-val">0/100</span>
+          </div>
+          <p class="score-card-desc">0 règle · Aucune relation de confiance dangereuse entre domaines. Ce point est parfaitement sécurisé.</p>
+        </div>
+        <div class="score-card anom">
+          <div class="score-card-top">
+            <span class="score-card-name">Anomalies</span>
+            <span class="score-card-val">45/100</span>
+          </div>
+          <p class="score-card-desc">13 règles correspondantes · Configurations risquées ou incorrectes (protocoles anciens, mots de passe faibles, NetBIOS actif…).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ FAILLES ══ -->
+    <div class="content-block">
+      <div class="content-block-title">Failles identifiées et remédiées</div>
+
+      <div class="faille-list">
+
+        <!-- F1 -->
+        <div class="faille-item">
+          <div class="faille-header critical">
+            <div class="faille-num">1</div>
+            <div class="faille-title">Administrateurs non inclus dans les utilisateurs protégés</div>
+            <span class="faille-cat-badge">🔴 Critique · Privileged Accounts</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">Deux comptes administrateurs du domaine ne sont pas membres du groupe <strong>« Protected Users »</strong>. Sans cette protection, ils utilisent des protocoles d'authentification faibles (NTLM, Kerberos avec algorithmes vulnérables), leurs mots de passe peuvent être mis en cache sur les postes clients, et ils sont exposés aux attaques <strong>Pass-the-Hash</strong> et <strong>Pass-the-Ticket</strong>. En cas de compromission, l'attaquant peut se déplacer librement dans le réseau.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Ajout des comptes <code>Adminbis</code>, <code>Administrateur</code> et <code>Client2</code> dans le groupe <strong>Protected Users</strong>. Une fois membres, les comptes ne peuvent plus utiliser NTLM ou Kerberos avec des algorithmes vulnérables, et les mots de passe ne sont plus mis en cache sur les postes clients.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>Ouvrir <strong>AD Users and Computers</strong> → Rechercher le groupe Protected Users</li>
+                <li>Onglet <strong>Membres</strong> → ajouter Adminbis, Administrateur et Client2</li>
+                <li>Vérifier que les membres apparaissent bien dans la liste</li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Privileged Accounts : 40 → 20/100</span></div>
+          </div>
+        </div>
+
+        <!-- F2 -->
+        <div class="faille-item">
+          <div class="faille-header high">
+            <div class="faille-num">2</div>
+            <div class="faille-title">LAPS (Local Administrator Password Solution) non installé</div>
+            <span class="faille-cat-badge">🟠 Élevé · Anomalies</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">Le mot de passe administrateur local est identique sur tous les postes ou rarement modifié. Si un attaquant récupère ce mot de passe sur un seul poste, il peut l'utiliser sur tout le parc — les attaques <strong>Pass-the-Hash</strong> deviennent triviales.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text"><strong>LAPS</strong> génère automatiquement un mot de passe unique par machine, stocké dans Active Directory, avec rotation automatique. La GPO a été configurée avec le répertoire de sauvegarde sur <strong>Active Directory</strong>. Un onglet LAPS apparaît dans les propriétés de chaque objet ordinateur.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>Créer une GPO LAPS → activer <strong>« Configuration du répertoire de sauvegarde »</strong> → Active Directory</li>
+                <li>Configurer la complexité et la durée de vie des mots de passe</li>
+                <li>Vérifier via PowerShell : <code>Get-LapsADPassword -Identity CLIENT1-W11 -AsPlainText</code></li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Anomalies : 45 → 30/100</span></div>
+          </div>
+        </div>
+
+        <!-- F3 -->
+        <div class="faille-item">
+          <div class="faille-header high">
+            <div class="faille-num">3</div>
+            <div class="faille-title">Politique de mots de passe insuffisante</div>
+            <span class="faille-cat-badge">🟠 Élevé · Anomalies</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">La politique acceptait des mots de passe de moins de 8 caractères sans exigences de complexité. Ces mots de passe sont facilement cassables par force brute ou via des dictionnaires. Le CERT-FR et l'ANSSI recommandent un minimum de 12 caractères avec complexité.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Modification de la <strong>Default Domain Policy</strong> : longueur minimale à <strong>12 caractères</strong>, complexité activée, durée de vie maximale à <strong>60 jours</strong>, historique mémorisant les <strong>24 anciens mots de passe</strong>.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>GPO Editor → Default Domain Policy → Stratégie de mot de passe</li>
+                <li>Définir : Longueur min. = 12, Complexité = Activé, Durée max = 60 jours, Historique = 24</li>
+                <li>Appliquer et <code>gpupdate /force</code></li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Anomalies : 30 → 20/100</span></div>
+          </div>
+        </div>
+
+        <!-- F4 -->
+        <div class="faille-item">
+          <div class="faille-header critical">
+            <div class="faille-num">4</div>
+            <div class="faille-title">Utilisation des protocoles NTLMv1 et LM</div>
+            <span class="faille-cat-badge">🔴 Critique · Anomalies</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">NTLMv1 et LM sont des protocoles obsolètes. Leurs hash peuvent être interceptés (Man-in-the-Middle), relayés (NTLM relay) ou cassés par force brute. Ils rendent le réseau vulnérable aux attaques d'usurpation d'identité et d'escalade de privilèges.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Forcer l'utilisation de <strong>NTLMv2</strong> via la Default Domain Controllers Policy : paramètre <em>« Sécurité réseau : niveau d'authentification LAN Manager »</em> défini sur <em>« Envoyer uniquement une réponse NTLMv2. Refuser LM et NTLM »</em>.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>GPO Editor → Default Domain Controllers Policy → Options de sécurité</li>
+                <li>Paramètre <strong>« Sécurité réseau : niveau d'authentification LAN Manager »</strong></li>
+                <li>Définir : <em>Envoyer uniquement NTLMv2. Refuser LM et NTLM</em></li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Stale Object : 31 → 16/100</span></div>
+          </div>
+        </div>
+
+        <!-- F5 -->
+        <div class="faille-item">
+          <div class="faille-header high">
+            <div class="faille-num">5</div>
+            <div class="faille-title">Paramètre « non déléguable » non activé sur les comptes admins</div>
+            <span class="faille-cat-badge">🟠 Élevé · Privileged Accounts</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">Les comptes administrateurs n'avaient pas le drapeau <strong>« Ce compte est sensible et ne peut pas être délégué »</strong> activé. Un service ou une machine peut alors emprunter leur identité via la délégation Kerberos, permettant à un attaquant de créer des comptes, modifier des droits ou accéder à des données confidentielles.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Dans les propriétés de chaque compte administrateur, onglet <strong>Compte</strong>, activation de la case <em>« Ce compte est sensible et ne peut pas être délégué »</em>. La commande <code>Get-ADGroupMember -Identity "Administrators"</code> a permis d'identifier tous les comptes concernés.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li><code>Get-ADGroupMember -Identity "Administrators"</code> pour lister les admins</li>
+                <li>Propriétés du compte → Onglet Compte → cocher <strong>« Ce compte est sensible et ne peut pas être délégué »</strong></li>
+                <li>Répéter pour tous les comptes Domain Admins et Enterprise Admins</li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Privileged Accounts : 20 → 10/100</span></div>
+          </div>
+        </div>
+
+        <!-- F6 -->
+        <div class="faille-item">
+          <div class="faille-header high">
+            <div class="faille-num">6</div>
+            <div class="faille-title">Groupe Schema Admins contenant des comptes actifs</div>
+            <span class="faille-cat-badge">🟠 Élevé · Privileged Accounts</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">Le groupe <strong>Schema Admins</strong> permet de modifier le schéma Active Directory — modification qui impacte tout le domaine et est <strong>irréversible</strong>. Laisser des comptes dans ce groupe en permanence augmente considérablement le risque d'incident ou de sabotage.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Suppression du compte <strong>Administrator</strong> du groupe Schema Admins pour que le groupe soit vide en situation normale. L'ajout temporaire d'un compte ne se fait que lors d'une modification planifiée du schéma, avec restitution immédiate des droits.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>AD Users and Computers → Rechercher <strong>Schema Admins</strong></li>
+                <li>Onglet Membres → sélectionner Administrator → Remove</li>
+                <li>Vérifier que la liste des membres est vide</li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Privileged Accounts : 10/100</span></div>
+          </div>
+        </div>
+
+        <!-- F7 -->
+        <div class="faille-item">
+          <div class="faille-header medium">
+            <div class="faille-num">7</div>
+            <div class="faille-title">NetBIOS activé sur les interfaces réseau</div>
+            <span class="faille-cat-badge">🟡 Moyen · Anomalies</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">NetBIOS est un ancien protocole non chiffré qui facilite les attaques de spoofing LLMNR/NetBIOS-NS et le relayage NTLM. Un attaquant positionné sur le réseau peut intercepter des requêtes et récupérer des identifiants. Ce protocole n'est plus nécessaire dans un environnement AD moderne.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Script PowerShell déployé par GPO de démarrage : <code>Get-WmiObject -Class Win32-NetworkAdapterConfiguration | Where-Object { $_.IPEnabled } | ForEach-Object { $_.SetTcpipNetbios(2) }</code>. Désactivation également possible manuellement via Propriétés Ethernet → IPv4 → Avancé → WINS.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>Créer <code>disable_netbios.ps1</code> avec la commande WMI ci-dessus</li>
+                <li>Créer une GPO → Configuration ordinateur → Scripts (Démarrage) → ajouter le .ps1 via chemin réseau partagé</li>
+                <li>Lier la GPO aux Domain Controllers et à l'UO PC</li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Anomalies : 25 → 20/100</span></div>
+          </div>
+        </div>
+
+        <!-- F8 -->
+        <div class="faille-item">
+          <div class="faille-header medium">
+            <div class="faille-num">8</div>
+            <div class="faille-title">Fichiers scripts s'exécutant dans leur moteur natif</div>
+            <span class="faille-cat-badge">🟡 Moyen · Anomalies</span>
+          </div>
+          <div class="faille-body">
+            <div>
+              <div class="faille-section-label">Le problème</div>
+              <p class="faille-text">Les extensions <code>.js</code>, <code>.vbs</code>, <code>.wsf</code> s'ouvrent par défaut dans leur moteur d'exécution (WScript, CScript). Un script malveillant reçu par phishing ou téléchargé peut s'exécuter automatiquement, facilitant les infections par ransomware ou le vol de données.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Solution mise en place</div>
+              <p class="faille-text">Script PowerShell déployé par GPO qui modifie la clé de registre <code>HKCU:\...\FileExts\$ext\UserChoice</code> pour chaque extension ciblée (.js, .jse, .vbs, .vbe, .vb, .wsh, .wsf), en définissant Progid = <code>Applications\notepad.exe</code>.</p>
+            </div>
+            <div>
+              <div class="faille-section-label">Étapes</div>
+              <ul class="faille-steps">
+                <li>Créer le script PowerShell ciblant les 7 extensions à risque</li>
+                <li>Déployer via GPO → Préférences de registre ou Script de démarrage (HKCU)</li>
+                <li>Vérification : double-clic sur un <code>.js</code> → doit ouvrir le Bloc-notes</li>
+              </ul>
+            </div>
+            <div><span class="impact-tag">✅ Anomalies : 20/100 — correction finale</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ BILAN FINAL ══ -->
+    <div class="content-block">
+      <div class="content-block-title green">Audit final — Score 20/100</div>
+      <div class="content-text" style="margin-bottom: 1rem;">
+        <p>Après correction des 8 failles, le score de risque est passé de <strong>45/100 à 20/100</strong>, soit une amélioration de 25 points.</p>
+      </div>
+      <table class="bilan-table">
+        <thead>
+          <tr>
+            <th>Indicateur</th>
+            <th>Score Avant</th>
+            <th>Score Après</th>
+            <th>Évolution</th>
+            <th>Principales corrections</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Stale Object</strong></td>
+            <td>31 / 100</td>
+            <td>16 / 100</td>
+            <td><span class="badge-down">▼ -15 pts</span></td>
+            <td>Suppression comptes inactifs · NTLMv2 forcé</td>
+          </tr>
+          <tr>
+            <td><strong>Privileged Accounts</strong></td>
+            <td>40 / 100</td>
+            <td>10 / 100</td>
+            <td><span class="badge-down">▼ -30 pts</span></td>
+            <td>Protected Users · Non-déléguable · Schema Admins vidé</td>
+          </tr>
+          <tr>
+            <td><strong>Trusts</strong></td>
+            <td>0 / 100</td>
+            <td>0 / 100</td>
+            <td><span class="badge-stable">= stable</span></td>
+            <td>Aucune relation de confiance — score parfait</td>
+          </tr>
+          <tr>
+            <td><strong>Anomalies</strong></td>
+            <td>45 / 100</td>
+            <td>20 / 100</td>
+            <td><span class="badge-down">▼ -25 pts</span></td>
+            <td>LAPS · Politique MDP · NetBIOS · Scripts</td>
+          </tr>
+          <tr>
+            <td><strong>Score Global</strong></td>
+            <td><strong>45 / 100</strong></td>
+            <td><strong>20 / 100</strong></td>
+            <td><span class="badge-down">▼ -25 pts</span></td>
+            <td>8 failles corrigées</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ══ OUTILS ══ -->
+    <div class="content-block">
+      <div class="content-block-title">Outils & technologies utilisés</div>
+      <div class="chips" style="gap: 0.5rem;">
+        <span class="chip blue">PingCastle / Netwrix</span>
+        <span class="chip blue">Active Directory</span>
+        <span class="chip blue">Group Policy (GPO)</span>
+        <span class="chip blue">PowerShell</span>
+        <span class="chip">LAPS</span>
+        <span class="chip">Protected Users</span>
+        <span class="chip">NTLMv2</span>
+        <span class="chip">Kerberos</span>
+        <span class="chip">Windows Server</span>
+        <span class="chip">Registre Windows</span>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <a class="nav-btn" href="../ateliers.html">← Retour aux Ateliers</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; BTS SIO SISR &nbsp;·&nbsp; La Martinière Duchère &nbsp;·&nbsp; 2025
+</footer>
+<script src="../../js/nav.js"></script>
+</body>
+</html>
