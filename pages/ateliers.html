@@ -76,6 +76,30 @@
       border: 1px solid var(--border); padding: 0.18rem 0.5rem;
       border-radius: 5px; color: var(--muted);
     }
+
+    /* AP card avec flèche */
+    .tp-card-ap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.15rem;
+      transition: all 0.18s; text-decoration: none; color: inherit;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .tp-card-ap:hover {
+      border-color: var(--accent-mid); background: var(--accent-light);
+      transform: translateY(-2px); box-shadow: 0 4px 14px rgba(29,78,216,0.1);
+    }
+    .tp-card-ap-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--accent-light); border: 1px solid var(--accent-mid);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem;
+    }
+    .tp-card-ap-body { flex: 1; }
+    .tp-card-ap-arrow {
+      color: var(--light); font-size: 0.85rem;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .tp-card-ap:hover .tp-card-ap-arrow { transform: translateX(3px); color: var(--accent); }
   </style>
 </head>
 <body>
@@ -85,7 +109,7 @@
     <ul class="nav-links">
       <li><a href="../index.html">Accueil</a></li>
       <li><a href="about.html">À propos de moi</a></li>
-      <li><a href="ateliers.html">Ateliers Pro</a></li>
+      <li><a href="ateliers.html" class="active">Ateliers Pro</a></li>
       <li class="nav-dropdown"><a href="stages.html">Stages</a><div class="dropdown-menu"><a href="stages/stage1.html">🏢 Stage 1 — Paredes Orapi</a><a href="stages/stage2.html">🏢 Stage 2 — SIA BDE INSA</a></div></li>
       <li><a href="veille.html">Veille techno</a></li>
     </ul>
@@ -96,7 +120,7 @@
       <div class="section-header">
         <div class="section-eyebrow">Travaux pratiques</div>
         <h2 class="section-title">Ateliers Professionnels</h2>
-        <p class="section-sub">L'ensemble des TPs réalisés en formation, organisés par année scolaire.</p>
+        <p class="section-sub">L'ensemble des TPs et APs réalisés en formation, organisés par année scolaire.</p>
       </div>
 
       <div class="accordion">
@@ -150,46 +174,32 @@
         </div>
 
         <!-- ANNÉE 2 -->
-        <div class="accordion-item" id="acc-2">
+        <div class="accordion-item open" id="acc-2">
           <div class="accordion-header" onclick="toggleAcc('acc-2')">
             <div class="acc-left">
               <span class="acc-year-badge">AN 2</span>
               <span class="acc-title">Ateliers Professionnels — Deuxième année</span>
-              <span class="acc-count">3 TPs</span>
+              <span class="acc-count">1 AP</span>
             </div>
             <div class="acc-chevron">▼</div>
           </div>
           <div class="accordion-body">
             <div class="tp-grid">
 
-              <a class="tp-card" href="#">
-                <div class="tp-num">TP · 01</div>
-                <div class="tp-title">[Titre du TP 1]</div>
-                <div class="tp-desc">[Description du TP 1.]</div>
-                <div class="tp-tags">
-                  <span class="tp-tag">[Outil]</span>
-                  <span class="tp-tag">[Techno]</span>
+              <a class="tp-card-ap" href="ateliers/pingcastle.html">
+                <div class="tp-card-ap-icon">🔐</div>
+                <div class="tp-card-ap-body">
+                  <div class="tp-num">AP · 01</div>
+                  <div class="tp-title">PingCastle — Audit Active Directory</div>
+                  <div class="tp-desc">Audit de sécurité AD · 8 failles corrigées · Score 45 → 20/100</div>
+                  <div class="tp-tags" style="margin-top: 0.5rem;">
+                    <span class="tp-tag">PingCastle</span>
+                    <span class="tp-tag">Active Directory</span>
+                    <span class="tp-tag">GPO</span>
+                    <span class="tp-tag">PowerShell</span>
+                  </div>
                 </div>
-              </a>
-
-              <a class="tp-card" href="#">
-                <div class="tp-num">TP · 02</div>
-                <div class="tp-title">[Titre du TP 2]</div>
-                <div class="tp-desc">[Description du TP 2.]</div>
-                <div class="tp-tags">
-                  <span class="tp-tag">[Outil]</span>
-                  <span class="tp-tag">[Techno]</span>
-                </div>
-              </a>
-
-              <a class="tp-card" href="#">
-                <div class="tp-num">TP · 03</div>
-                <div class="tp-title">[Titre du TP 3]</div>
-                <div class="tp-desc">[Description du TP 3.]</div>
-                <div class="tp-tags">
-                  <span class="tp-tag">[Outil]</span>
-                  <span class="tp-tag">[Techno]</span>
-                </div>
+                <div class="tp-card-ap-arrow">→</div>
               </a>
 
             </div>
