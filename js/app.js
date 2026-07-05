@@ -109,8 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('mouseleave', () => tooltipBox.classList.remove('visible'));
   });
 
-  // 8. TRANSITIONS DE PAGES FLUIDES
+  // 8. TRANSITIONS DE PAGES FLUIDES & FIX DU BUG DE SCROLL
   document.body.classList.add('page-transition-enter');
+  setTimeout(() => {
+    document.body.classList.remove('page-transition-enter');
+    document.body.style.transform = 'none'; // Sécurité absolue pour tuer le contexte de formatage
+  }, 600); 
+
   const links = document.querySelectorAll('a[href^="index.html"], a[href^="pages/"], a[href^="../"]');
   links.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -185,14 +190,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
     const modalData = {
-      cub: { title: "Projet CUB : Architecture Cisco", content: `<h3 style="color:var(--accent); margin-top:0;">Contexte</h3><p style="color:var(--muted); line-height:1.7;">Configuration complète d'un réseau multi-sites pour l'entreprise fictive CUB. L'objectif était de garantir la haute disponibilité et la segmentation sécurisée du réseau.</p><h3 style="color:var(--accent);">Détails Techniques</h3><ul style="color:var(--muted); line-height:1.7; padding-left:1.2rem;"><li style="margin-bottom:0.5rem"><strong>Routage :</strong> Déploiement d'OSPF pour le routage dynamique inter-sites.</li><li style="margin-bottom:0.5rem"><strong>Redondance :</strong> Configuration du protocole HSRP pour sécuriser la passerelle par défaut.</li><li style="margin-bottom:0.5rem"><strong>Sécurité :</strong> Implémentation du protocole 802.1X couplé à un serveur RADIUS pour l'authentification des ports.</li></ul>` },
-      python: { title: "Automatisation Python & API", content: `<h3 style="color:var(--accent); margin-top:0;">Bot de Monitoring Proxmox</h3><p style="color:var(--muted); line-height:1.7;">Script Python interrogeant l'API de Proxmox VE. Il vérifie l'état des machines virtuelles (CPU, RAM, Status) et pousse les alertes critiques en temps réel sur un serveur Discord via Webhooks.</p><h3 style="color:var(--accent);">Projet HunterDex</h3><p style="color:var(--muted); line-height:1.7;">Développement asynchrone (aiohttp) d'un bot Discord faisant office d'encyclopédie complète sur la franchise Monster Hunter. Le bot est interfacé avec une base de données NoSQL PocketBase pour garantir des temps de réponse inférieurs à 50ms.</p>` }
+      cub: { 
+        title: "Projet CUB : Architecture Cisco", 
+        content: `
+          <img src="../files/Schema_Radius.jpg" alt="Schéma Infrastructure CUB" style="width:100%; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--border);" />
+          <h3 style="color:var(--accent); margin-top:0;">Contexte & Architecture</h3>
+          <p style="color:var(--muted); line-height:1.7;">Maquettage et déploiement d'une architecture réseau complexe pour l'entreprise CUB, intégrant une affectation dynamique de VLANs et un routage inter-VLAN sécurisé.</p>
+          
+          <h3 style="color:var(--accent);">Détails Techniques</h3>
+          <ul style="color:var(--muted); line-height:1.7; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem"><strong>Authentification 802.1X / RADIUS :</strong> Sécurisation des accès sans-fil via une borne TP-Link Omada (PEAP-MSCHAPv2). Les requêtes EAPOL sont transmises au serveur RADIUS (Windows NPS).</li>
+            <li style="margin-bottom:0.5rem"><strong>Affectation Dynamique :</strong> Vérification de l'identité via Active Directory (LDAP/Kerberos). Le serveur RADIUS renvoie un <code>Access-Accept</code> avec l'attribut du VLAN correspondant au profil de l'utilisateur (ex: VLAN 4 Marketing, VLAN 54 Infrasys, VLAN 206).</li>
+            <li style="margin-bottom:0.5rem"><strong>Cœur de Réseau (Cisco L3) :</strong> Routage inter-VLAN assuré par un switch de niveau 3 (Cisco 3650) via des interfaces SVI, interconnecté aux switchs de distribution (Catalyst 2960 et 3750 PoE) par des liens TRUNK 802.1Q.</li>
+            <li style="margin-bottom:0.5rem"><strong>Ferme de Serveurs (VLAN 306) :</strong> Isolation de l'infrastructure critique contenant l'Active Directory, le contrôleur Omada SDN, le serveur RADIUS et le système de ticketing GLPI.</li>
+          </ul>
+        ` 
+      },
+      python: { 
+        title: "Projet HunterDex : Architecture & Automatisation", 
+        content: `
+          <img src="../files/Schema_Hunterdex.png" alt="Architecture HunterDex" style="width:100%; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--border);" />
+          <h3 style="color:var(--accent); margin-top:0;">Vue d'Ensemble</h3>
+          <p style="color:var(--muted); line-height:1.7;">Le projet HunterDex est un écosystème complet séparant le Backend, le Frontend et le Bot Discord, hébergé sur un hyperviseur Proxmox VE avec une approche Zero Trust.</p>
+  
+          <h3 style="color:var(--accent);">Infrastructure & Sécurité</h3>
+          <ul style="color:var(--muted); line-height:1.7; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem">Déploiement de l'application via Docker Compose sur un réseau bridge isolé (hunterdex_net).</li>
+            <li style="margin-bottom:0.5rem">Mise en place d'un tunnel Cloudflare (cloudflared) pour sécuriser le trafic sortant sans ouvrir de ports sur le pare-feu externe.</li>
+            <li style="margin-bottom:0.5rem">Sécurisation avancée de l'hôte via pare-feu UFW, Fail2Ban (jail SSH), et authentification Multi-Facteurs (MFA) via Cloudflare Access.</li>
+            <li style="margin-bottom:0.5rem">Automatisation des sauvegardes vers Google Drive via Rclone et supervision interne en temps réel.</li>
+          </ul>
+  
+          <h3 style="color:var(--accent);">Développement Applicatif</h3>
+          <ul style="color:var(--muted); line-height:1.7; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem">Utilisation de PocketBase comme Backend léger pour gérer la base de données SQLite et l'API REST.</li>
+            <li style="margin-bottom:0.5rem">Création d'un Dashboard d'administration (SPA) en Vue.js intégrant un système de verrouillage concurrentiel d'édition et la compression d'images côté client.</li>
+            <li style="margin-bottom:0.5rem">Développement du Bot Discord en Python (discord.py) avec une refonte asynchrone utilisant <code>aiohttp</code> pour garantir de hautes performances et limiter les connexions bloquantes.</li>
+            <li style="margin-bottom:0.5rem">Intégration d'une recherche autocomplétée tolérante aux fautes (Fuzzy Search), d'un radar de salon intelligent, et de tâches CRON d'arrière-plan.</li>
+          </ul>
+        ` 
+      }
     };
     modalTriggers.forEach(card => {
       card.addEventListener('click', () => {
         const targetId = card.getAttribute('data-modal-target');
         const data = modalData[targetId];
-        if (data) { modalTitle.textContent = data.title; modalBody.innerHTML = data.content; modalOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        if (data) { 
+          modalTitle.textContent = data.title; 
+          modalBody.innerHTML = data.content; 
+          modalOverlay.classList.add('active'); 
+          document.body.style.overflow = 'hidden'; 
+        }
       });
     });
     const closeModal = () => { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; };
