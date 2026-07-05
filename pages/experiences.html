@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expériences Professionnelles — Adrien BLAIZE</title>
+  <meta name="description" content="Découvrez le parcours professionnel d'Adrien Blaize : Administration d'infrastructure, gestion de serveurs, réseaux et support technique.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">Profil & CV</a></li>
+      <li><a href="projets.html">Projets Tech</a></li>
+      <li><a href="experiences.html" class="active">Expériences</a></li>
+      <li><a href="veille.html">Veille</a></li>
+      <li><a href="contact.html">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <header class="page-header reveal">
+    <div class="page-eyebrow">Parcours Pro</div>
+    <h1 class="page-title parallax">Expériences en entreprise</h1>
+    <p class="page-desc parallax">
+      Mise en pratique des compétences en administration d'infrastructure, gestion de serveurs, réseau et support technique au travers de diverses missions opérationnelles.
+    </p>
+  </header>
+
+  <section class="exp-container">
+    
+    <article class="exp-card reveal reveal-delay-1">
+      <div class="exp-header">
+        <div>
+          <h2 class="exp-title">Administrateur Système Réseau (Stage)</h2>
+          <div class="exp-company">
+            <img src="../files/SIA.png" alt="Logo SIA" class="company-logo">
+            <span class="exp-company-text">SIA (BDE INSA LYON) - Villeurbanne</span>
+          </div>
+        </div>
+        <div class="exp-date">Janv. 2026 — Fév. 2026</div>
+      </div>
+      <div class="exp-desc">
+        <ul>
+          <li>Migration de postes Windows vers Linux (double boot, configuration réseau, permissions, logiciels, tests de compatibilités).</li>
+          <li>Création & Configuration d'une ferme Proxmox sur serveur physique : Réseau Bridge, LXC VPN Twingate, VM Wazuh (supervision/sécurité), VM backup, VM menu-fetcher.</li>
+          <li>Refonte des scripts de backup via GitLab : automatisation cron, politique de rétention (rotation, purge), tests de restauration et serveurs.</li>
+          <li>Documentation technique, tests de serveurs physiques et reventes de switchs.</li>
+        </ul>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">Linux</span><span class="tag">Proxmox VE</span><span class="tag">Automatisation</span><span class="tag">VPN Twingate</span>
+      </div>
+    </article>
+
+    <article class="exp-card reveal reveal-delay-2">
+      <div class="exp-header">
+        <div>
+          <h2 class="exp-title">Technicien Support (Stage & CDD)</h2>
+          <div class="exp-company">
+            <img src="../files/GPO.png" alt="Logo Groupe Paredes Orapi" class="company-logo needs-white-bg">
+            <span class="exp-company-text">Groupe PAREDES ORAPI - Lyon, Part-Dieu</span>
+          </div>
+        </div>
+        <div class="exp-date">Mai 2025 — Août 2025</div>
+      </div>
+      <div class="exp-desc">
+        <ul>
+          <li>Support utilisateur N1/N2 et gestion des tickets informatiques (GLPI/CMDB).</li>
+          <li>Configuration, préparation et déploiement de postes sous Windows 10/11.</li>
+          <li>Intégration au domaine Active Directory et gestion complète des comptes utilisateurs.</li>
+          <li>Maintenance matérielle : diagnostic, remplacement de composants et réparation.</li>
+          <li>Suivi de l'inventaire des téléphones professionnels (OCS - Bouygues/Orange).</li>
+          <li>Participation active au projet de migration vers Windows 11 via Microsoft Intune (création de stratégies, tests de déploiement).</li>
+          <li>Assistance sur l'environnement Microsoft 365, les accès VPN et les outils collaboratifs.</li>
+        </ul>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">Support N1/N2</span><span class="tag">Active Directory</span><span class="tag">MS Intune</span><span class="tag">Windows 11</span>
+      </div>
+    </article>
+
+    <article class="exp-card reveal reveal-delay-3">
+      <div class="exp-header">
+        <div>
+          <h2 class="exp-title">Technicien AudioVisuel (Stage)</h2>
+          <div class="exp-company">
+            <img src="../files/SIDEV.jpg" alt="Logo Sidev" class="company-logo needs-white-bg">
+            <span class="exp-company-text">SIDEV - Rillieux-la-Pape</span>
+          </div>
+        </div>
+        <div class="exp-date">Avril 2024 — Mai 2024</div>
+      </div>
+      <div class="exp-desc">
+        <ul>
+          <li>Configuration, dépannage et tests de matériels défectueux (caméras POE, enceintes, etc.).</li>
+          <li>Création de synoptiques techniques et installation matérielle de baies informatiques.</li>
+          <li>Participation à des réunions professionnelles (meetings) sur les nouveaux produits audiovisuels et technologiques.</li>
+        </ul>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">Hardware</span><span class="tag">Baies Informatiques</span><span class="tag">Réseau POE</span>
+      </div>
+    </article>
+
+    <article class="exp-card reveal reveal-delay-1">
+      <div class="exp-header">
+        <div>
+          <h2 class="exp-title">Technicien Systèmes & Réseau (Stage)</h2>
+          <div class="exp-company">
+            <img src="../files/LOKRIS.png" alt="Logo Lokris" class="company-logo needs-white-bg">
+            <span class="exp-company-text">LOKRIS / AZ VISION - Saint-Bonnet-de-Mure</span>
+          </div>
+        </div>
+        <div class="exp-date">Juin 2023 — Juil. 2023</div>
+      </div>
+      <div class="exp-desc">
+        <ul>
+          <li>Préparation et installation de PC et serveurs clients. Installation de systèmes d'exploitation Windows.</li>
+          <li>Configuration approfondie de matériel réseau : switches, bornes Wi-Fi Unifi et caméras PoE.</li>
+          <li>Assistance technique et interventions directes sur site chez les clients (dépannage réseau et matériel).</li>
+          <li>Gestion courante des tickets de dépannage pour le suivi client.</li>
+        </ul>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">Déploiement OS</span><span class="tag">Réseau Unifi</span><span class="tag">Intervention sur site</span>
+      </div>
+    </article>
+
+    <article class="exp-card reveal reveal-delay-2">
+      <div class="exp-header">
+        <div>
+          <h2 class="exp-title">Technicien Fibre Optique (Stage)</h2>
+          <div class="exp-company">
+            <span style="font-size: 1.5rem;">🏢</span>
+            <span class="exp-company-text">BLEU ANJ - Dardilly</span>
+          </div>
+        </div>
+        <div class="exp-date">Fév. 2023 — Mars 2023</div>
+      </div>
+      <div class="exp-desc">
+        <ul>
+          <li>Intervention terrain pour l'installation de câbles à fibre optique.</li>
+          <li>Réalisation des tests de connectivité post-installation.</li>
+          <li>Assistance technique spécialisée sur le terrain.</li>
+          <li>Participation à différents projets globaux de déploiement de réseaux locaux.</li>
+        </ul>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">Fibre Optique</span><span class="tag">Connectivité</span><span class="tag">Déploiement Réseau</span>
+      </div>
+    </article>
+
+    <article class="exp-card reveal reveal-delay-3">
+      <div class="exp-header">
+        <div>
+          <h2 class="exp-title">Technicien Réseau (Stage)</h2>
+          <div class="exp-company">
+            <img src="../files/KEOLIS.png" alt="Logo Keolis" class="company-logo needs-white-bg">
+            <span class="exp-company-text">KEOLIS LYON - Vaulx-en-Velin la Soie</span>
+          </div>
+        </div>
+        <div class="exp-date">Janv. 2022 — Fév. 2022</div>
+      </div>
+      <div class="exp-desc">
+        <ul>
+          <li>Suivi technique et assistance pour garantir le bon fonctionnement du système d'alarme incendie automatisé du dépôt.</li>
+          <li>Soutien direct aux employés pour les accompagner et les former dans l'utilisation des différents outils informatiques.</li>
+          <li>Découverte et application des procédures techniques de sécurité et de la maintenance en environnement industriel.</li>
+        </ul>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">Maintenance</span><span class="tag">Assistance Utilisateur</span><span class="tag">IoT / Alarmes</span>
+      </div>
+    </article>
+
+  </section>
+
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+  <a href="contact.html" class="floating-cta" aria-label="Bouton rapide vers la page de contact">🚀 Dispo Alternance</a>
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
+
+</body>
+</html>

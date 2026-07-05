@@ -1,0 +1,11 @@
+<IfModule mod_headers.c>
+    # En-têtes de sécurité stricts
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "no-referrer-when-downgrade"
+    
+    # En-tête personnalisé (Easter Egg Recruteur)
+    Header always set X-Hired-By "Looking for Alternance ESSIR 2026 - Adrien Blaize"
+</IfModule>

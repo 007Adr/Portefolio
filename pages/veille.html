@@ -1,586 +1,203 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veille Technologique — Adrien BLAIZE</title>
-<link rel="stylesheet" href="../css/style.css">
-<style>
-
-.breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--light); margin-bottom: 0.75rem; flex-wrap: wrap; }
-.breadcrumb a { color: var(--light); text-decoration: none; }
-.breadcrumb a:hover { color: var(--accent); }
-.breadcrumb span { color: var(--accent); font-weight: 600; }
-
-/* ─── HERO ─── */
-.page-hero { background: #0f0a0a; border: 1px solid #2a1010; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; }
-.page-hero-banner { height: 90px; background: linear-gradient(135deg, #0f0a0a, #1f0d0d, #150808, #0f0a0a); display: flex; align-items: center; justify-content: center; gap: 1.25rem; font-size: 2.2rem; border-bottom: 1px solid #2a1010; }
-.page-hero-body { padding: 1.5rem 2rem; }
-.page-hero-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #f87171; margin-bottom: 0.4rem; }
-.page-hero-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(1.2rem, 2.5vw, 1.65rem); line-height: 1.2; color: white; }
-.page-hero-sub { color: #9ca3af; font-size: 0.85rem; margin-top: 0.3rem; }
-
-/* ─── STATS ─── */
-.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
-.stat-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; text-align: center; }
-.stat-num { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.8rem; color: #dc2626; line-height: 1; }
-.stat-num.green { color: #16a34a; }
-.stat-num.blue  { color: #0284c7; }
-.stat-label { color: var(--muted); font-size: 0.78rem; margin-top: 0.3rem; }
-
-/* ─── CONTENT BLOCKS ─── */
-.content-block { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; }
-.content-block-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
-.content-block-title::before { content: ''; display: block; width: 3px; height: 18px; background: #dc2626; border-radius: 2px; flex-shrink: 0; }
-.content-block-title.blue::before   { background: #0284c7; }
-.content-block-title.green::before  { background: #16a34a; }
-.content-block-title.orange::before { background: #ea580c; }
-.content-text { color: var(--muted); font-size: 0.9rem; line-height: 1.85; }
-.content-text p + p { margin-top: 0.75rem; }
-
-/* ─── DÉMARCHE ─── */
-.demarche-steps { display: flex; flex-direction: column; gap: 0; margin-top: 1.5rem; }
-.demarche-step { display: flex; gap: 1.25rem; position: relative; }
-.demarche-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 42px; width: 2px; bottom: 0; background: var(--border); }
-.demarche-dot { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: #fef2f2; border: 2px solid #fecaca; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; position: relative; z-index: 1; }
-.demarche-body { padding: 0.4rem 0 2rem; }
-.demarche-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #dc2626; margin-bottom: 0.2rem; }
-.demarche-title { font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 0.3rem; }
-.demarche-desc  { color: var(--muted); font-size: 0.83rem; line-height: 1.65; }
-
-/* ─── SOURCES ─── */
-.sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.85rem; margin-top: 1rem; }
-.source-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.15rem; text-decoration: none; color: inherit; transition: all 0.18s; display: flex; align-items: flex-start; gap: 0.75rem; }
-.source-card:hover { border-color: #fecaca; background: #fef2f2; transform: translateY(-1px); }
-.source-card-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: white; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
-.source-card-name { font-weight: 700; font-size: 0.82rem; color: var(--text); }
-.source-card-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; line-height: 1.5; }
-.source-card-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; padding: 0.1rem 0.45rem; border-radius: 100px; margin-top: 0.35rem; display: inline-block; }
-.badge-fr   { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-.badge-en   { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
-.badge-live { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
-
-/* ─── SYNTHÈSES ─── */
-.synthese-grid { display: flex; flex-direction: column; gap: 1.25rem; }
-.synthese-card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: white; }
-.synthese-header { background: linear-gradient(135deg, #fef2f2, #fff5f5); border-bottom: 1px solid #fecaca; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.synthese-month { background: #dc2626; color: white; font-weight: 800; font-size: 0.82rem; padding: 0.3rem 0.85rem; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
-.synthese-title { font-weight: 700; font-size: 0.95rem; color: var(--text); flex: 1; }
-.synthese-count { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
-.synthese-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-
-.article-item { border: 1px solid var(--border); border-radius: 11px; padding: 1rem 1.25rem; background: var(--surface); text-decoration: none; color: inherit; display: block; transition: all 0.18s; }
-.article-item:hover { border-color: #fecaca; background: #fef2f2; transform: translateY(-1px); }
-.article-item-top { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.6rem; }
-.article-item-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 0.15rem 0.55rem; border-radius: 100px; white-space: nowrap; flex-shrink: 0; margin-top: 0.1rem; }
-.tag-red    { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
-.tag-blue   { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
-.tag-purple { background: #faf5ff; border: 1px solid #ddd6fe; color: #6d28d9; }
-.article-item-title { font-weight: 700; font-size: 0.87rem; color: var(--text); line-height: 1.4; }
-.article-item-source { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
-.article-item-analyse { background: white; border-left: 3px solid #dc2626; padding: 0.65rem 0.85rem; border-radius: 0 8px 8px 0; font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
-.article-item-analyse strong { color: var(--text); }
-
-/* ─── FLUX LIVE ─── */
-.flux-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-.flux-tab-btn { padding: 0.45rem 1rem; border-radius: 100px; border: 1px solid var(--border); background: white; font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.18s; }
-.flux-tab-btn:hover { border-color: #fecaca; color: #dc2626; }
-.flux-tab-btn.active { background: #dc2626; border-color: #dc2626; color: white; }
-.flux-section { display: none; }
-.flux-section.active { display: block; }
-.feed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.85rem; }
-.feed-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-decoration: none; color: inherit; transition: all 0.18s; }
-.feed-card:hover { border-color: #fecaca; background: #fef2f2; transform: translateY(-1px); }
-.feed-card-meta { font-size: 0.7rem; color: var(--muted); display: flex; gap: 0.4rem; align-items: center; }
-.feed-card-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
-.feed-card-title { font-weight: 700; font-size: 0.85rem; color: var(--text); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.feed-card-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
-.feed-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.5rem; border-top: 1px solid var(--border); margin-top: auto; }
-.feed-card-source { font-size: 0.7rem; font-weight: 700; color: #dc2626; }
-.feed-card-link   { font-size: 0.7rem; color: var(--muted); }
-.feed-loading { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 3rem; color: var(--muted); font-size: 0.85rem; grid-column: 1/-1; }
-.spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); border-top-color: #dc2626; animation: spin 0.7s linear infinite; flex-shrink: 0; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.feed-empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; color: var(--muted); font-size: 0.82rem; grid-column: 1/-1; }
-
-/* ─── NAV ─── */
-.nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-.nav-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.83rem; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.18s; }
-.nav-btn:hover { color: var(--accent); }
-
-@media (max-width: 700px) {
-  .stats-row { grid-template-columns: repeat(2,1fr); }
-  .sources-grid { grid-template-columns: 1fr; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veille Technologique — Adrien BLAIZE</title>
+  <meta name="description" content="Veille technologique d'Adrien Blaize : Suivi de l'actualité cybersécurité, des ransomwares et de l'administration réseau en direct via flux RSS.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/app.js" defer></script>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
-  <ul class="nav-links">
-    <li><a href="../index.html">Accueil</a></li>
-    <li><a href="about.html">À propos de moi</a></li>
-    <li><a href="ateliers.html">Ateliers Pro</a></li>
-    <li class="nav-dropdown">
-      <a href="stages.html">Stages</a>
-      <div class="dropdown-menu">
-        <a href="stages/stage1.html">🏢 Stage 1 — Paredes Orapi</a>
-        <a href="stages/stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
-      </div>
-    </li>
-    <li><a href="veille.html" class="active">Veille techno</a></li>
-    <li><a href="contact.html">Contact</a></li> 
-  </ul>
-</nav>
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
 
-<div class="page-content">
-  <div class="section">
+  <nav>
+    <a href="../index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">Profil & CV</a></li>
+      <li><a href="projets.html">Projets Tech</a></li>
+      <li><a href="experiences.html">Expériences</a></li>
+      <li><a href="veille.html" class="active">Veille</a></li>
+      <li><a href="contact.html">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </nav>
 
-    <div class="breadcrumb">
-      <a href="../index.html">Accueil</a> ›
-      <span>Veille Technologique</span>
+  <header class="page-header reveal">
+    <div class="page-eyebrow">Innovation & Surveillance</div>
+    <h1 class="page-title parallax">Veille Technologique</h1>
+    <p class="page-desc parallax">
+      Suivi constant des évolutions liées à l'administration des infrastructures, la cybersécurité et l'actualité des ransomwares via des flux automatisés.
+    </p>
+  </header>
+
+  <section class="veille-container">
+    <div class="veille-card reveal reveal-delay-1">
+      <div class="veille-icon">🔐</div>
+      <h2 class="veille-title">Ransomware & Cybercriminalité</h2>
+      <p class="veille-text">Surveillance active des failles Zero-Day, des évolutions des attaques réseaux et des groupes criminels actifs (suivi des CERTs, alertes ANSSI).</p>
+    </div>
+    <div class="veille-card reveal reveal-delay-2">
+      <div class="veille-icon">📦</div>
+      <h2 class="veille-title">Virtualisation & Conteneurs</h2>
+      <p class="veille-text">Analyse des nouvelles releases de Proxmox VE, de l'écosystème Docker et des solutions d'orchestration pour optimiser les serveurs.</p>
+    </div>
+    <div class="veille-card reveal reveal-delay-3">
+      <div class="veille-icon">⚙️</div>
+      <h2 class="veille-title">Automatisation & OSINT</h2>
+      <p class="veille-text">Recherche continue sur l'automatisation via Python et l'application de méthodologies de recherche d'informations ouvertes.</p>
+    </div>
+  </section>
+
+  <section class="live-feed-section reveal reveal-delay-1">
+    <div class="live-feed-header">
+      <h2 class="page-title" style="font-size: 2rem;">Flux d'actualités en direct</h2>
+      <p class="page-desc" style="font-size: 0.95rem;">Système de veille automatisé récupérant les derniers articles via API et proxies CORS.</p>
     </div>
 
-    <div class="page-hero">
-      <div class="page-hero-banner">🔐 💀 📡</div>
-      <div class="page-hero-body">
-        <div class="page-hero-label">Veille Technologique — BTS SIO SISR · Épreuve E4</div>
-        <div class="page-hero-title">Ransomware & Cybercriminalité — Tendances 2025-2026</div>
-        <div class="page-hero-sub">Thème de veille · Outil : Feedly · Synthèses occasionnelles · Flux d'actualités en temps réel</div>
-      </div>
+    <div class="flux-tabs">
+      <button class="flux-tab-btn active" onclick="switchFlux('certfr')" id="ftab-certfr">🇫🇷 Alertes CERT-FR</button>
+      <button class="flux-tab-btn" onclick="switchFlux('thn')" id="ftab-thn">📰 The Hacker News</button>
+      <button class="flux-tab-btn" onclick="switchFlux('record')" id="ftab-record">📡 The Record</button>
     </div>
 
-    <div class="stats-row">
-      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Thème de veille suivi</div></div>
-      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Sources surveillées</div></div>
-      <div class="stat-card"><div class="stat-num green">1</div><div class="stat-label">Synthèses publiées</div></div>
-      <div class="stat-card"><div class="stat-num blue">🔄</div><div class="stat-label">Flux temps réel</div></div>
+    <div class="flux-section active" id="flux-certfr">
+      <div class="feed-grid" id="feed-certfr"><div class="feed-loading"><div class="spinner"></div> Chargement des alertes CERT-FR…</div></div>
     </div>
-
-    <div class="content-block">
-      <div class="content-block-title">Ma démarche de veille</div>
-      <div class="content-text">
-        <p>J'ai choisi de centrer ma veille sur les <strong>ransomwares et la cybercriminalité</strong>, un domaine directement lié aux compétences SISR — sécurisation d'infrastructure, gestion des incidents, politique de sauvegarde. En 2026, les ransomwares représentent la première menace pesant sur les entreprises françaises selon l'ANSSI.</p>
-        <p>Ma démarche repose sur un processus en quatre étapes : <strong>collecter</strong> via des sources fiables, <strong>trier</strong> les informations pertinentes, <strong>analyser</strong> les tendances, puis <strong>diffuser</strong> mes conclusions sous forme de synthèses occasionnelles publiées ici.</p>
-        <p>J'utilise <strong>Feedly</strong> comme agrégateur RSS pour centraliser mes sources dans une collection dédiée. Je consulte mes flux chaque semaine, je marque les articles importants, puis je publie une synthèse commentée de façon régulière.</p>
-      </div>
-      <div class="demarche-steps">
-        <div class="demarche-step">
-          <div class="demarche-dot">📥</div>
-          <div class="demarche-body">
-            <div class="demarche-label">Étape 1 · Collecte</div>
-            <div class="demarche-title">Surveillance hebdomadaire via Feedly</div>
-            <div class="demarche-desc">Mes 5 sources sont regroupées dans une collection Feedly "Ransomware & Cybercriminalité". Je consulte les flux chaque semaine et je marque les articles significatifs avec l'étoile Feedly pour les retrouver facilement.</div>
-          </div>
-        </div>
-        <div class="demarche-step">
-          <div class="demarche-dot">🔍</div>
-          <div class="demarche-body">
-            <div class="demarche-label">Étape 2 · Tri</div>
-            <div class="demarche-title">Sélection des articles pertinents</div>
-            <div class="demarche-desc">Je retiens les articles apportant une information nouvelle : nouvelle technique d'attaque, victime française ou européenne, nouveau groupe criminel actif, ou solution de défense innovante.</div>
-          </div>
-        </div>
-        <div class="demarche-step">
-          <div class="demarche-dot">🧠</div>
-          <div class="demarche-body">
-            <div class="demarche-label">Étape 3 · Analyse</div>
-            <div class="demarche-title">Mise en perspective avec mes compétences SISR</div>
-            <div class="demarche-desc">Je relis chaque article, j'identifie les tendances et je formule une analyse en lien avec ce que j'ai pratiqué en formation : segmentation réseau, gestion des droits AD, supervision, pare-feu pfSense.</div>
-          </div>
-        </div>
-        <div class="demarche-step">
-          <div class="demarche-dot">📢</div>
-          <div class="demarche-body">
-            <div class="demarche-label">Étape 4 · Diffusion</div>
-            <div class="demarche-title">Publication occasionnelle sur ce portfolio</div>
-            <div class="demarche-desc">Régulièrement, je publie une synthèse de 3 à 5 articles avec mon analyse personnelle. Ces synthèses me serviront de support pour la présentation orale de l'épreuve E4.</div>
-          </div>
-        </div>
-      </div>
+    <div class="flux-section" id="flux-thn">
+      <div class="feed-grid" id="feed-thn"><div class="feed-loading"><div class="spinner"></div> Chargement de The Hacker News…</div></div>
     </div>
-
-    <div class="content-block">
-      <div class="content-block-title blue">Mes sources de veille</div>
-      <div class="content-text">
-        <p>Cinq sources complémentaires : deux françaises officielles, deux anglaises de référence mondiale, et un tracker spécialisé ransomware en temps réel.</p>
-      </div>
-      <div class="sources-grid">
-        <a class="source-card" href="https://www.cert.ssi.gouv.fr" target="_blank" rel="noopener">
-          <div class="source-card-icon">🇫🇷</div>
-          <div>
-            <div class="source-card-name">CERT-FR / ANSSI</div>
-            <div class="source-card-desc">Alertes officielles françaises. Référence nationale pour les incidents et vulnérabilités actives.</div>
-            <span class="source-card-badge badge-fr">Français · Officiel</span>
-          </div>
-        </a>
-        <a class="source-card" href="https://thehackernews.com" target="_blank" rel="noopener">
-          <div class="source-card-icon">📰</div>
-          <div>
-            <div class="source-card-name">The Hacker News</div>
-            <div class="source-card-desc">Actualité cybersécurité mondiale quotidienne. Couverture exhaustive des attaques et groupes ransomware.</div>
-            <span class="source-card-badge badge-en">Anglais · Quotidien</span>
-          </div>
-        </a>
-        <a class="source-card" href="https://krebsonsecurity.com" target="_blank" rel="noopener">
-          <div class="source-card-icon">🔎</div>
-          <div>
-            <div class="source-card-name">Krebs on Security</div>
-            <div class="source-card-desc">Investigations approfondies sur les groupes criminels et leurs modes opératoires.</div>
-            <span class="source-card-badge badge-en">Anglais · Analyses</span>
-          </div>
-        </a>
-        <a class="source-card" href="https://ransomfeed.it" target="_blank" rel="noopener">
-          <div class="source-card-icon">💀</div>
-          <div>
-            <div class="source-card-name">Ransomfeed.it</div>
-            <div class="source-card-desc">Tracker temps réel des victimes mondiales. Mesure l'ampleur et les secteurs ciblés.</div>
-            <span class="source-card-badge badge-live">Temps réel · Tracker</span>
-          </div>
-        </a>
-        <a class="source-card" href="https://therecord.media" target="_blank" rel="noopener">
-          <div class="source-card-icon">📡</div>
-          <div>
-            <div class="source-card-name">The Record</div>
-            <div class="source-card-desc">Actualité cybercriminalité par Recorded Future. Groupes APT, négociations, arrestations.</div>
-            <span class="source-card-badge badge-en">Anglais · Cybercrime</span>
-          </div>
-        </a>
-      </div>
+    <div class="flux-section" id="flux-record">
+      <div class="feed-grid" id="feed-record"><div class="feed-loading"><div class="spinner"></div> Chargement de The Record…</div></div>
     </div>
+  </section>
 
-    <div class="content-block">
-      <div class="content-block-title orange">Synthèses occasionnelles</div>
-      <div class="content-text" style="margin-bottom: 1.5rem;">
-        <p>De façon occasionnelle, je sélectionne les articles les plus significatifs et je les commente avec mon analyse personnelle. Ces synthèses constituent le cœur de ma veille — c'est ici que je montre ma capacité à comprendre et à contextualiser l'information.</p>
-      </div>
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+  <a href="contact.html" class="floating-cta" aria-label="Bouton rapide vers la page de contact">🚀 Dispo Alternance</a>
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
 
-      <div class="synthese-grid">
-
-        <div class="synthese-card">
-          <div class="synthese-header">
-            <span class="synthese-month">Mars 2026</span>
-            <div class="synthese-title">Multiplication des attaques sur les hôpitaux et les collectivités françaises</div>
-            <span class="synthese-count">3 articles analysés</span>
-          </div>
-          <div class="synthese-body">
-
-            <a class="article-item" href="https://www.cert.ssi.gouv.fr" target="_blank" rel="noopener">
-              <div class="article-item-top">
-                <span class="article-item-tag tag-red">CERT-FR</span>
-                <div>
-                  <div class="article-item-title">Multiples vulnérabilités dans les produits Microsoft — Patch Tuesday mars 2026</div>
-                  <div class="article-item-source">cert.ssi.gouv.fr · 23 mars 2026</div>
-                </div>
-              </div>
-              <div class="article-item-analyse">
-                <strong>Mon analyse :</strong> Ce Patch Tuesday corrige notamment une vulnérabilité critique dans le service NTLM, fréquemment exploitée comme vecteur d'entrée initial par les groupes ransomware avant déploiement de la charge utile. Cela rappelle l'importance fondamentale de la gestion des correctifs : une infrastructure à jour est la première ligne de défense. En stage, j'ai pu constater que les retards de patching sont l'une des causes principales de compromission.
-              </div>
-            </a>
-
-            <a class="article-item" href="https://thehackernews.com" target="_blank" rel="noopener">
-              <div class="article-item-top">
-                <span class="article-item-tag tag-blue">The Hacker News</span>
-                <div>
-                  <div class="article-item-title">LockBit 4.0 : le groupe revient avec une infrastructure décentralisée résistante aux saisies</div>
-                  <div class="article-item-source">thehackernews.com · 15 mars 2026</div>
-                </div>
-              </div>
-              <div class="article-item-analyse">
-                <strong>Mon analyse :</strong> Après le démantèlement de LockBit par Europol en 2024, le groupe a restructuré son modèle en distribuant son infrastructure sur plusieurs juridictions. Cela illustre la résilience des organisations criminelles et montre que compter sur les seules arrestations est insuffisant. La défense proactive — segmentation réseau, supervision, sauvegardes hors ligne — reste indispensable indépendamment des opérations policières.
-              </div>
-            </a>
-
-            <a class="article-item" href="https://therecord.media" target="_blank" rel="noopener">
-              <div class="article-item-top">
-                <span class="article-item-tag tag-purple">The Record</span>
-                <div>
-                  <div class="article-item-title">Ransomware-as-a-Service : les affiliés ciblent désormais les PME françaises via les MSP</div>
-                  <div class="article-item-source">therecord.media · 8 mars 2026</div>
-                </div>
-              </div>
-              <div class="article-item-analyse">
-                <strong>Mon analyse :</strong> La compromission des prestataires informatiques (MSP) comme vecteur d'attaque en cascade vers leurs clients PME est une tendance préoccupante. Un seul accès MSP compromis peut affecter des dizaines d'entreprises simultanément. Cela met en lumière l'importance de segmenter les accès distants, de monitorer les connexions des tiers et d'appliquer le principe du moindre privilège — des notions que j'ai directement pratiquées avec pfSense et Active Directory.
-              </div>
-            </a>
-
-          </div>
-        </div>
-
-        <div style="padding: 1.25rem; background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; text-align: center; color: var(--muted); font-size: 0.83rem;">
-          📅 Prochaine synthèse — <strong>Avril 2026</strong> · En cours de préparation
-        </div>
-
-      </div>
-    </div>
-
-    <div class="content-block">
-      <div class="content-block-title">Flux d'actualités en direct</div>
-      <div class="content-text" style="margin-bottom: 1.25rem;">
-        <p>Les dernières actualités issues de mes sources de veille, chargées automatiquement à chaque visite pour rester à jour en permanence.</p>
-      </div>
-
-      <div class="flux-tabs">
-        <button class="flux-tab-btn active" onclick="switchFlux('certfr')" id="ftab-certfr">🇫🇷 CERT-FR</button>
-        <button class="flux-tab-btn" onclick="switchFlux('thn')" id="ftab-thn">📰 The Hacker News</button>
-        <button class="flux-tab-btn" onclick="switchFlux('record')" id="ftab-record">📡 The Record</button>
-      </div>
-
-      <div class="flux-section active" id="flux-certfr">
-        <div class="feed-grid" id="feed-certfr">
-          <div class="feed-loading"><div class="spinner"></div> Chargement des alertes CERT-FR…</div>
-        </div>
-      </div>
-      <div class="flux-section" id="flux-thn">
-        <div class="feed-grid" id="feed-thn">
-          <div class="feed-loading"><div class="spinner"></div> Chargement de The Hacker News…</div>
-        </div>
-      </div>
-      <div class="flux-section" id="flux-record">
-        <div class="feed-grid" id="feed-record">
-          <div class="feed-loading"><div class="spinner"></div> Chargement de The Record…</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-bottom">
-      <a class="nav-btn" href="../index.html">← Retour à l'accueil</a>
-      <span style="font-size:0.75rem; color:var(--muted);">Flux RSS · Actualisé à chaque visite</span>
-    </div>
-
-  </div>
-</div>
-
-<footer>
-  Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; BTS SIO SISR &nbsp;·&nbsp; La Martinière Duchère &nbsp;·&nbsp; 2025
-</footer>
-
-<script src="../js/nav.js"></script>
-<script>
-// ═══════════════════════════════════════════════════════
-//  SYSTÈME MULTI-PROXY RSS — FALLBACK AUTOMATIQUE
-//  Essaie chaque proxy dans l'ordre jusqu'à succès
-// ═══════════════════════════════════════════════════════
-
-// Liste de proxys CORS publics — tentés dans l'ordre
-const PROXIES = [
-  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  url => `https://cors-anywhere.herokuapp.com/${url}`,
-];
-
-// Adaptateur : chaque proxy renvoie le XML différemment
-async function fetchViaProxy(feedUrl, proxyIndex) {
-  const proxyUrl = PROXIES[proxyIndex](feedUrl);
-  const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-  // allorigins et codetabs renvoient du JSON avec .contents
-  const contentType = res.headers.get("content-type") || "";
-  if (contentType.includes("application/json") || proxyIndex <= 1) {
-    const json = await res.json();
-    // allorigins : { contents: "..." }
-    // codetabs   : renvoie parfois directement le XML en string dans un champ
-    const xml = json.contents ?? json;
-    if (!xml || typeof xml !== "string" || xml.length < 50) throw new Error("Réponse vide");
-    return xml;
-  }
-
-  // corsproxy.io et cors-anywhere renvoient directement le XML
-  const text = await res.text();
-  if (!text || text.length < 50) throw new Error("Réponse vide");
-  return text;
-}
-
-// Tente tous les proxys en cascade
-async function fetchRSS(feedUrl) {
-  let lastErr;
-  for (let i = 0; i < PROXIES.length; i++) {
-    try {
-      const xml = await fetchViaProxy(feedUrl, i);
+  <script>
+  const PROXIES = [
+    url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    url => `https://cors-anywhere.herokuapp.com/${url}`,
+  ];
+  async function fetchViaProxy(feedUrl, proxyIndex) {
+    const proxyUrl = PROXIES[proxyIndex](feedUrl);
+    const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const contentType = res.headers.get("content-type") || "";
+    if (contentType.includes("application/json") || proxyIndex <= 1) {
+      const json = await res.json();
+      const xml = json.contents ?? json;
+      if (!xml || typeof xml !== "string" || xml.length < 50) throw new Error("Réponse vide");
       return xml;
-    } catch (e) {
-      lastErr = e;
-      // Continue avec le proxy suivant
+    }
+    const text = await res.text();
+    if (!text || text.length < 50) throw new Error("Réponse vide");
+    return text;
+  }
+  async function fetchRSS(feedUrl) {
+    let lastErr;
+    for (let i = 0; i < PROXIES.length; i++) {
+      try { const xml = await fetchViaProxy(feedUrl, i); return xml; } 
+      catch (e) { lastErr = e; }
+    }
+    throw lastErr ?? new Error("Tous les proxys ont échoué");
+  }
+  const LIVE_FEEDS = {
+    "feed-certfr": { url: "https://www.cert.ssi.gouv.fr/feed/", source: "CERT-FR", tab: "certfr" },
+    "feed-thn": { url: "https://feeds.feedburner.com/TheHackersNews", source: "The Hacker News", tab: "thn" },
+    "feed-record": { url: "https://therecord.media/feed", source: "The Record", tab: "record" },
+  };
+  function stripHtml(html) {
+    if (!html) return "";
+    const d = document.createElement("div"); d.innerHTML = html;
+    return (d.textContent || d.innerText || "").trim();
+  }
+  function formatDate(str) {
+    if (!str) return "";
+    const d = new Date(str);
+    return isNaN(d) ? "" : d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
+  }
+  function truncate(s, n) {
+    if (!s) return "";
+    s = s.trim(); return s.length > n ? s.slice(0, n).trimEnd() + "…" : s;
+  }
+  function parseXML(xml) {
+    const cleaned = xml.replace(/&(?!(amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/g, "&amp;");
+    let doc;
+    try { doc = new DOMParser().parseFromString(cleaned, "text/xml"); } 
+    catch (e) { doc = new DOMParser().parseFromString(xml, "text/html"); }
+    const parseError = doc.querySelector("parsererror");
+    if (parseError) doc = new DOMParser().parseFromString(xml, "text/html");
+    const items = [];
+    doc.querySelectorAll("item").forEach(el => {
+      const linkEl = el.querySelector("link");
+      const link = linkEl?.textContent?.trim() || linkEl?.nextSibling?.textContent?.trim() || linkEl?.getAttribute("href") || "";
+      items.push({
+        title: el.getElementsByTagName("title")[0]?.textContent?.trim() || "", link,
+        desc:  el.getElementsByTagName("description")[0]?.textContent || "",
+        date:  el.getElementsByTagName("pubDate")[0]?.textContent || "",
+      });
+    });
+    if (items.length) return items;
+    doc.querySelectorAll("entry").forEach(el => {
+      const linkEl = el.querySelector("link[rel='alternate']") || el.querySelector("link");
+      items.push({
+        title: el.getElementsByTagName("title")[0]?.textContent?.trim() || "", link:  linkEl?.getAttribute("href") || "",
+        desc:  el.getElementsByTagName("summary")[0]?.textContent || el.getElementsByTagName("content")[0]?.textContent || "",
+        date:  el.getElementsByTagName("published")[0]?.textContent || el.getElementsByTagName("updated")[0]?.textContent || "",
+      });
+    });
+    return items;
+  }
+  function renderCard(item, source) {
+    const title = truncate(stripHtml(item.title), 100);
+    const desc  = truncate(stripHtml(item.desc),  140);
+    const date  = formatDate(item.date);
+    const href  = item.link || "#";
+    return `
+      <a class="feed-card" href="${href}" target="_blank" rel="noopener noreferrer">
+        <div class="feed-card-meta">${date ? `<span>${date}</span><span class="feed-card-meta-dot"></span>` : ""}<span>${source}</span></div>
+        <div class="feed-card-title">${title || "Article"}</div>
+        ${desc ? `<div class="feed-card-desc">${desc}</div>` : ""}
+        <div class="feed-card-footer"><span class="feed-card-source">${source}</span><span class="feed-card-link">Lire →</span></div>
+      </a>`;
+  }
+  const loadedFeeds = new Set();
+  async function loadFeed(feedId) {
+    if (loadedFeeds.has(feedId)) return;
+    loadedFeeds.add(feedId);
+    const cfg = LIVE_FEEDS[feedId];
+    const container = document.getElementById(feedId);
+    if (!cfg || !container) return;
+    try {
+      const xml = await fetchRSS(cfg.url);
+      const items = parseXML(xml).slice(0, 6);
+      if (!items.length) throw new Error("Aucun article");
+      container.innerHTML = items.map(i => renderCard(i, cfg.source)).join("");
+    } catch (err) {
+      container.innerHTML = `<div class="feed-empty">⚠️ Flux indisponible.<br><a href="${cfg.url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem;margin-top:0.5rem;display:inline-block;font-weight:600;">Voir la source →</a></div>`;
     }
   }
-  throw lastErr ?? new Error("Tous les proxys ont échoué");
-}
-
-// ═══════════════════════════════════════════════════════
-//  FLUX RSS CONFIGURÉS
-// ═══════════════════════════════════════════════════════
-const LIVE_FEEDS = {
-  "feed-certfr": {
-    url: "https://www.cert.ssi.gouv.fr/feed/",
-    source: "CERT-FR",
-    tab: "certfr"
-  },
-  "feed-thn": {
-    url: "https://feeds.feedburner.com/TheHackersNews",
-    source: "The Hacker News",
-    tab: "thn"
-  },
-  "feed-record": {
-    url: "https://therecord.media/feed",
-    source: "The Record",
-    tab: "record"
-  },
-};
-
-// ═══════════════════════════════════════════════════════
-//  UTILITAIRES
-// ═══════════════════════════════════════════════════════
-function stripHtml(html) {
-  if (!html) return "";
-  const d = document.createElement("div");
-  d.innerHTML = html;
-  return (d.textContent || d.innerText || "").trim();
-}
-
-function formatDate(str) {
-  if (!str) return "";
-  const d = new Date(str);
-  return isNaN(d) ? "" : d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-}
-
-function truncate(s, n) {
-  if (!s) return "";
-  s = s.trim();
-  return s.length > n ? s.slice(0, n).trimEnd() + "…" : s;
-}
-
-// ═══════════════════════════════════════════════════════
-//  PARSING XML (RSS 2.0 + Atom)
-// ═══════════════════════════════════════════════════════
-function parseXML(xml) {
-  // Nettoyage du XML avant parsing (certains flux ont des caractères invalides)
-  const cleaned = xml.replace(/&(?!(amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/g, "&amp;");
-
-  let doc;
-  try {
-    doc = new DOMParser().parseFromString(cleaned, "text/xml");
-  } catch (e) {
-    doc = new DOMParser().parseFromString(xml, "text/html");
+  function switchFlux(tab) {
+    document.querySelectorAll(".flux-section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".flux-tab-btn").forEach(b => b.classList.remove("active"));
+    const section = document.getElementById("flux-" + tab);
+    const btn = document.getElementById("ftab-" + tab);
+    if (section) section.classList.add("active");
+    if (btn) btn.classList.add("active");
+    const feedId = Object.keys(LIVE_FEEDS).find(k => LIVE_FEEDS[k].tab === tab);
+    if (feedId) loadFeed(feedId);
   }
-
-  // Vérifie erreur de parsing
-  const parseError = doc.querySelector("parsererror");
-  if (parseError) {
-    // Tente un parsing HTML en fallback
-    doc = new DOMParser().parseFromString(xml, "text/html");
-  }
-
-  const items = [];
-
-  // ── RSS 2.0 ──
-  doc.querySelectorAll("item").forEach(el => {
-    const linkEl = el.querySelector("link");
-    // <link> peut être un nœud texte ou un attribut href
-    const link = linkEl?.textContent?.trim()
-      || linkEl?.nextSibling?.textContent?.trim()
-      || linkEl?.getAttribute("href")
-      || "";
-    items.push({
-      title: el.getElementsByTagName("title")[0]?.textContent?.trim() || "",
-      link,
-      desc:  el.getElementsByTagName("description")[0]?.textContent || "",
-      date:  el.getElementsByTagName("pubDate")[0]?.textContent || "",
-    });
-  });
-  if (items.length) return items;
-
-  // ── Atom ──
-  doc.querySelectorAll("entry").forEach(el => {
-    const linkEl = el.querySelector("link[rel='alternate']") || el.querySelector("link");
-    items.push({
-      title: el.getElementsByTagName("title")[0]?.textContent?.trim() || "",
-      link:  linkEl?.getAttribute("href") || "",
-      desc:  el.getElementsByTagName("summary")[0]?.textContent || el.getElementsByTagName("content")[0]?.textContent || "",
-      date:  el.getElementsByTagName("published")[0]?.textContent || el.getElementsByTagName("updated")[0]?.textContent || "",
-    });
-  });
-  return items;
-}
-
-// ═══════════════════════════════════════════════════════
-//  RENDU D'UNE CARTE ARTICLE
-// ═══════════════════════════════════════════════════════
-function renderCard(item, source) {
-  const title = truncate(stripHtml(item.title), 100);
-  const desc  = truncate(stripHtml(item.desc),  140);
-  const date  = formatDate(item.date);
-  const href  = item.link || "#";
-  return `
-    <a class="feed-card" href="${href}" target="_blank" rel="noopener noreferrer">
-      <div class="feed-card-meta">
-        ${date ? `<span>${date}</span><span class="feed-card-meta-dot"></span>` : ""}
-        <span>${source}</span>
-      </div>
-      <div class="feed-card-title">${title || "Article"}</div>
-      ${desc ? `<div class="feed-card-desc">${desc}</div>` : ""}
-      <div class="feed-card-footer">
-        <span class="feed-card-source">${source}</span>
-        <span class="feed-card-link">Lire →</span>
-      </div>
-    </a>`;
-}
-
-// ═══════════════════════════════════════════════════════
-//  CHARGEMENT D'UN FLUX
-// ═══════════════════════════════════════════════════════
-const loadedFeeds = new Set();
-
-async function loadFeed(feedId) {
-  if (loadedFeeds.has(feedId)) return;
-  loadedFeeds.add(feedId);
-
-  const cfg = LIVE_FEEDS[feedId];
-  const container = document.getElementById(feedId);
-  if (!cfg || !container) return;
-
-  try {
-    const xml   = await fetchRSS(cfg.url);
-    const items = parseXML(xml).slice(0, 6);
-
-    if (!items.length) throw new Error("Aucun article trouvé dans le flux");
-
-    container.innerHTML = items.map(i => renderCard(i, cfg.source)).join("");
-  } catch (err) {
-    console.warn(`[RSS] Échec pour ${feedId}:`, err);
-    container.innerHTML = `
-      <div class="feed-empty">
-        ⚠️ Flux temporairement indisponible.<br>
-        <a href="${cfg.url}" target="_blank" rel="noopener"
-           style="color:#dc2626;font-size:0.78rem;margin-top:0.3rem;display:inline-block;">
-          Voir la source directement →
-        </a>
-      </div>`;
-  }
-}
-
-// ═══════════════════════════════════════════════════════
-//  NAVIGATION PAR ONGLETS
-// ═══════════════════════════════════════════════════════
-function switchFlux(tab) {
-  document.querySelectorAll(".flux-section").forEach(s => s.classList.remove("active"));
-  document.querySelectorAll(".flux-tab-btn").forEach(b => b.classList.remove("active"));
-  const section = document.getElementById("flux-" + tab);
-  const btn     = document.getElementById("ftab-" + tab);
-  if (section) section.classList.add("active");
-  if (btn)     btn.classList.add("active");
-  const feedId = Object.keys(LIVE_FEEDS).find(k => LIVE_FEEDS[k].tab === tab);
-  if (feedId) loadFeed(feedId);
-}
-
-// ═══════════════════════════════════════════════════════
-//  INIT — charge le premier flux au démarrage
-// ═══════════════════════════════════════════════════════
-document.addEventListener("DOMContentLoaded", () => {
-  loadFeed("feed-certfr");
-});
-</script>
+  document.addEventListener("DOMContentLoaded", () => { loadFeed("feed-certfr"); });
+  </script>
 </body>
 </html>
