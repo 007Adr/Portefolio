@@ -280,3 +280,44 @@ document.addEventListener('DOMContentLoaded', () => {
     VanillaTilt.init(document.querySelectorAll(".project-card"), { max: 6, speed: 400, glare: true, "max-glare": 0.15, scale: 1.02 });
   }
 });
+
+// 18. COPIE EMAIL & TOAST NOTIFICATION
+  const emailCards = document.querySelectorAll('.copy-email-card');
+  if (emailCards.length > 0) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = '✅ Adresse e-mail copiée avec succès !';
+    document.body.appendChild(toast);
+
+    let toastTimeout;
+
+    emailCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault(); // Empêche l'ouverture d'Outlook/Mail
+        const email = card.getAttribute('data-email');
+        
+        navigator.clipboard.writeText(email).then(() => {
+          // Afficher le toast
+          toast.classList.add('show');
+          
+          // Changer le texte dans la carte
+          const hint = card.querySelector('.copy-hint');
+          if(hint) {
+             const originalText = "Cliquez pour copier 📋";
+             hint.innerHTML = 'Copié ! ✔️';
+             hint.style.color = '#22c55e';
+             setTimeout(() => {
+               hint.innerHTML = originalText;
+               hint.style.color = 'var(--accent)';
+             }, 3000);
+          }
+          
+          // Masquer le toast après 3s
+          clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3000);
+        });
+      });
+    });
+  }
