@@ -414,6 +414,21 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   .hero-title { font-size: 2.2rem; }
   .page-title { font-size: 2rem; }
   .hero-wrapper { padding: 6rem 1.5rem 2rem; } /* Ajustement sécurisé sous le header mobile */
+ 
+  /* Fix pour les cartes de certification qui débordent sur mobile */
+  .certif-card { 
+    padding: 1.2rem; 
+    flex-direction: column; /* Aligne l'icône et le texte de haut en bas */
+    align-items: flex-start; 
+  }
+  .certif-info { 
+    min-width: 100%; /* Empêche le conteneur de forcer une largeur fixe */
+    word-break: break-word; /* Force les mots très longs à passer à la ligne */
+  }
+  .certif-preview iframe {
+    min-height: 200px;
+    width: 100%;
+  }
   
   /* Ajustement Modal Mobile */
   .modal-overlay { padding: 0; background: var(--bg-color); }
