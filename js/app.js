@@ -39,7 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      document.body.classList.toggle('no-scroll'); // Empêche le scroll en arrière-plan
+    });
+    
+    // Fermeture automatique du menu au clic sur un lien interne
+    const mobileLinks = navLinks.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+      });
+    });
   }
 
   // 5. BARRE DE PROGRESSION & BOUTON RETOUR HAUT
@@ -113,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('page-transition-enter');
   setTimeout(() => {
     document.body.classList.remove('page-transition-enter');
-    document.body.style.transform = 'none'; // Sécurité absolue pour tuer le contexte de formatage
+    document.body.style.transform = 'none';
   }, 600); 
 
   const links = document.querySelectorAll('a[href^="index.html"], a[href^="pages/"], a[href^="../"]');
@@ -279,9 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof VanillaTilt !== 'undefined') {
     VanillaTilt.init(document.querySelectorAll(".project-card"), { max: 6, speed: 400, glare: true, "max-glare": 0.15, scale: 1.02 });
   }
-});
 
-// 18. COPIE EMAIL & TOAST NOTIFICATION
+  // 18. COPIE EMAIL & TOAST NOTIFICATION
   const emailCards = document.querySelectorAll('.copy-email-card');
   if (emailCards.length > 0) {
     const toast = document.createElement('div');
@@ -321,3 +332,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+});

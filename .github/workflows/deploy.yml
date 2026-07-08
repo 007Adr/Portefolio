@@ -1,0 +1,33 @@
+name: Optimisation et Déploiement
+
+on:
+  push:
+    branches:
+      - main # Le script se déclenche à chaque modification de la branche principale
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Récupération du code source
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Configuration de l'environnement Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Installation des utilitaires de minification
+        run: npm install -g clean-css-cli uglify-js
+
+      - name: 🗜️ Minification des ressources (CSS & JS)
+        run: |
+          cleancss -o css/style.css css/style.css
+          uglifyjs js/app.js -o js/app.js -c -m
+
+      - name: 🚀 Publication sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Envoi du résultat vers la branche de production
