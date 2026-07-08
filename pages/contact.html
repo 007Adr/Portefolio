@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Adrien BLAIZE</title>
+  <meta name="description" content="Contacter Adrien Blaize pour une opportunité d'alternance en administration systèmes et réseaux (Licence ESSIR).">
+  <meta name="author" content="Adrien BLAIZE">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.adrienblaize.fr/pages/contact.html">
+  <meta property="og:title" content="Contact — Adrien BLAIZE">
+  <meta property="og:description" content="Discutons de vos infrastructures ! Actuellement en recherche d'une alternance pour la Licence ESSIR.">
+  <meta property="og:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolio.adrienblaize.fr/pages/contact.html">
+  <meta name="twitter:title" content="Contact — Adrien BLAIZE">
+  <meta name="twitter:description" content="Discutons de vos infrastructures ! Actuellement en recherche d'une alternance pour la Licence ESSIR.">
+  <meta name="twitter:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+
+  <link rel="stylesheet" href="/css/style.css?v=2.0">
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <nav>
+    <a href="/index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/pages/about.html">Profil & CV</a></li>
+      <li><a href="/pages/projets.html">Projets Tech</a></li>
+      <li><a href="/pages/experiences.html">Expériences</a></li>
+      <li><a href="/pages/veille.html">Veille</a></li>
+      <li><a href="/pages/contact.html" class="active">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <header class="page-header reveal">
+    <div class="page-eyebrow">Discutons de vos projets</div>
+    <h1 class="page-title parallax">Me Contacter</h1>
+    <p class="page-desc parallax">
+      Actuellement en recherche d'une alternance pour la Licence ESSIR. Un message via le formulaire ou sur les réseaux permet d'échanger rapidement sur une opportunité.
+    </p>
+  </header>
+
+  <section class="contact-layout">
+    
+    <div class="contact-cards">
+      <a href="mailto:contact@adrienblaize.fr" class="contact-card reveal reveal-delay-1 copy-email-card" data-email="adrien.blaize69@gmail.com">
+        <div class="contact-icon">📧</div>
+        <div class="contact-info">
+          <h2 class="contact-title">Email Direct</h2>
+          <p class="contact-text">contact@adrienblaize.fr</p>
+          <span class="copy-hint" style="font-size: 0.75rem; color: var(--accent); margin-top: 0.2rem; font-weight: 700; transition: color 0.3s;">Cliquez pour copier 📋</span>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/adrien-blaize-a7b6242a5" target="_blank" rel="noopener noreferrer" class="contact-card reveal reveal-delay-2">
+        <div class="contact-icon">💼</div>
+        <div class="contact-info">
+          <h2 class="contact-title">LinkedIn</h2>
+          <p class="contact-text">Réseau professionnel</p>
+        </div>
+      </a>
+
+      <a href="https://github.com/007Adr" target="_blank" rel="noopener noreferrer" class="contact-card reveal reveal-delay-3">
+        <div class="contact-icon">🐱</div>
+        <div class="contact-info">
+          <h2 class="contact-title">GitHub</h2>
+          <p class="contact-text">Dépôts & Scripts</p>
+        </div>
+      </a>
+
+      <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Adrien%20BLAIZE%0ATITLE:Administrateur%20Syst%C3%A8mes%20et%20R%C3%A9seaux%0AEMAIL:adrien.blaize69%40gmail.com%0AURL:https%3A%2F%2Fwww.linkedin.com%2Fin%2Fadrien-blaize-a7b6242a5%0AEND:VCARD" download="Adrien_BLAIZE.vcf" class="contact-card reveal reveal-delay-4">
+        <div class="contact-icon">📇</div>
+        <div class="contact-info">
+          <h2 class="contact-title">Export VCard</h2>
+          <p class="contact-text">Ajouter à mes contacts</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="contact-form-container reveal reveal-delay-2">
+      <h2>Envoyer un message</h2>
+      <form id="contact-form" action="https://formspree.io/f/xbdppkaj" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="name">Nom complet</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Adresse Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="john@entreprise.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subject">Sujet (Optionnel)</label>
+          <input type="text" id="subject" name="subject" class="form-control" placeholder="Proposition d'alternance">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea id="message" name="message" class="form-control" placeholder="Bonjour Adrien, nous serions intéressés par votre profil..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Envoyer le message 🚀</button>
+      </form>
+    </div>
+
+  </section>
+
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Standard -->
+  <title>Projets Techniques — Adrien BLAIZE</title>
+  <meta name="description" content="Découvrez les projets d'infrastructure : Proxmox, Maquettage CUB, pfSense, et automatisation Python.">
+  <meta name="author" content="Adrien BLAIZE">
+  
+  <!-- OpenGraph (LinkedIn, Facebook, Discord, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.adrienblaize.fr/pages/projets.html">
+  <meta property="og:title" content="Projets Techniques — Adrien BLAIZE">
+  <meta property="og:description" content="Découvrez les projets d'infrastructure : Proxmox, Maquettage CUB, pfSense, et automatisation Python.">
+  <meta property="og:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolio.adrienblaize.fr/pages/projets.html">
+  <meta name="twitter:title" content="Projets Techniques — Adrien BLAIZE">
+  <meta name="twitter:description" content="Projets d'infrastructure : Proxmox, Maquettage CUB, pfSense, et automatisation Python.">
+  <meta name="twitter:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+
+  <link rel="stylesheet" href="/css/style.css?v=2.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <nav>
+    <a href="/index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/pages/about.html">Profil & CV</a></li>
+      <li><a href="/pages/projets.html" class="active">Projets Tech</a></li>
+      <li><a href="/pages/experiences.html">Expériences</a></li>
+      <li><a href="/pages/veille.html">Veille</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <header class="page-header reveal">
+    <div class="page-eyebrow">Réalisations & Maquettage</div>
+    <h1 class="page-title parallax">Projets d'Infrastructure & Dev</h1>
+    <p class="page-desc parallax">
+      Découverte des architectures déployées en environnement de laboratoire, de la gestion réseau multi-sites au développement d'outils d'automatisation.
+    </p>
+  </header>
+
+  <section class="projects-container">
+    
+    <div class="filter-container reveal">
+      <button class="filter-btn active" data-filter="all">Tous les projets</button>
+      <button class="filter-btn" data-filter="sys">Système & Virtu</button>
+      <button class="filter-btn" data-filter="net">Réseau</button>
+      <button class="filter-btn" data-filter="sec">Sécurité</button>
+      <button class="filter-btn" data-filter="dev">Développement</button>
+    </div>
+
+    <div class="projects-grid">
+      
+      <article class="project-card reveal reveal-delay-1" data-category="sys">
+        <div class="project-visual">🖥️</div>
+        <div class="project-body">
+          <h2 class="project-title">Infrastructure Homelab Privée</h2>
+          <p class="project-text">
+            Conception et administration d'un hyperviseur personnel. Déploiement de serveurs virtuels pour héberger divers services. Gestion des ressources et sauvegardes.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Proxmox VE</span><span class="tag">Docker Compose</span><span class="tag">LXC</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal reveal-delay-2" data-category="net" data-modal-target="cub">
+        <div class="project-visual">🌐</div>
+        <div class="project-body">
+          <h2 class="project-title">Projet CUB : Réseau Multi-sites</h2>
+          <p class="project-text">
+            Maquettage complet d'une architecture d'entreprise (Cisco, Omada, RADIUS). <strong>(Cliquez pour le schéma et détails)</strong>
+          </p>
+          <div class="project-tags">
+            <span class="tag">Cisco L3</span><span class="tag">802.1X / RADIUS</span><span class="tag">VLAN</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal reveal-delay-3" data-category="sec net">
+        <div class="project-visual">🛡️</div>
+        <div class="project-body">
+          <h2 class="project-title">Sécurisation & ZTNA</h2>
+          <p class="project-text">
+            Mise en œuvre d'appliances de sécurité, configuration de pare-feux, gestion de reverse proxy et déploiement d'accès distant Zero Trust sécurisés.
+          </p>
+          <div class="project-tags">
+            <span class="tag">pfSense</span><span class="tag">Twingate</span><span class="tag">HAProxy</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal reveal-delay-4" data-category="dev sys sec" data-modal-target="python">
+        <div class="project-visual">🐍</div>
+        <div class="project-body">
+          <h2 class="project-title">Projet HunterDex & Architecture</h2>
+          <p class="project-text">
+            Développement d'un écosystème complet (Bot Discord, Backend, Frontend) hébergé sous architecture sécurisée Zero Trust. <strong>(Cliquez pour le schéma et détails)</strong>
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python (aiohttp)</span><span class="tag">Vue.js</span><span class="tag">PocketBase</span><span class="tag">Docker</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal reveal-delay-5" data-category="sec">
+        <div class="project-visual">🕵️‍♂️</div>
+        <div class="project-body">
+          <h2 class="project-title">Cybersécurité & Challenges</h2>
+          <p class="project-text">
+            Entraînement sur des plateformes dédiées à la sécurité offensive et défensive. Résolution de défis réseau et recherche d'informations en sources ouvertes.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Root-Me</span><span class="tag">OSINT</span><span class="tag">Wireshark</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+  <a href="/pages/contact.html" class="floating-cta" aria-label="Bouton rapide vers la page de contact">🚀 Dispo Alternance</a>
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
+
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-content">
+      <div class="modal-close" id="modal-close" aria-label="Fermer la fenêtre">✕</div>
+      <h2 id="modal-title" class="page-title" style="font-size: 2rem; margin-top: 0; text-align: left;">Titre</h2>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+</body>
+</html>

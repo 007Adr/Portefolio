@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Standard -->
+  <title>Profil & Compétences — Adrien BLAIZE</title>
+  <meta name="description" content="Profil d'Adrien Blaize : Certification Stormshield CSNA, SecNumAcadémie, et compétences techniques en systèmes et réseaux.">
+  <meta name="author" content="Adrien BLAIZE">
+  
+  <!-- OpenGraph (LinkedIn, Facebook, Discord, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.adrienblaize.fr/pages/about.html">
+  <meta property="og:title" content="Profil & Compétences — Adrien BLAIZE">
+  <meta property="og:description" content="Profil d'Adrien Blaize : Certification Stormshield CSNA, SecNumAcadémie, et compétences techniques en systèmes et réseaux.">
+  <meta property="og:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolio.adrienblaize.fr/pages/about.html">
+  <meta name="twitter:title" content="Profil & Compétences — Adrien BLAIZE">
+  <meta name="twitter:description" content="Profil d'Adrien Blaize : Certification Stormshield CSNA, SecNumAcadémie, et compétences techniques.">
+  <meta name="twitter:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+
+  <link rel="stylesheet" href="/css/style.css?v=2.0">
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <nav>
+    <a href="/index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/pages/about.html" class="active">Profil & CV</a></li>
+      <li><a href="/pages/projets.html">Projets Tech</a></li>
+      <li><a href="/pages/experiences.html">Expériences</a></li>
+      <li><a href="/pages/veille.html">Veille</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <header class="page-header reveal">
+    <div class="page-eyebrow">Présentation</div>
+    <h1 class="page-title parallax">Profil & Compétences</h1>
+    <p class="page-desc parallax">Un profil technique spécialisé en administration systèmes et réseaux, avec un fort attrait pour la cybersécurité et l'open source.</p>
+  </header>
+
+  <section class="profile-container">
+    <div class="profile-main">
+      
+      <div class="reveal reveal-delay-1">
+        <h2 class="profile-section-title">Certifications Professionnelles</h2>
+        
+        <div class="certif-card certif-card-expanded">
+          <div class="certif-header">
+            <div class="certif-icon">🛡️</div>
+            <div class="certif-info">
+              <h3>Stormshield Network Administrator (CSNA)</h3>
+              <p>Administration avancée, configuration de pare-feu et sécurisation des réseaux.</p>
+            </div>
+          </div>
+          <div class="certif-preview">
+            <iframe src="../files/BLAIZE_Adrien_99V43CSNA30770.pdf" width="100%" height="300px" style="border: none; display: block;" title="Aperçu de la certification Stormshield"></iframe>
+            <a href="../files/BLAIZE_Adrien_99V43CSNA30770.pdf" target="_blank" rel="noopener noreferrer" class="btn-certif" aria-label="Ouvrir le PDF de la certification">Consulter la certification en plein écran ↗</a>
+          </div>
+        </div>
+        
+        <div class="certif-card">
+          <div class="certif-icon">🔐</div>
+          <div class="certif-info">
+            <h3>SecNumAcadémie (ANSSI)</h3>
+            <p>Formation sur la sécurité du numérique et les bonnes pratiques cyber.</p>
+            <span style="font-size: 0.75rem; color: var(--accent); font-weight: 700; display: inline-block; margin-top: 0.3rem;">[Attestation en attente d'ouverture]</span>
+          </div>
+        </div>
+
+        <div class="certif-card">
+          <div class="certif-icon">💻</div>
+          <div class="certif-info">
+            <h3>Certification Pix</h3>
+            <p>Évaluation et validation des compétences numériques transversales.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="margin-top: 4rem;">
+        <h2 class="profile-section-title">Topologie & Architecture Homelab</h2>
+        <div class="topology-wrapper">
+          <div class="topology-flow">
+            <div class="topo-node" data-tooltip="Point d'entrée du réseau, liaison avec l'extérieur.">
+              <div class="topo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+              <div class="topo-title">WAN</div>
+              <div class="topo-sub">Internet</div>
+            </div>
+            <div class="topo-line"></div>
+            
+            <div class="topo-node" data-tooltip="Filtrage IP, HAProxy pour répartition de charge, VPN Twingate pour accès distant sécurisé.">
+              <div class="topo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+              <div class="topo-title">Open WRT</div>
+              <div class="topo-sub">Firewall</div>
+            </div>
+            <div class="topo-line"></div>
+            
+            <div class="topo-node" data-tooltip="Hyperviseur bare-metal. Gestion des VM et monitoring complet.">
+              <div class="topo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+              <div class="topo-title">Proxmox</div>
+              <div class="topo-sub">Hyperviseur</div>
+            </div>
+            <div class="topo-line"></div>
+            
+            <div class="topo-node" data-tooltip="Orchestration via Docker Compose. Conteneurs isolés (Base de données, Nginx).">
+              <div class="topo-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"></div>
+              <div class="topo-title">Docker / LXC</div>
+              <div class="topo-sub">Services isolés</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3" style="margin-top: 4rem;">
+        <h2 class="profile-section-title">Environnement & Outils</h2>
+        <div class="tools-grid">
+          <div class="tool-card" data-tooltip="Distribution Linux principale pour l'administration et le scripting.">
+            <div class="tool-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"></div>
+            <div class="tool-info">
+              <h4>OS de travail</h4>
+              <p>Linux Mint / Ubuntu</p>
+            </div>
+          </div>
+          <div class="tool-card" data-tooltip="IDE configuré avec extensions Docker, Python et SSH.">
+            <div class="tool-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code"></div>
+            <div class="tool-info">
+              <h4>Éditeur & IDE</h4>
+              <p>Visual Studio Code</p>
+            </div>
+          </div>
+          <div class="tool-card" data-tooltip="Analyse de trames réseau et diagnostic d'incidents (OSINT / Sécurité).">
+            <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div>
+            <div class="tool-info">
+              <h4>Troubleshooting</h4>
+              <p>Wireshark / Nmap</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-4" style="margin-top: 4rem;">
+        <h2 class="profile-section-title">Centres d'intérêt & Projets parallèles</h2>
+        <ul class="hobbies-list">
+          <li><span>👾</span> Développement de bots Discord asynchrones (aiohttp et PocketBase).</li>
+          <li><span>🕵️‍♂️</span> Cybersécurité et résolution de challenges techniques (Root-Me, OSINT).</li>
+          <li><span>🏋️‍♂️</span> Pratique de la musculation.</li>
+          <li><span>🎮</span> Esport et optimisation technique du matériel gaming.</li>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="profile-sidebar reveal reveal-delay-2 parallax">
+      <div class="sidebar-item">
+        <div class="sidebar-label">Localisation</div>
+        <div class="sidebar-value">Caluire-et-Cuire, Région Lyonnaise</div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-label">Statut</div>
+        <div class="sidebar-value">Recherche d'alternance (Licence ESSIR)</div>
+      </div>
+      
+      <div class="sidebar-item" style="margin-top: 2rem;">
+        <div class="sidebar-label" style="text-align: center; margin-bottom: 1rem;">Stack Technique</div>
+        <div class="tech-wheel-section">
+          <div class="tech-wheel">
+            <div class="tech-wheel-center">IT</div>
+            <div class="tech-satellite sat-1" title="Docker"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" loading="lazy"></div>
+            <div class="tech-satellite sat-2" title="PocketBase"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #B8E986;"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"></path></svg></div>
+            <div class="tech-satellite sat-3" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" loading="lazy"></div>
+            <div class="tech-satellite sat-4" title="Debian"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg" alt="Debian" loading="lazy"></div>
+            <div class="tech-satellite sat-5" title="Bash"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Bash" loading="lazy"></div>
+            <div class="tech-satellite sat-6" title="Réseau"><img src="https://www.vectorlogo.zone/logos/cisco/cisco-icon.svg" alt="Réseau" loading="lazy"></div>
+            <div class="tech-satellite sat-7" title="Ubuntu"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ubuntu/ubuntu-plain.svg" alt="Ubuntu" loading="lazy"></div>
+            <div class="tech-satellite sat-8" title="GitHub"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="/files/_CV+Adrien+BLAIZE_compressed.pdf" class="btn btn-primary btn-download-cv" style="width: 100%; margin-top: 1rem;" aria-label="Télécharger le CV">Télécharger le CV complet</a>
+    </aside>
+  </section>
+
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+  <a href="/pages/contact.html" class="floating-cta">🚀 Dispo Alternance</a>
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
+
+</body>
+</html>

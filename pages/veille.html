@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Standard -->
+  <title>Veille Technologique — Adrien BLAIZE</title>
+  <meta name="description" content="Veille technologique d'Adrien Blaize : Suivi de l'actualité cybersécurité, des ransomwares et de l'administration réseau en direct via flux RSS.">
+  <meta name="author" content="Adrien BLAIZE">
+  
+  <!-- OpenGraph (LinkedIn, Facebook, Discord, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.adrienblaize.fr/pages/veille.html">
+  <meta property="og:title" content="Veille Technologique — Adrien BLAIZE">
+  <meta property="og:description" content="Suivi de l'actualité cybersécurité, des ransomwares et de l'administration réseau en direct.">
+  <meta property="og:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolio.adrienblaize.fr/pages/veille.html">
+  <meta name="twitter:title" content="Veille Technologique — Adrien BLAIZE">
+  <meta name="twitter:description" content="Suivi de l'actualité cybersécurité, des ransomwares et de l'administration réseau en direct.">
+  <meta name="twitter:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+
+  <link rel="stylesheet" href="/css/style.css?v=2.0">
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <nav>
+    <a href="/index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/pages/about.html">Profil & CV</a></li>
+      <li><a href="/pages/projets.html">Projets Tech</a></li>
+      <li><a href="/pages/experiences.html">Expériences</a></li>
+      <li><a href="/pages/veille.html" class="active">Veille</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </nav>
+
+  <header class="page-header reveal">
+    <div class="page-eyebrow">Innovation & Surveillance</div>
+    <h1 class="page-title parallax">Veille Technologique</h1>
+    <p class="page-desc parallax">
+      Suivi constant des évolutions liées à l'administration des infrastructures, la cybersécurité et l'actualité des ransomwares via des flux automatisés.
+    </p>
+  </header>
+
+  <section class="veille-container">
+    <div class="veille-card reveal reveal-delay-1">
+      <div class="veille-icon">🔐</div>
+      <h2 class="veille-title">Ransomware & Cybercriminalité</h2>
+      <p class="veille-text">Surveillance active des failles Zero-Day, des évolutions des attaques réseaux et des groupes criminels actifs (suivi des CERTs, alertes ANSSI).</p>
+    </div>
+    <div class="veille-card reveal reveal-delay-2">
+      <div class="veille-icon">📦</div>
+      <h2 class="veille-title">Virtualisation & Conteneurs</h2>
+      <p class="veille-text">Analyse des nouvelles releases de Proxmox VE, de l'écosystème Docker et des solutions d'orchestration pour optimiser les serveurs.</p>
+    </div>
+    <div class="veille-card reveal reveal-delay-3">
+      <div class="veille-icon">⚙️</div>
+      <h2 class="veille-title">Automatisation & OSINT</h2>
+      <p class="veille-text">Recherche continue sur l'automatisation via Python et l'application de méthodologies de recherche d'informations ouvertes.</p>
+    </div>
+  </section>
+
+  <section class="live-feed-section reveal reveal-delay-1">
+    <div class="live-feed-header">
+      <h2 class="page-title" style="font-size: 2rem;">Flux d'actualités en direct</h2>
+      <p class="page-desc" style="font-size: 0.95rem;">Système de veille automatisé récupérant les derniers articles via API et proxies CORS.</p>
+    </div>
+
+    <div class="flux-tabs">
+      <button class="flux-tab-btn active" onclick="switchFlux('certfr')" id="ftab-certfr">🇫🇷 Alertes CERT-FR</button>
+      <button class="flux-tab-btn" onclick="switchFlux('thn')" id="ftab-thn">📰 The Hacker News</button>
+      <button class="flux-tab-btn" onclick="switchFlux('record')" id="ftab-record">📡 The Record</button>
+    </div>
+
+    <div class="flux-section active" id="flux-certfr">
+      <div class="feed-grid" id="feed-certfr"><div class="feed-loading"><div class="spinner"></div> Chargement des alertes CERT-FR…</div></div>
+    </div>
+    <div class="flux-section" id="flux-thn">
+      <div class="feed-grid" id="feed-thn"><div class="feed-loading"><div class="spinner"></div> Chargement de The Hacker News…</div></div>
+    </div>
+    <div class="flux-section" id="flux-record">
+      <div class="feed-grid" id="feed-record"><div class="feed-loading"><div class="spinner"></div> Chargement de The Record…</div></div>
+    </div>
+  </section>
+
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+  <a href="/pages/contact.html" class="floating-cta" aria-label="Bouton rapide vers la page de contact">🚀 Dispo Alternance</a>
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
+
+  <script>
+  const PROXIES = [
+    url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    url => `https://cors-anywhere.herokuapp.com/${url}`,
+  ];
+  async function fetchViaProxy(feedUrl, proxyIndex) {
+    const proxyUrl = PROXIES[proxyIndex](feedUrl);
+    const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const contentType = res.headers.get("content-type") || "";
+    if (contentType.includes("application/json") || proxyIndex <= 1) {
+      const json = await res.json();
+      const xml = json.contents ?? json;
+      if (!xml || typeof xml !== "string" || xml.length < 50) throw new Error("Réponse vide");
+      return xml;
+    }
+    const text = await res.text();
+    if (!text || text.length < 50) throw new Error("Réponse vide");
+    return text;
+  }
+  async function fetchRSS(feedUrl) {
+    let lastErr;
+    for (let i = 0; i < PROXIES.length; i++) {
+      try { const xml = await fetchViaProxy(feedUrl, i); return xml; } 
+      catch (e) { lastErr = e; }
+    }
+    throw lastErr ?? new Error("Tous les proxys ont échoué");
+  }
+  const LIVE_FEEDS = {
+    "feed-certfr": { url: "https://www.cert.ssi.gouv.fr/feed/", source: "CERT-FR", tab: "certfr" },
+    "feed-thn": { url: "https://feeds.feedburner.com/TheHackersNews", source: "The Hacker News", tab: "thn" },
+    "feed-record": { url: "https://therecord.media/feed", source: "The Record", tab: "record" },
+  };
+  function stripHtml(html) {
+    if (!html) return "";
+    const d = document.createElement("div"); d.innerHTML = html;
+    return (d.textContent || d.innerText || "").trim();
+  }
+  function formatDate(str) {
+    if (!str) return "";
+    const d = new Date(str);
+    return isNaN(d) ? "" : d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
+  }
+  function truncate(s, n) {
+    if (!s) return "";
+    s = s.trim(); return s.length > n ? s.slice(0, n).trimEnd() + "…" : s;
+  }
+  function parseXML(xml) {
+    const cleaned = xml.replace(/&(?!(amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/g, "&amp;");
+    let doc;
+    try { doc = new DOMParser().parseFromString(cleaned, "text/xml"); } 
+    catch (e) { doc = new DOMParser().parseFromString(xml, "text/html"); }
+    const parseError = doc.querySelector("parsererror");
+    if (parseError) doc = new DOMParser().parseFromString(xml, "text/html");
+    const items = [];
+    doc.querySelectorAll("item").forEach(el => {
+      const linkEl = el.querySelector("link");
+      const link = linkEl?.textContent?.trim() || linkEl?.nextSibling?.textContent?.trim() || linkEl?.getAttribute("href") || "";
+      items.push({
+        title: el.getElementsByTagName("title")[0]?.textContent?.trim() || "", link,
+        desc:  el.getElementsByTagName("description")[0]?.textContent || "",
+        date:  el.getElementsByTagName("pubDate")[0]?.textContent || "",
+      });
+    });
+    if (items.length) return items;
+    doc.querySelectorAll("entry").forEach(el => {
+      const linkEl = el.querySelector("link[rel='alternate']") || el.querySelector("link");
+      items.push({
+        title: el.getElementsByTagName("title")[0]?.textContent?.trim() || "", link:  linkEl?.getAttribute("href") || "",
+        desc:  el.getElementsByTagName("summary")[0]?.textContent || el.getElementsByTagName("content")[0]?.textContent || "",
+        date:  el.getElementsByTagName("published")[0]?.textContent || el.getElementsByTagName("updated")[0]?.textContent || "",
+      });
+    });
+    return items;
+  }
+  function renderCard(item, source) {
+    const title = truncate(stripHtml(item.title), 100);
+    const desc  = truncate(stripHtml(item.desc),  140);
+    const date  = formatDate(item.date);
+    const href  = item.link || "#";
+    return `
+      <a class="feed-card" href="${href}" target="_blank" rel="noopener noreferrer">
+        <div class="feed-card-meta">${date ? `<span>${date}</span><span class="feed-card-meta-dot"></span>` : ""}<span>${source}</span></div>
+        <div class="feed-card-title">${title || "Article"}</div>
+        ${desc ? `<div class="feed-card-desc">${desc}</div>` : ""}
+        <div class="feed-card-footer"><span class="feed-card-source">${source}</span><span class="feed-card-link">Lire →</span></div>
+      </a>`;
+  }
+  const loadedFeeds = new Set();
+  async function loadFeed(feedId) {
+    if (loadedFeeds.has(feedId)) return;
+    loadedFeeds.add(feedId);
+    const cfg = LIVE_FEEDS[feedId];
+    const container = document.getElementById(feedId);
+    if (!cfg || !container) return;
+    try {
+      const xml = await fetchRSS(cfg.url);
+      const items = parseXML(xml).slice(0, 6);
+      if (!items.length) throw new Error("Aucun article");
+      container.innerHTML = items.map(i => renderCard(i, cfg.source)).join("");
+    } catch (err) {
+      container.innerHTML = `<div class="feed-empty">⚠️ Flux indisponible.<br><a href="${cfg.url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem;margin-top:0.5rem;display:inline-block;font-weight:600;">Voir la source →</a></div>`;
+    }
+  }
+  function switchFlux(tab) {
+    document.querySelectorAll(".flux-section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".flux-tab-btn").forEach(b => b.classList.remove("active"));
+    const section = document.getElementById("flux-" + tab);
+    const btn = document.getElementById("ftab-" + tab);
+    if (section) section.classList.add("active");
+    if (btn) btn.classList.add("active");
+    const feedId = Object.keys(LIVE_FEEDS).find(k => LIVE_FEEDS[k].tab === tab);
+    if (feedId) loadFeed(feedId);
+  }
+  document.addEventListener("DOMContentLoaded", () => { loadFeed("feed-certfr"); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Standard -->
+  <title>Adrien BLAIZE — Administrateur Systèmes & Réseaux</title>
+  <meta name="description" content="Portfolio d'Adrien Blaize, Administrateur Systèmes & Réseaux. Infrastructure, cybersécurité et homelab. Recherche d'alternance en Licence ESSIR.">
+  <meta name="author" content="Adrien BLAIZE">
+  
+  <!-- OpenGraph (LinkedIn, Facebook, Discord, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.adrienblaize.fr/">
+  <meta property="og:title" content="Adrien BLAIZE — Administrateur Systèmes & Réseaux">
+  <meta property="og:description" content="Découvrez mon portfolio technique : Infrastructure, cybersécurité, virtualisation et projets de développement. Recherche d'alternance pour la rentrée 2026.">
+  <meta property="og:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://portfolio.adrienblaize.fr/">
+  <meta name="twitter:title" content="Adrien BLAIZE — Portfolio SysAdmin">
+  <meta name="twitter:description" content="Découvrez mon portfolio technique : Infrastructure, cybersécurité, virtualisation et projets. Recherche d'alternance pour la rentrée 2026.">
+  <meta name="twitter:image" content="https://portfolio.adrienblaize.fr/files/preview.jpg">
+
+  <link rel="stylesheet" href="/css/style.css?v=2.0">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+  
+  <div id="preloader"><div class="loader-icon">⚙️</div></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div id="particles-js"></div>
+
+  <nav>
+    <a href="/index.html" class="nav-logo" aria-label="Retour à l'accueil">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html" class="active">Accueil</a></li>
+      <li><a href="/pages/about.html">Profil & CV</a></li>
+      <li><a href="/pages/projets.html">Projets Tech</a></li>
+      <li><a href="/pages/experiences.html">Expériences</a></li>
+      <li><a href="/pages/veille.html">Veille</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li> 
+      <li><button id="theme-toggle" aria-label="Basculer le thème sombre/clair" style="background:none; border:none; font-size:1.4rem; cursor:pointer; margin-left: 1rem; padding: 0;">🌙</button></li>
+    </ul>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Ouvrir le menu de navigation">☰</button>
+  </nav>
+
+  <div class="hero-wrapper reveal">
+    <div class="hero-left parallax">
+      <div class="hero-eyebrow">⚡ Administrateur Systèmes & Réseaux · Recherche Alternance</div>
+      <h1 class="hero-title">Bonjour, je suis <span class="highlight">Adrien BLAIZE</span></h1>
+      <div class="hero-subtitle">Futur étudiant en Licence Pro ESSIR (Lyon 1) · Diplômé BTS SIO SISR</div>
+      <p class="hero-desc">Passionné par l'infrastructure, la cybersécurité et l'open source. À la rentrée prochaine, l'intégration en Licence ESSIR s'accompagne d'une recherche active d'alternance pour développer et consolider des compétences techniques au sein d'une équipe dynamique.</p>
+      <div class="hero-actions">
+        <a href="/files/CV_2026-07-03_Adrien_BLAIZE (1).pdf" class="btn btn-primary btn-download-cv" aria-label="Télécharger le CV">📄 Mon CV</a>
+        <a href="https://www.linkedin.com/in/adrien-blaize-a7b6242a5" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ouvrir le profil LinkedIn">💼 LinkedIn</a>
+        <a href="https://github.com/007Adr" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ouvrir le profil GitHub">🐱 GitHub</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal reveal-delay-2 parallax">
+      <a class="nav-card" href="/pages/about.html">
+        <div class="nav-card-icon">👤</div>
+        <div><div class="nav-card-title">Profil & CV</div><div class="nav-card-sub">Compétences & certifications</div></div>
+        <div class="nav-card-arrow">→</div>
+      </a>
+      <a class="nav-card" href="/pages/projets.html">
+        <div class="nav-card-icon">🧪</div>
+        <div><div class="nav-card-title">Projets Tech</div><div class="nav-card-sub">Homelab, Docker, Réseau & Dev</div></div>
+        <div class="nav-card-arrow">→</div>
+      </a>
+      <a class="nav-card" href="/pages/experiences.html">
+        <div class="nav-card-icon">🏢</div>
+        <div><div class="nav-card-title">Expériences</div><div class="nav-card-sub">Missions pro & associatif</div></div>
+        <div class="nav-card-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="marquee-wrapper reveal">
+    <div class="marquee-content">
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" loading="lazy"> Docker</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" loading="lazy"> Python</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/cisco/cisco-icon.svg" alt="Cisco" loading="lazy"> Cisco</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg" alt="Debian" loading="lazy"> Debian</div>
+      <div class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"></path></svg> PocketBase</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/proxmox/proxmox-icon.svg" alt="Proxmox" loading="lazy"> Proxmox</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" loading="lazy"> Docker</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" loading="lazy"> Python</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/cisco/cisco-icon.svg" alt="Cisco" loading="lazy"> Cisco</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg" alt="Debian" loading="lazy"> Debian</div>
+      <div class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"></path></svg> PocketBase</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/proxmox/proxmox-icon.svg" alt="Proxmox" loading="lazy"> Proxmox</div>
+    </div>
+    <div class="marquee-content reverse">
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy"> Nginx</div>
+      <div class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Stormshield</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/haproxy/haproxy-icon.svg" alt="HAProxy" loading="lazy"> HAProxy</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/pfsense/pfsense-icon.svg" alt="pfSense" loading="lazy"> pfSense</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" alt="Grafana" loading="lazy"> Grafana</div>
+      <div class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Twingate</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy"> Nginx</div>
+      <div class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Stormshield</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/haproxy/haproxy-icon.svg" alt="HAProxy" loading="lazy"> HAProxy</div>
+      <div class="marquee-item"><img src="https://www.vectorlogo.zone/logos/pfsense/pfsense-icon.svg" alt="pfSense" loading="lazy"> pfSense</div>
+      <div class="marquee-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" alt="Grafana" loading="lazy"> Grafana</div>
+      <div class="marquee-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Twingate</div>
+    </div>
+  </div>
+
+  <div class="home-section reveal">
+    <div class="section-eyebrow-line">Approche</div>
+    <h2 class="home-section-title">Présentation du profil</h2>
+    <p class="home-section-sub">Ce site rassemble les réalisations techniques, les projets d'infrastructure et les expériences professionnelles permettant d'illustrer une véritable appétence pour l'administration systèmes et réseaux.</p>
+
+    <div class="objectif-grid">
+      <div class="objectif-card featured reveal reveal-delay-1">
+        <div class="objectif-card-icon">🎯</div>
+        <div class="objectif-card-title">Objectif principal : Alternance</div>
+        <div class="objectif-card-text">Démontrer la cohérence d'un parcours technique à travers des projets concrets. Ce portfolio s'adresse directement aux recruteurs et aux équipes IT pour évaluer un profil opérationnel.</div>
+      </div>
+      <div class="objectif-card reveal reveal-delay-2">
+        <div class="objectif-card-icon">🛠️</div>
+        <div class="objectif-card-title">Homelab & Pratique</div>
+        <div class="objectif-card-text">Maintien d'une infrastructure personnelle (Proxmox, Docker) pour tester en continu de nouvelles solutions open-source.</div>
+      </div>
+      <div class="objectif-card reveal reveal-delay-3">
+        <div class="objectif-card-icon">🤝</div>
+        <div class="objectif-card-title">Expérience terrain</div>
+        <div class="objectif-card-text">Application des concepts théoriques dans des environnements de production réels, en entreprise ou dans la gestion d'infrastructures associatives.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-section reveal">
+    <div class="section-eyebrow-line">Parcours</div>
+    <h2 class="home-section-title">Évolution & Formations</h2>
+    <div class="formation-layout">
+      <div class="reveal reveal-delay-1">
+        <div class="formation-text">
+          <p>Le développement de compétences techniques s'articule autour de l'administration des systèmes d'exploitation, la configuration d'équipements réseaux et la mise en œuvre de politiques de cybersécurité.</p>
+          <p>Les bases solides acquises lors du cursus en <strong>BTS SIO SISR</strong> permettent aujourd'hui d'évoluer vers des architectures plus complexes, incluant le maquettage sous Proxmox, le routage avancé et l'automatisation.</p>
+          <p>L'intégration en <strong>Licence Pro ESSIR</strong> marque la volonté d'approfondir ces thématiques techniques dans un cadre professionnel concret via l'alternance.</p>
+        </div>
+        <div class="formation-pills">
+          <span class="formation-pill">Proxmox VE</span><span class="formation-pill">Docker & LXC</span><span class="formation-pill">Réseaux Cisco</span>
+          <span class="formation-pill">Cybersécurité</span><span class="formation-pill">Linux Debian</span><span class="formation-pill">pfSense</span>
+        </div>
+      </div>
+
+      <div class="formation-timeline reveal reveal-delay-3">
+        <div class="timeline-item active">
+          <div class="timeline-dot">🎯</div>
+          <div class="timeline-body">
+            <div class="timeline-date">Septembre 2026 — À venir</div>
+            <div class="timeline-title">Licence Pro ESSIR — Recherche d'alternance</div>
+          </div>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-dot">💼</div>
+          <div class="timeline-body">
+            <div class="timeline-date">2025 — 2026</div>
+            <div class="timeline-title">Missions Professionnelles</div>
+          </div>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-dot">🎓</div>
+          <div class="timeline-body">
+            <div class="timeline-date">2024 — 2026</div>
+            <div class="timeline-title">Obtention du BTS SIO SISR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-section reveal">
+    <div class="section-eyebrow-line">Expertise</div>
+    <h2 class="home-section-title">Compétences Techniques</h2>
+    <div class="competences-grid">
+      <div class="comp-card reveal reveal-delay-1">
+        <div class="comp-card-icon">☁️</div>
+        <div class="comp-card-title">Virtualisation & Conteneurs</div>
+      </div>
+      <div class="comp-card reveal reveal-delay-2">
+        <div class="comp-card-icon">🌐</div>
+        <div class="comp-card-title">Réseaux & Infrastructure</div>
+      </div>
+      <div class="comp-card reveal reveal-delay-3">
+        <div class="comp-card-icon">🔒</div>
+        <div class="comp-card-title">Sécurité & Accès Distants</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-band reveal">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-text-title">Discutons de vos infrastructures !</div>
+        <div class="cta-text-sub">Actuellement en recherche d'une opportunité d'alternance pour la rentrée 2026.</div>
+      </div>
+      <div class="cta-actions">
+        <a href="/pages/about.html" class="btn-white">📄 Consulter le CV</a>
+        <a href="/pages/contact.html" class="btn-ghost-white">✉️ Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; Administrateur Systèmes & Réseaux &nbsp;·&nbsp; 2026</footer>
+
+  <a href="/pages/contact.html" class="floating-cta" aria-label="Bouton rapide vers la page de contact">🚀 Dispo Alternance</a>
+  <div class="server-status"><div class="status-dot" id="homelab-dot"></div><span id="homelab-text">Homelab : Synchronisation...</span></div>
+
+</body>
+</html>

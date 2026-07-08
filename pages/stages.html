@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stages — Adrien BLAIZE</title>
+  <link rel="stylesheet" href="../css/style.css?v=2.0">
+  <style>
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stage-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
+      text-decoration: none; color: inherit;
+      transition: all 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .stage-card:hover {
+      border-color: var(--accent-mid);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(29,78,216,0.12);
+    }
+
+    .stage-card-banner {
+      height: 180px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .stage-card-banner img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .stage-card-banner.dark { background: #1e1e1e; }
+
+    .stage-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .stage-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    .stage-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; }
+
+    .stage-meta-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .stage-meta-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.83rem; color: var(--muted); }
+
+    .stage-card-footer {
+      margin-top: auto; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .stage-badge {
+      background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a;
+      padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+    }
+    .stage-cta { display: flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; font-weight: 600; color: var(--accent); transition: gap 0.2s; }
+    .stage-card:hover .stage-cta { gap: 0.55rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Adrien <span>Blaize</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">À propos de moi</a></li>
+      <li><a href="ateliers.html">Ateliers Pro</a></li>
+      <li class="nav-dropdown">
+        <a href="stages.html" class="active">Stages</a>
+        <div class="dropdown-menu">
+          <a href="stages/stage1.html">🏢 Stage 1 — Paredes Orapi</a>
+          <a href="stages/stage2.html">🏢 Stage 2 — SIA BDE INSA</a>
+        </div>
+      </li>
+      <li><a href="veille.html" >Veille techno</a></li>
+      <li><a href="contact.html">Contact</a></li>  
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Expériences professionnelles</div>
+        <h2 class="section-title">Mes Stages</h2>
+        <p class="section-sub">Clique sur une entreprise pour découvrir le détail : présentation, missions, rapport.</p>
+      </div>
+
+      <div class="stages-grid">
+
+        <a class="stage-card" href="stages/stage1.html">
+          <div class="stage-card-banner">
+            <img src="../images/logo-paredes.png" alt="Groupe Paredes Orapi">
+          </div>
+          <div class="stage-card-body">
+            <div class="stage-num">Stage 1</div>
+            <div class="stage-name">Groupe Paredes Orapi</div>
+            <div class="stage-meta-list">
+              <div class="stage-meta-row">📅 Durée · Juin-Juillet 2025</div>
+              <div class="stage-meta-row">📍 Lyon</div>
+              <div class="stage-meta-row">🏷 Hygiène & Maintenance industrielle</div>
+            </div>
+            <div class="stage-card-footer">
+              <span class="stage-badge">✓ Terminé</span>
+              <span class="stage-cta">Voir le détail →</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="stage-card" href="stages/stage2.html">
+          <div class="stage-card-banner dark">
+            <img src="../images/logo-sia.png" alt="SIA BDE INSA Lyon">
+          </div>
+          <div class="stage-card-body">
+            <div class="stage-num">Stage 2</div>
+            <div class="stage-name">SIA BDE INSA Lyon</div>
+            <div class="stage-meta-list">
+              <div class="stage-meta-row">📅 Durée · Janvier–Février 2026</div>
+              <div class="stage-meta-row">📍 Lyon</div>
+              <div class="stage-meta-row">🏷 Association étudiante</div>
+            </div>
+            <div class="stage-card-footer">
+              <span class="stage-badge">✓ Terminé</span>
+              <span class="stage-cta">Voir le détail →</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Portfolio de <strong>Adrien Blaize</strong> &nbsp;·&nbsp; BTS SIO SISR &nbsp;·&nbsp; La Martinière Duchère &nbsp;·&nbsp; 2025
+  </footer>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>
